@@ -10,120 +10,132 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id Int @id @default(autoincrement()) // Identificação do usuário
-  username String // Nome de usuário
-  email String // E-mail
-  password String // Senha
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  role String // Função
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+// Modelo de Usuário
+model Usuario {
+  id Int @id @default(autoincrement()) // ID único do usuário
+  idObra Int // ID da obra à qual o usuário está associado
+  obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com o modelo de Obra
+  usuario String // Nome de usuário
+  email String // Endereço de e-mail do usuário
+  senha String // Senha do usuário
+  ativo Boolean // Indica se o usuário está ativo
+  role String // Função ou cargo do usuário
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model Project {
-  id Int @id @default(autoincrement()) // Identificação do projeto
-  projectDescription String // Descrição do projeto
-  company String // Empresa
-  responsibleName String // Nome do responsável
-  contactPhone String // Telefone de contato
-  fullAddress String // Endereço completo
-  logo String // Logotipo
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  users User[] // Relação com o modelo User
-  teams Team[] // Relação com o modelo Team
-  services Service[] // Relação com o modelo Service
-  staff Staff[] // Relação com o modelo Staff
-  shifts Shift[] // Relação com o modelo Shift
-  interferences Interference[] // Relação com o modelo Interference
-  locations Location[] // Relação com o modelo Location
+// Modelo de Obra
+model Obra {
+  id Int @id @default(autoincrement()) // ID único da obra
+  descricaoObra String // Descrição da obra
+  empresaObra String // Nome da empresa da obra
+  nomeResponsavel String // Nome do responsável pela obra
+  telefoneContato String // Número de telefone de contato
+  enderecoCompleto String // Endereço completo da obra
+  logo String // Logotipo da obra
+  ativo Boolean // Indica se a obra está ativa
+  usuarios Usuario[] // Relacionamento com os usuários associados à obra
+  equipes Equipe[] // Relacionamento com as equipes da obra
+  servicos Servico[] // Relacionamento com os serviços da obra
+  efetivos Efetivo[] // Relacionamento com os efetivos da obra
+  turnos Turno[] // Relacionamento com os turnos da obra
+  interferencias Interferencia[] // Relacionamento com as interferências da obra
+  locais Local[] // Relacionamento com os locais da obra
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model ServiceCategory {
-  id Int @id @default(autoincrement()) // Identificação da categoria de serviço
-  name String // Nome
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  subcategories ServiceSubcategory[] // Relação com o modelo ServiceSubcategory
+// Modelo de Categoria de Serviço
+model CategoriaServico {
+  id Int @id @default(autoincrement()) // ID único da categoria de serviço
+  nome String // Nome da categoria de serviço
+  ativo Boolean // Indica se a categoria de serviço está ativa
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
+  subcategorias SubCategoriaServico[] // Relacionamento com as subcategorias de serviço
 }
 
-model ServiceSubcategory {
-  id Int @id @default(autoincrement()) // Identificação da subcategoria de serviço
-  name String // Nome
-  active Boolean // Ativo
-  categoryId Int // ID da categoria associada
-  category ServiceCategory @relation(fields: [categoryId], references: [id]) // Relação com o modelo ServiceCategory
-  services Service[] // Relação com o modelo Service
+// Modelo de Subcategoria de Serviço
+model SubCategoriaServico {
+  id Int @id @default(autoincrement()) // ID único da subcategoria de serviço
+  nome String // Nome da subcategoria de serviço
+  ativo Boolean // Indica se a subcategoria de serviço está ativa
+  categoriaServicoId Int // ID da categoria de serviço à qual a subcategoria pertence
+  categoriaServico CategoriaServico @relation(fields: [categoriaServicoId], references: [id]) // Relacionamento com a categoria de serviço
+  servicos Servico[] // Relacionamento com os serviços associados à subcategoria
 }
 
-model Service {
-  id Int @id @default(autoincrement()) // Identificação do serviço
-  serviceDescription String // Descrição do serviço
-  unit String // Unidade
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  subcategoryId Int // ID da subcategoria associada
-  subcategory ServiceSubcategory @relation(fields: [subcategoryId], references: [id]) // Relação com o modelo ServiceSubcategory
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+// Modelo de Serviço
+model Servico {
+  id Int @id @default(autoincrement()) // ID único do serviço
+  idObra Int // ID da obra à qual o serviço está associado
+  obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com a obra
+  descricaoServico String // Descrição do serviço
+  unidade String // Unidade de medida do serviço
+  ativo Boolean // Indica se o serviço está ativo
+  subcategoriaId Int // ID da subcategoria de serviço à qual o serviço pertence
+  subcategoria SubCategoriaServico @relation(fields: [subcategoriaId], references: [id]) // Relacionamento com a subcategoria de serviço
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model Team {
-  id Int @id @default(autoincrement()) // Identificação da equipe
-  teamDescription String // Descrição da equipe
-  contractedCompany String // Empresa contratada
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
-  shifts Shift[] // Relação com o modelo Shift
-  interferences Interference[] // Relação com o modelo Interference
+// Modelo de Equipe
+model Equipe {
+  id Int @id @default(autoincrement()) // ID único da equipe
+  idObra Int // ID da obra à qual a equipe está associada
+  obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com a obra
+  descricaoEquipe String // Descrição da equipe
+  empresaContratada String // Nome da empresa contratada para a equipe
+  ativo Boolean // Indica se a equipe está ativa
+  turnos Turno[] // Relacionamento com os turnos da equipe
+  interferencias Interferencia[] // Relacionamento com as interferências da equipe
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model Staff {
-  id Int @id @default(autoincrement()) // Identificação do efetivo
-  type String // Tipo
-  staffDescription String // Descrição do efetivo
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+// Modelo de Efetivo
+model Efetivo {
+  id Int @id @default(autoincrement()) // ID único do efetivo
+  idObra Int // ID da obra à qual o efetivo está associado
+  obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com a obra
+  tipo String // Tipo de efetivo
+  descricaoEfetivo String // Descrição do efetivo
+  ativo Boolean // Indica se o efetivo está ativo
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model Shift {
-  id Int @id @default(autoincrement()) // Identificação do turno
-  shiftDescription String // Descrição do turno
-  feasibility String // Viabilidade
-  weather String // Clima
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  teamId Int // ID da equipe associada
-  team Team @relation(fields: [teamId], references: [id]) // Relação com o modelo Team
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+// Modelo de Turno
+model Turno {
+  id Int @id @default(autoincrement()) // ID único do turno
+  idEquipe Int // ID da equipe à qual o turno está associado
+  equipe Equipe @relation(fields: [idEquipe], references: [id]) // Relacionamento com a equipe
+  idObra Int // ID da obra à qual o turno está associado
+  obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com a obra
+  descricaoTurno String // Descrição do turno
+  praticabilidade String // Praticabilidade do turno
+  clima String // Condições climáticas do turno
+  ativo Boolean // Indica se o turno está ativo
+  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model Interference {
-  id Int @id @default(autoincrement()) // Identificação da interferência
-  responsibleInterference String // Responsável pela interferência
-  category String // Categoria
-  subCategory String // Subcategoria
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  teamId Int // ID da equipe associada
-  team Team @relation(fields: [teamId], references: [id]) // Relação com o modelo Team
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+
+// Modelo de Interferência
+model Interferencia {
+id Int @id @default(autoincrement()) // ID único da interferência
+idEquipe Int // ID da equipe à qual a interferência está associada
+equipe Equipe @relation(fields: [idEquipe], references: [id]) // Relacionamento com a equipe
+idObra Int // ID da obra à qual a interferência está associada
+obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com a obra
+responsavelInterferencia String // Responsável pela interferência
+categoria String // Categoria da interferência
+subCategoria String // Subcategoria da interferência
+ativo Boolean // Indica se a interferência está ativa
+dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
 
-model Location {
-  id Int @id @default(autoincrement()) // Identificação do local
-  locationDescription String // Descrição do local
-  responsibleLocation String // Responsável pelo local
-  active Boolean // Ativo
-  createdAt DateTime @default(now()) // Data de criação
-  projectId Int // ID do projeto associado
-  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+
+// Modelo de Local
+model Local {
+id Int @id @default(autoincrement()) // ID único do local
+idObra Int // ID da obra à qual o local está associado
+obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com a obra
+descricaoLocal String // Descrição do local
+responsavelLocal String // Responsável pelo local
+ativo Boolean // Indica se o local está ativo
+dataCriacao DateTime @default(now()) // Data e hora de criação do registro
 }
