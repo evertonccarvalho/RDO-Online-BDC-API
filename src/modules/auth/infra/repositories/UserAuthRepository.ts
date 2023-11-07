@@ -1,5 +1,5 @@
 import { IUserDTO } from "../entities/User";
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "../../../../api/config/prisma";
 import { IUserAuthRepository } from "./IUserAuthRepository";
 
 class UserAuthRepository implements IUserAuthRepository {

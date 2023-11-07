@@ -1,5 +1,5 @@
 import { IObraDTO } from "../entities/Obra";
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "../../../../api/config/prisma";
 import { IObraRepository } from "./IObraRepository";
 
 class ObraRepository implements IObraRepository {
