@@ -1,0 +1,77 @@
+{
+  "id": 2,
+  "descricaoObra": "Reforma do Shopping B",
+  "empresaObra": "Empresa Construtora ATUALIZADAY",
+  "nomeResponsavel": "Maria Santos",
+  "telefoneContato": "987-654-3210",
+  "enderecoCompleto": "5678 Elm Street, Cidade B",
+  "logo": "https://example.com/logo.png",
+  "ativo": true,
+  "dataCriacao": "2023-11-07T15:30:06.721Z",
+  "usuarios": [],
+  "equipes": [
+    {
+      "id": 2,
+      "idObra": 2,
+      "descricaoEquipe": "Equipe de Manutenção",
+      "empresaContratada": "Manutenção XYZ",
+      "ativo": true,
+      "dataCriacao": "2023-11-07T15:30:06.775Z"
+    }
+  ],
+  "servicos": [
+    {
+      "id": 3,
+      "idObra": 2,
+      "descricaoServico": "Pintura de Fachada",
+      "unidade": "Metros Quadrados",
+      "ativo": true,
+      "subcategoriaId": 3,
+      "dataCriacao": "2023-11-07T15:30:06.758Z"
+    }
+  ],
+  "efetivos": [
+    {
+      "id": 2,
+      "idObra": 2,
+      "tipo": "Técnicos",
+      "descricaoEfetivo": "Equipe de Manutenção",
+      "ativo": true,
+      "dataCriacao": "2023-11-07T15:30:06.784Z"
+    }
+  ],
+  "turnos": [
+    {
+      "id": 2,
+      "idEquipe": 2,
+      "idObra": 2,
+      "descricaoTurno": "Turno Noturno",
+      "praticabilidade": "Regular",
+      "clima": "Chuvoso",
+      "ativo": true,
+      "dataCriacao": "2023-11-07T15:30:06.792Z"
+    }
+  ],
+  "interferencias": [
+    {
+      "id": 2,
+      "idEquipe": 2,
+      "idObra": 2,
+      "responsavelInterferencia": "Técnico B",
+      "categoria": "Elétrica",
+      "subCategoria": "Fiação",
+      "ativo": true,
+      "dataCriacao": "2023-11-07T15:30:06.800Z"
+    }
+  ],
+  "locais": [
+    {
+      "id": 2,
+      "idObra": 2,
+      "descricaoLocal": "Central Elétrica",
+      "responsavelLocal": "Gerente Y",
+      "ativo": true,
+      "dataCriacao": "2023-11-07T15:30:06.808Z"
+    }
+  ]
+}
