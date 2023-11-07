@@ -1,19 +1,19 @@
 import { IUserDTO } from "../entities/User";
-import { prisma } from "../../../../api/config/prisma";
+import { db } from "../../../../api/config/prisma";
 import { IUserRepository } from "./IUserRepository";
 
 class UserRepository implements IUserRepository {
-  private adaptUser(prismaUser: any): IUserDTO {
+  private adaptUser(dbUser: any): IUserDTO {
     return {
-      id: prismaUser.id,
-      usuario: prismaUser.usuario,
-      email: prismaUser.email,
-      senha: prismaUser.password,
+      id: dbUser.id,
+      usuario: dbUser.usuario,
+      email: dbUser.email,
+      senha: dbUser.password,
     };
   }
 
   async read(): Promise<IUserDTO[]> {
-    const users = await prisma.usuario.findMany();
+    const users = await db.usuario.findMany();
 
     // Adaptar os produtos usando a função de adaptação
     const adaptedUsers: IUserDTO[] = users.map(this.adaptUser);
@@ -22,7 +22,7 @@ class UserRepository implements IUserRepository {
   }
 
   async getById(userId: number): Promise<IUserDTO | null> {
-    const user = await prisma.usuario.findUnique({
+    const user = await db.usuario.findUnique({
       where: {
         id: userId,
       },
@@ -37,7 +37,7 @@ class UserRepository implements IUserRepository {
   }
 
   async update(userId: number, updatedUserData: IUserDTO): Promise<void> {
-    await prisma.usuario.update({
+    await db.usuario.update({
       where: {
         id: userId,
       },
@@ -46,7 +46,7 @@ class UserRepository implements IUserRepository {
   }
 
   async delete(userId: number): Promise<void> {
-    await prisma.usuario.delete({
+    await db.usuario.delete({
       where: {
         id: userId,
       },

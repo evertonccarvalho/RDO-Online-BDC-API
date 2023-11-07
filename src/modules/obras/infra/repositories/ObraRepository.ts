@@ -1,18 +1,18 @@
 import { IObraDTO } from "../entities/Obra";
-import { prisma } from "../../../../api/config/prisma";
+import { db } from "../../../../api/config/prisma";
 import { IObraRepository } from "./IObraRepository";
 
 class ObraRepository implements IObraRepository {
-  private adaptObra(prismaObra: any): IObraDTO {
+  private adaptObra(dbObra: any): IObraDTO {
     return {
-      id: prismaObra.id,
-      empresaObra: prismaObra.empresaObra,
-      descricaoObra: prismaObra.descricaoObra,
-      logo: prismaObra.logo,
-      enderecoCompleto: prismaObra.enderecoCompleto,
-      nomeResponsavel: prismaObra.nomeResponsavel,
-      telefoneContato: prismaObra.telefoneContato,
-      ativo: prismaObra.ativo,
+      id: dbObra.id,
+      empresaObra: dbObra.empresaObra,
+      descricaoObra: dbObra.descricaoObra,
+      logo: dbObra.logo,
+      enderecoCompleto: dbObra.enderecoCompleto,
+      nomeResponsavel: dbObra.nomeResponsavel,
+      telefoneContato: dbObra.telefoneContato,
+      ativo: dbObra.ativo,
     };
   }
 
@@ -25,7 +25,7 @@ class ObraRepository implements IObraRepository {
     telefoneContato,
     ativo,
   }: IObraDTO): Promise<void> {
-    await prisma.obra.create({
+    await db.obra.create({
       data: {
         descricaoObra,
         empresaObra,
@@ -39,7 +39,7 @@ class ObraRepository implements IObraRepository {
   }
 
   async read(): Promise<IObraDTO[]> {
-    const obras = await prisma.obra.findMany();
+    const obras = await db.obra.findMany();
 
     // Adaptar os produtos usando a função de adaptação
     const adaptedObras: IObraDTO[] = obras.map(this.adaptObra);
@@ -48,7 +48,7 @@ class ObraRepository implements IObraRepository {
   }
 
   async getById(obraId: number): Promise<IObraDTO | null> {
-    const obra = await prisma.obra.findUnique({
+    const obra = await db.obra.findUnique({
       where: {
         id: obraId,
       },
@@ -63,7 +63,7 @@ class ObraRepository implements IObraRepository {
   }
 
   async getByIdWithDetails(obraId: number): Promise<IObraDTO | null> {
-    const obra = await prisma.obra.findUnique({
+    const obra = await db.obra.findUnique({
       where: { id: obraId },
       include: {
         usuarios: true, // Inclui os usuários relacionados
@@ -80,7 +80,7 @@ class ObraRepository implements IObraRepository {
   }
 
   async update(obraId: number, updatedObraData: IObraDTO): Promise<void> {
-    await prisma.obra.update({
+    await db.obra.update({
       where: {
         id: obraId,
       },
@@ -89,7 +89,7 @@ class ObraRepository implements IObraRepository {
   }
 
   async delete(obraId: number): Promise<void> {
-    await prisma.obra.delete({
+    await db.obra.delete({
       where: {
         id: obraId,
       },
