@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db-postgres-ean:
+    image: postgres:alpine
+    ports:
+      - "5435:5432"
+    container_name: "db-postgres-ean"
+    restart: always
+    volumes:
+      - ./banco-de-dados-ean:/var/lib/postgres/data
+    environment:
+      POSTGRES_USER: eanuser
+      POSTGRES_PASSWORD: eanpassword
+
+volumes:
+  banco-de-dados-ean:
