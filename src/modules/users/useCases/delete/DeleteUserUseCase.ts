@@ -8,7 +8,7 @@ class DeleteUserUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(userId: string): Promise<void> {
+  async execute(userId: number): Promise<void> {
     const user = await this.userRepository.getById(userId);
 
     if (!user) {

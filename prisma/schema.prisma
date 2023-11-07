@@ -12,15 +12,15 @@ datasource db {
 
 // Modelo de Usuário
 model Usuario {
-  id Int @id @default(autoincrement()) // ID único do usuário
-  idObra Int // ID da obra à qual o usuário está associado
-  obra Obra @relation(fields: [idObra], references: [id]) // Relacionamento com o modelo de Obra
-  usuario String // Nome de usuário
-  email String // Endereço de e-mail do usuário
-  senha String // Senha do usuário
-  ativo Boolean // Indica se o usuário está ativo
-  role String // Função ou cargo do usuário
-  dataCriacao DateTime @default(now()) // Data e hora de criação do registro
+  id Int @id @default(autoincrement())
+  idObra Int?
+  obra Obra? @relation(fields: [idObra], references: [id])
+  usuario String
+  email String
+  senha String
+  ativo Boolean
+  role String @default("Usuário Padrão") // Defina o valor padrão como "Usuário"
+  dataCriacao DateTime @default(now())
 }
 
 // Modelo de Obra

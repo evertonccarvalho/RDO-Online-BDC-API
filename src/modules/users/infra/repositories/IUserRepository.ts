@@ -1,11 +1,10 @@
 import { IUserDTO } from "../entities/User";
 
 interface IUserRepository {
-  register(user: IUserDTO): Promise<void>;
+  getById(userId: number): Promise<IUserDTO | null>;
   read(): Promise<IUserDTO[]>;
-  getById(userId: string): Promise<IUserDTO | null>;
-  update(userId: string, updatedUserData: IUserDTO): Promise<void>;
-  delete(puserId: string): Promise<void>;
+  update(userId: number, updatedUserData: IUserDTO): Promise<void>;
+  delete(puserId: number): Promise<void>;
 }
 
 export { IUserRepository };

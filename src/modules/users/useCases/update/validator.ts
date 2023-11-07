@@ -4,10 +4,8 @@ import { customMessages } from "../../../../utils/erros";
 
 const updateValidator = {
   [Segments.BODY]: Joi.object().keys({
-    name: Joi.string().required().min(3).max(50).messages(customMessages("name")), // Use a função customMessages
+    usuario: Joi.string().required().min(3).max(50).messages(customMessages("name")), // Use a função customMessages
     email: Joi.string().required().min(3).max(50).messages(customMessages("email")), // Use a função customMessages
-    password: Joi.string().required().min(6).messages(customMessages("password")), // Use a função customMessages
-    phone: Joi.string().min(8).messages(customMessages("phone")),
   }),
 };
 

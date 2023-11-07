@@ -9,7 +9,7 @@ class UpdateUserUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(userId: string, updatedUserData: IUserDTO): Promise<void> {
+  async execute(userId: number, updatedUserData: IUserDTO): Promise<void> {
     const user = await this.userRepository.getById(userId);
 
     if (!user) {

@@ -1,9 +1,10 @@
 export interface IUserDTO {
-  id: string;
+  id: number;
+  usuario: string;
   email: string;
-  password: string;
-  name?: string;
-  phone?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  senha: string;
+  ativo?: boolean;
+  idObra?: number | null; // Adicione esta propriedade
+  role?: string;
+  dataCriacao?: Date;
 }

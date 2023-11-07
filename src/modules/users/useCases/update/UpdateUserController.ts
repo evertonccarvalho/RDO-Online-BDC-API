@@ -9,7 +9,7 @@ class UpdateUserController {
     const updateUserUseCase = container.resolve(UpdateUserUseCase);
 
     try {
-      await updateUserUseCase.execute(userId, updatedUserData);
+      await updateUserUseCase.execute(+userId, updatedUserData);
       return res.status(200).json({ message: "Usuário atualizado com sucesso" });
     } catch (error) {
       if (error instanceof Error) {

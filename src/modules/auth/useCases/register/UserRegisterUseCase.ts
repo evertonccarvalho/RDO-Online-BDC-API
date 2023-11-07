@@ -19,8 +19,8 @@ class UserRegisterUseCase {
 
     // Registre o novo usuário
     const saltRounds = 10; // Você pode ajustar o número de rounds conforme necessário
-    const hashedPassword = await bcrypt.hash(userDTO.password, saltRounds);
-    userDTO.password = hashedPassword;
+    const hashedPassword = await bcrypt.hash(userDTO.senha, saltRounds);
+    userDTO.senha = hashedPassword;
     await this.userAuthRepository.register(userDTO);
   }
 }

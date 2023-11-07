@@ -11,14 +11,14 @@ class UserLoginUseCase {
     private userAuthRepository: IUserAuthRepository
   ) {}
 
-  async execute(email: string, password: string): Promise<IUserDTO | null> {
+  async execute(email: string, senha: string): Promise<IUserDTO | null> {
     const user = await this.userAuthRepository.login(email);
 
     if (!user) {
       return null; // Usuário não encontrado
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(senha, user.senha);
 
     if (passwordMatch) {
       return user; // Senha válida, usuário autenticado

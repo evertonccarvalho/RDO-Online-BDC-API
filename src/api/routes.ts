@@ -6,8 +6,8 @@ import { userRoutes } from "../routes/user.router";
 
 const router = Router();
 
-router.use(productRoutes);
-router.use(categoryRoutes);
+// router.use(productRoutes);
+// router.use(categoryRoutes);
 router.use(authRouter);
 router.use(userRoutes);
 
