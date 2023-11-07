@@ -5,13 +5,13 @@ services:
     image: postgres:alpine
     ports:
       - "5435:5432"
-    container_name: "db-postgres-ean"
+    container_name: "db-postgres-rdobdc"
     restart: always
     volumes:
-      - ./banco-de-dados-ean:/var/lib/postgres/data
+      - ./banco-de-dados-rdobdc:/var/lib/postgres/data
     environment:
-      POSTGRES_USER: eanuser
-      POSTGRES_PASSWORD: eanpassword
+      POSTGRES_USER: rdobdc
+      POSTGRES_PASSWORD: rdobdc
 
 volumes:
-  banco-de-dados-ean:
+  banco-de-dados-rdobdc:

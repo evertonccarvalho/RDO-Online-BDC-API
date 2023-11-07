@@ -1,5 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Este é o arquivo de esquema Prisma,
+// saiba mais sobre ele na documentação: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -10,32 +10,120 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Category {
-  id String @id @default(uuid())
-  name String
-  slug String
-  imageUrl String
-  products Product[]
+model User {
+  id Int @id @default(autoincrement()) // Identificação do usuário
+  username String // Nome de usuário
+  email String // E-mail
+  password String // Senha
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  role String // Função
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
 }
 
-model Product {
-  id String @id @default(uuid())
-  name String
-  slug String
-  description String
-  basePrice Decimal @db.Decimal(8,2)
-  imageUrls String[]
-  categoryId String
-  category Category @relation(fields: [categoryId], references: [id])
-  discountPercentage Int @default(0)
+model Project {
+  id Int @id @default(autoincrement()) // Identificação do projeto
+  projectDescription String // Descrição do projeto
+  company String // Empresa
+  responsibleName String // Nome do responsável
+  contactPhone String // Telefone de contato
+  fullAddress String // Endereço completo
+  logo String // Logotipo
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  users User[] // Relação com o modelo User
+  teams Team[] // Relação com o modelo Team
+  services Service[] // Relação com o modelo Service
+  staff Staff[] // Relação com o modelo Staff
+  shifts Shift[] // Relação com o modelo Shift
+  interferences Interference[] // Relação com o modelo Interference
+  locations Location[] // Relação com o modelo Location
 }
 
-model User{
-  id String @id @default(uuid())
-  email String @unique
-  password String @db.VarChar(255)
-  name String?
-  phone String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model ServiceCategory {
+  id Int @id @default(autoincrement()) // Identificação da categoria de serviço
+  name String // Nome
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  subcategories ServiceSubcategory[] // Relação com o modelo ServiceSubcategory
+}
+
+model ServiceSubcategory {
+  id Int @id @default(autoincrement()) // Identificação da subcategoria de serviço
+  name String // Nome
+  active Boolean // Ativo
+  categoryId Int // ID da categoria associada
+  category ServiceCategory @relation(fields: [categoryId], references: [id]) // Relação com o modelo ServiceCategory
+  services Service[] // Relação com o modelo Service
+}
+
+model Service {
+  id Int @id @default(autoincrement()) // Identificação do serviço
+  serviceDescription String // Descrição do serviço
+  unit String // Unidade
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  subcategoryId Int // ID da subcategoria associada
+  subcategory ServiceSubcategory @relation(fields: [subcategoryId], references: [id]) // Relação com o modelo ServiceSubcategory
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+}
+
+model Team {
+  id Int @id @default(autoincrement()) // Identificação da equipe
+  teamDescription String // Descrição da equipe
+  contractedCompany String // Empresa contratada
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+  shifts Shift[] // Relação com o modelo Shift
+  interferences Interference[] // Relação com o modelo Interference
+}
+
+model Staff {
+  id Int @id @default(autoincrement()) // Identificação do efetivo
+  type String // Tipo
+  staffDescription String // Descrição do efetivo
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+}
+
+model Shift {
+  id Int @id @default(autoincrement()) // Identificação do turno
+  shiftDescription String // Descrição do turno
+  feasibility String // Viabilidade
+  weather String // Clima
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  teamId Int // ID da equipe associada
+  team Team @relation(fields: [teamId], references: [id]) // Relação com o modelo Team
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+}
+
+model Interference {
+  id Int @id @default(autoincrement()) // Identificação da interferência
+  responsibleInterference String // Responsável pela interferência
+  category String // Categoria
+  subCategory String // Subcategoria
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  teamId Int // ID da equipe associada
+  team Team @relation(fields: [teamId], references: [id]) // Relação com o modelo Team
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
+}
+
+model Location {
+  id Int @id @default(autoincrement()) // Identificação do local
+  locationDescription String // Descrição do local
+  responsibleLocation String // Responsável pelo local
+  active Boolean // Ativo
+  createdAt DateTime @default(now()) // Data de criação
+  projectId Int // ID do projeto associado
+  project Project @relation(fields: [projectId], references: [id]) // Relação com o modelo Project
 }
