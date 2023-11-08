@@ -21,7 +21,7 @@ const deleteObraController = new DeleteObraController();
 obraRoutes.get("/obras", ensureAuth, getAllObrasController.handle);
 obraRoutes.post("/obra", ensureAuth, celebrate(registerValidator), registerObraController.handle);
 obraRoutes.get("/obra/:obraId", ensureAuth, getObraByIdController.handle);
-obraRoutes.put("/obra/:obraId", celebrate(updateValidator), updateObraController.handle);
+obraRoutes.put("/obra/:obraId", ensureAuth, celebrate(updateValidator), updateObraController.handle);
 obraRoutes.delete("/obra/:obraId", ensureAuth, deleteObraController.handle);
 
 export { obraRoutes };
