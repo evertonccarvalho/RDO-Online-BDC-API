@@ -27,8 +27,7 @@ class UserLoginUseCase {
       };
 
       const token = jwtService.signToken(payload, "15d");
-
-      return token; // Retorna o token JWT em vez do objeto do usuário
+      return token;
     }
 
     throw new Error("Senha incorreta");

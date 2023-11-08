@@ -8,13 +8,13 @@ class UserLoginController {
     const userLoginUseCase = container.resolve(UserLoginUseCase);
 
     try {
-      const user = await userLoginUseCase.execute(email, password);
+      const token = await userLoginUseCase.execute(email, password);
 
-      if (!user) {
+      if (!token) {
         return res.status(401).json({ message: "Credenciais inválidas" });
       }
-
-      return res.status(200).json({ user });
+      const bdcToken = "BDCTOKEN";
+      return res.json({ authenticated: true, [bdcToken]: token });
     } catch (error) {
       console.error("Erro de autenticação:", error);
       return res.status(500).json({ message: "Erro de autenticação" });
