@@ -1,4 +1,4 @@
-export interface IObraDTO {
+export interface IObra {
   id: number;
   descricaoObra: string;
   empresaObra: string;

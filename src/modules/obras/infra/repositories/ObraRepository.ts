@@ -1,9 +1,9 @@
-import { IObraDTO } from "../entities/Obra";
+import { IObra } from "../entities/Obra";
 import { db } from "../../../../api/config/prisma";
 import { IObraRepository } from "./IObraRepository";
 
 class ObraRepository implements IObraRepository {
-  private adaptObra(dbObra: any): IObraDTO {
+  private adaptObra(dbObra: any): IObra {
     return {
       id: dbObra.id,
       empresaObra: dbObra.empresaObra,
@@ -24,7 +24,7 @@ class ObraRepository implements IObraRepository {
     nomeResponsavel,
     telefoneContato,
     ativo,
-  }: IObraDTO): Promise<void> {
+  }: IObra): Promise<void> {
     await db.obra.create({
       data: {
         descricaoObra,
@@ -38,16 +38,16 @@ class ObraRepository implements IObraRepository {
     });
   }
 
-  async read(): Promise<IObraDTO[]> {
+  async read(): Promise<IObra[]> {
     const obras = await db.obra.findMany();
 
     // Adaptar os produtos usando a função de adaptação
-    const adaptedObras: IObraDTO[] = obras.map(this.adaptObra);
+    const adaptedObras: IObra[] = obras.map(this.adaptObra);
 
     return adaptedObras;
   }
 
-  async getById(obraId: number): Promise<IObraDTO | null> {
+  async getById(obraId: number): Promise<IObra | null> {
     const obra = await db.obra.findUnique({
       where: {
         id: obraId,
@@ -62,7 +62,7 @@ class ObraRepository implements IObraRepository {
     return this.adaptObra(obra);
   }
 
-  async getByIdWithDetails(obraId: number): Promise<IObraDTO | null> {
+  async getByIdWithDetails(obraId: number): Promise<IObra | null> {
     const obra = await db.obra.findUnique({
       where: { id: obraId },
       include: {
@@ -79,7 +79,7 @@ class ObraRepository implements IObraRepository {
     return obra;
   }
 
-  async update(obraId: number, updatedObraData: IObraDTO): Promise<void> {
+  async update(obraId: number, updatedObraData: IObra): Promise<void> {
     await db.obra.update({
       where: {
         id: obraId,

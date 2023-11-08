@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IObraDTO } from "../../infra/entities/Obra";
+import { IObra } from "../../infra/entities/Obra";
 import { IObraRepository } from "../../infra/repositories/IObraRepository";
 
 @injectable()
@@ -9,7 +9,7 @@ class GetAllObrasUseCase {
     private productRepository: IObraRepository
   ) {}
 
-  async execute(): Promise<IObraDTO[]> {
+  async execute(): Promise<IObra[]> {
     return this.productRepository.read();
   }
 }

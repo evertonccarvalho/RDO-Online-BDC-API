@@ -3,15 +3,15 @@ import { IUser } from "../../infra/entities/User";
 import { IUserRepository } from "../../infra/repositories/IUserRepository";
 
 @injectable()
-class GetAllUsersUseCase {
+class GetUserByEmailUseCase {
   constructor(
     @inject("UserRepository")
     private userRepository: IUserRepository
   ) {}
 
-  async execute(): Promise<IUser[]> {
-    return this.userRepository.read();
+  async execute(email: string): Promise<IUser | null> {
+    return this.userRepository.getByEmail(email);
   }
 }
 
-export { GetAllUsersUseCase };
+export { GetUserByEmailUseCase };

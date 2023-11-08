@@ -1,8 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { IUserDTO } from "../../infra/entities/User";
 import { IUserAuthRepository } from "../../infra/repositories/IUserAuthRepository";
-import { jwtService } from "../../../../utils/jwt";
 import bcrypt from "bcrypt";
+import { jwtService } from "../../../../utils/jwt";
 
 @injectable()
 class UserLoginUseCase {
@@ -11,8 +10,8 @@ class UserLoginUseCase {
     private userAuthRepository: IUserAuthRepository
   ) {}
 
-  async execute(email: string, senha: string): Promise<IUserDTO | null> {
-    const user = await this.userAuthRepository.login(email);
+  async execute(email: string, senha: string): Promise<string | null> {
+    const user = await this.userAuthRepository.login(email, senha);
 
     if (!user) {
       return null; // Usuário não encontrado
@@ -21,7 +20,15 @@ class UserLoginUseCase {
     const passwordMatch = await bcrypt.compare(senha, user.senha);
 
     if (passwordMatch) {
-      return user; // Senha válida, usuário autenticado
+      const payload = {
+        id: user.id,
+        usuario: user.usuario,
+        email: user.email,
+      };
+
+      const token = jwtService.signToken(payload, "15d");
+
+      return token; // Retorna o token JWT em vez do objeto do usuário
     }
 
     throw new Error("Senha incorreta");

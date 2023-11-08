@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IObraDTO } from "../../infra/entities/Obra";
+import { IObra } from "../../infra/entities/Obra";
 import { RegisterObraUseCase } from "./RegisterObraUseCase";
 import { container } from "tsyringe";
 
@@ -14,7 +14,7 @@ class RegisterObraController {
       nomeResponsavel,
       telefoneContato,
       ativo,
-    }: IObraDTO = req.body;
+    }: IObra = req.body;
     const registerUseCase = container.resolve(RegisterObraUseCase);
     await registerUseCase.execute({
       id,

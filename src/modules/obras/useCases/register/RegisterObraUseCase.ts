@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IObraDTO } from "../../infra/entities/Obra";
+import { IObra } from "../../infra/entities/Obra";
 import { IObraRepository } from "../../infra/repositories/IObraRepository";
 
 @injectable()
@@ -17,7 +17,7 @@ class RegisterObraUseCase {
     nomeResponsavel,
     telefoneContato,
     ativo,
-  }: IObraDTO): Promise<void> {
+  }: IObra): Promise<void> {
     await this.ObraRepository.register({
       id,
       descricaoObra,

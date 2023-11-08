@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IUserDTO } from "../../infra/entities/User";
+import { IUser } from "../../infra/entities/User";
 import { IUserRepository } from "../../infra/repositories/IUserRepository";
 
 @injectable()
@@ -9,7 +9,7 @@ class GetUserByIdUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(userId: number): Promise<IUserDTO | null> {
+  async execute(userId: number): Promise<IUser | null> {
     return this.userRepository.getById(userId);
   }
 }

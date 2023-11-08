@@ -1,9 +1,8 @@
-import { IUserDTO } from "../entities/User";
+import { IUserLogin } from "../entities/User";
 
 interface IUserAuthRepository {
-  register(user: IUserDTO): Promise<void>;
-  login(email: string): Promise<IUserDTO | null>;
-  getById(userId: number): Promise<IUserDTO | null>;
+  login(email: string, senha: string): Promise<IUserLogin | null>;
+  // getByEmail(email: string): Promise<IUserLogin | null>;
 }
 
 export { IUserAuthRepository };

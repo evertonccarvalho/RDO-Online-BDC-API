@@ -1,25 +1,25 @@
 import "reflect-metadata";
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import { router } from "./routes";
-import { celebrateError } from "../middleware/errors.middlewares";
 import "./container";
+import cors from "cors";
+import express from "express";
+import { celebrateError } from "../middleware/errors.middlewares";
+import { router } from "./routes";
+
 class App {
   public server;
 
   constructor() {
-    this.server = express();
-    this.middlewares();
-    this.routes();
-    this.server.use(celebrateError);
+    this.server = express(); // Crie a instância do Express primeiro
+    this.server.use(celebrateError); // Adicione o middleware celebrateError
+    this.middlewares(); // Configure os middlewares
+    this.routes(); // Configure as rotas
   }
 
   middlewares() {
-    dotenv.config();
     this.server.use(cors());
     this.server.use(express.json());
   }
+
   routes() {
     this.server.use("/", router);
   }
