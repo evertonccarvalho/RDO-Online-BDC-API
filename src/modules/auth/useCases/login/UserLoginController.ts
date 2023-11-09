@@ -13,8 +13,8 @@ class UserLoginController {
       if (!token) {
         return res.status(401).json({ message: "Credenciais inválidas" });
       }
-      const bdcToken = "BDCTOKEN";
-      return res.json({ authenticated: true, [bdcToken]: token });
+
+      return res.json({ authenticated: true, token });
     } catch (error) {
       console.error("Erro de autenticação:", error);
       return res.status(500).json({ message: "Erro de autenticação" });

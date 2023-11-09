@@ -18,7 +18,7 @@ const getObraByIdController = new GetObraByIdController();
 const updateObraController = new UpdateObraController();
 const deleteObraController = new DeleteObraController();
 
-obraRoutes.get("/obras", ensureAuth, getAllObrasController.handle);
+obraRoutes.get("/obras",  getAllObrasController.handle);
 obraRoutes.post("/obra", ensureAuth, celebrate(registerValidator), registerObraController.handle);
 obraRoutes.get("/obra/:obraId", ensureAuth, getObraByIdController.handle);
 obraRoutes.put("/obra/:obraId", ensureAuth, celebrate(updateValidator), updateObraController.handle);
