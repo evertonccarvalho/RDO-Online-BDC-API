@@ -4,7 +4,7 @@ CREATE TABLE "Usuario" (
     "idObra" INTEGER NOT NULL,
     "usuario" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "senha" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
     "ativo" BOOLEAN NOT NULL,
     "role" TEXT NOT NULL,
     "dataCriacao" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -11,11 +11,11 @@ class UserAuthRepository implements IUserAuthRepository {
     return {
       usuario: dbUser.usuario,
       email: dbUser.email,
-      senha: dbUser.senha,
+      password: dbUser.password,
     };
   }
 
-  async login(email: string, senha: string): Promise<IUserLogin | null> {
+  async login(email: string, password: string): Promise<IUserLogin | null> {
     const user = await db.usuario.findFirst({
       where: {
         email: email,

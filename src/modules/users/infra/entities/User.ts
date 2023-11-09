@@ -11,7 +11,7 @@ export interface IUser {
 export interface IRegisterUser {
   usuario: string;
   email: string;
-  senha: string;
+  password: string;
   ativo?: boolean;
   idObra?: number | null;
 }

@@ -1,6 +1,6 @@
 export interface IUserLogin {
   email: string;
-  senha: string;
+  password: string;
   usuario?: string;
   id?: number;
 }

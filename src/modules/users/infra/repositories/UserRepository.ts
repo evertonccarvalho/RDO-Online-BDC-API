@@ -11,12 +11,12 @@ class UserRepository implements IUserRepository {
     };
   }
 
-  async register({ usuario, email, senha, idObra }: IRegisterUser): Promise<void> {
+  async register({ usuario, email, password, idObra }: IRegisterUser): Promise<void> {
     await db.usuario.create({
       data: {
         usuario,
         email,
-        senha,
+        password,
         ativo: true, // ou outro valor apropriado
         obra: { connect: idObra ? { id: idObra } : undefined }, // Conectar à obra apropriada
       },

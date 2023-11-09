@@ -105,7 +105,7 @@ async function main() {
     data: {
       usuario: "joao_silva",
       email: "joao.silva@example.com",
-      senha: "senha123",
+      password: "password123",
       ativo: true,
       role: "Gerente",
       idObra: obra1.id,
@@ -116,7 +116,7 @@ async function main() {
     data: {
       usuario: "maria_santos",
       email: "maria.santos@example.com",
-      senha: "senha456",
+      password: "password456",
       ativo: true,
       role: "Supervisor",
       idObra: obra2.id,

@@ -17,7 +17,7 @@ model Usuario {
   obra        Obra?    @relation(fields: [idObra], references: [id])
   usuario     String
   email       String
-  senha       String
+  password    String
   ativo       Boolean
   role        String   @default("Usuário Padrão") // Defina o valor padrão como "Usuário"
   dataCriacao DateTime @default(now())
