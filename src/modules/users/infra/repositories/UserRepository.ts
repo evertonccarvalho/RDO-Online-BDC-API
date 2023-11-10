@@ -8,6 +8,9 @@ class UserRepository implements IUserRepository {
       id: dbUser.id,
       usuario: dbUser.usuario,
       email: dbUser.email,
+      role: dbUser.role,
+      idObra: dbUser.idObra,
+      ativo: dbUser.ativo,
     };
   }
 

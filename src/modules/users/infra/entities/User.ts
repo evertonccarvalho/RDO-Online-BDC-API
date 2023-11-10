@@ -1,3 +1,6 @@
+import { Obra } from "@prisma/client";
+import { IObra } from "../../../obras/infra/entities/Obra";
+
 export interface IUser {
   id: number;
   usuario: string;
@@ -6,6 +9,7 @@ export interface IUser {
   idObra?: number | null;
   role?: string;
   dataCriacao?: Date;
+  // obra?: IObra[];
 }
 
 export interface IRegisterUser {

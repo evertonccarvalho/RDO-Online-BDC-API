@@ -1,6 +1,12 @@
+import { IObra } from "../../../obras/infra/entities/Obra";
+
 export interface IUserLogin {
+  id?: number;
   email: string;
   password: string;
   usuario?: string;
-  id?: number;
+  role?: string;
+  idObra: number;
+  ativo: boolean;
+  obra: IObra[];
 }

@@ -24,6 +24,9 @@ class UserLoginUseCase {
         id: user.id,
         usuario: user.usuario,
         email: user.email,
+        role: user.role,
+        ativo: user.ativo,
+        idObra: user.idObra,
       };
 
       const token = jwtService.signToken(payload, "15d");

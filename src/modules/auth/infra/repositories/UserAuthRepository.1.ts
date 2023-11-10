@@ -9,9 +9,14 @@ class UserAuthRepository implements IUserAuthRepository {
     }
 
     return {
+      id: dbUser.id,
       usuario: dbUser.usuario,
       email: dbUser.email,
       password: dbUser.password,
+      role: dbUser.role,
+      ativo: dbUser.ativo,
+      idObra: dbUser.idObra,
+      obra: dbUser.obra,
     };
   }
 
