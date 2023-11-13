@@ -7,6 +7,8 @@ const registerValidator = {
     usuario: Joi.string().required().min(3).max(50).messages(customMessages("usuario")), // Use a função customMessages
     email: Joi.string().required().min(3).max(50).messages(customMessages("email")), // Use a função customMessages
     password: Joi.string().required().min(6).messages(customMessages("password")), // Use a função customMessages
+
+    idObra: Joi.number().required().min(1).max(50).messages(customMessages("idObra")), // Use a função customMessages
   }),
 };
 

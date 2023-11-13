@@ -3,23 +3,13 @@ import { db } from "../../../../api/config/prisma";
 import { IUserRepository } from "./IUserRepository";
 
 class UserRepository implements IUserRepository {
-  private adaptUser(dbUser: IUser) {
-    return {
-      id: dbUser.id,
-      usuario: dbUser.usuario,
-      email: dbUser.email,
-      role: dbUser.role,
-      idObra: dbUser.idObra,
-      ativo: dbUser.ativo,
-    };
-  }
-
-  async register({ usuario, email, password, idObra }: IRegisterUser): Promise<void> {
+  async register({ usuario, email, password, idObra, role }: IRegisterUser): Promise<void> {
     await db.usuario.create({
       data: {
         usuario,
         email,
         password,
+        role,
         ativo: true, // ou outro valor apropriado
         obra: { connect: idObra ? { id: idObra } : undefined }, // Conectar à obra apropriada
       },
@@ -27,12 +17,19 @@ class UserRepository implements IUserRepository {
   }
 
   async read(): Promise<IUser[]> {
-    const users = await db.usuario.findMany();
+    const users = await db.usuario.findMany({
+      include: {
+        obra: true,
+      },
+    });
 
-    // Adaptar os produtos usando a função de adaptação
-    const adaptedUsers: IUser[] = users.map(this.adaptUser);
+    // Ajuste a tipagem para garantir que a propriedade 'obra' seja um array ou nulo
+    const adjustedUsers: IUser[] = users.map((user) => ({
+      ...user,
+      obra: user.obra ? [user.obra] : null,
+    }));
 
-    return adaptedUsers;
+    return adjustedUsers;
   }
 
   async getById(userId: number): Promise<IUser | null> {
@@ -40,20 +37,15 @@ class UserRepository implements IUserRepository {
       where: {
         id: userId,
       },
-    });
-
-    if (!user) {
-      return null; // Produto não encontrado
-    }
-
-    // Adaptar o produto usando a função de adaptação
-    return this.adaptUser(user);
-  }
-
-  async getByEmail(email: string): Promise<IUser | null> {
-    const user = await db.usuario.findFirst({
-      where: {
-        email,
+      select: {
+        id: true,
+        idObra: true,
+        usuario: true,
+        email: true,
+        ativo: true,
+        role: true,
+        dataCriacao: true,
+        obra: true, // Inclua outras propriedades da 'obra' se necessário
       },
     });
 
@@ -61,12 +53,47 @@ class UserRepository implements IUserRepository {
       return null; // Usuário não encontrado
     }
 
-    // Adaptar o usuário usando a função de adaptação
-    return this.adaptUser(user);
+    // Ajuste a propriedade 'obra' para ser um array ou nulo conforme necessário
+    const adjustedUser: IUser = {
+      ...user,
+      obra: user.obra ? [user.obra] : null,
+    };
+
+    return adjustedUser;
+  }
+
+  async getByEmail(email: string): Promise<IUser | null> {
+    const user = await db.usuario.findFirst({
+      where: {
+        email,
+      },
+      select: {
+        id: true,
+        idObra: true,
+        usuario: true,
+        email: true,
+        ativo: true,
+        role: true,
+        dataCriacao: true,
+        obra: true, // Inclua outras propriedades da 'obra' se necessário
+      },
+    });
+
+    if (!user) {
+      return null; // Usuário não encontrado
+    }
+
+    // Ajuste a propriedade 'obra' para ser um array ou nulo conforme necessário
+    const adjustedUser: IUser = {
+      ...user,
+      obra: user.obra ? [user.obra] : null,
+    };
+
+    return adjustedUser;
   }
 
   async update(userId: number, updatedUserData: IUser): Promise<void> {
-    await db.usuario.update({
+    await db.usuario.updateMany({
       where: {
         id: userId,
       },

@@ -13,6 +13,7 @@ class ObraRepository implements IObraRepository {
       nomeResponsavel: dbObra.nomeResponsavel,
       telefoneContato: dbObra.telefoneContato,
       ativo: dbObra.ativo,
+      dataCriacao: dbObra.dataCriacao,
     };
   }
 
@@ -80,7 +81,7 @@ class ObraRepository implements IObraRepository {
   }
 
   async update(obraId: number, updatedObraData: IObra): Promise<void> {
-    await db.obra.update({
+    await db.obra.updateMany({
       where: {
         id: obraId,
       },

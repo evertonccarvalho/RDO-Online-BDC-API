@@ -1,3 +1,5 @@
+import { IUser } from "../../../users/infra/entities/User";
+
 export interface IObra {
   id: number;
   descricaoObra: string;
@@ -7,4 +9,5 @@ export interface IObra {
   enderecoCompleto: string;
   logo: string;
   ativo: boolean;
+  dataCriacao: Date;
 }
