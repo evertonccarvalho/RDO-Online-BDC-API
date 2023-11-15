@@ -3,49 +3,52 @@ import { db } from "../../../../api/config/prisma";
 import { IUserRepository } from "./IUserRepository";
 
 class UserRepository implements IUserRepository {
-  async register({ usuario, email, password, idObra, role }: IRegisterUser): Promise<void> {
+  async register({ usuario, email, password, role }: IRegisterUser): Promise<void> {
     await db.usuario.create({
       data: {
         usuario,
         email,
         password,
         role,
-        ativo: true, // ou outro valor apropriado
-        obra: { connect: idObra ? { id: idObra } : undefined }, // Conectar à obra apropriada
+        ativo: true,
       },
     });
   }
 
   async read(): Promise<IUser[]> {
     const users = await db.usuario.findMany({
-      include: {
+      select: {
+        id: true,
+        usuario: true,
+        email: true,
+        avatarUrl: true,
+        role: true,
+        ativo: true,
+        dataCriacao: true,
+        idObra: true,
         obra: true,
       },
     });
 
     // Ajuste a tipagem para garantir que a propriedade 'obra' seja um array ou nulo
-    const adjustedUsers: IUser[] = users.map((user) => ({
-      ...user,
-      obra: user.obra ? [user.obra] : null,
-    }));
-
-    return adjustedUsers;
+    return users;
   }
 
   async getById(userId: number): Promise<IUser | null> {
     const user = await db.usuario.findUnique({
       where: {
-        id: userId,
+        id: userId, // Fornecer o valor para o campo id
       },
       select: {
         id: true,
         idObra: true,
         usuario: true,
         email: true,
-        ativo: true,
+        avatarUrl: true,
         role: true,
+        ativo: true,
         dataCriacao: true,
-        obra: true, // Inclua outras propriedades da 'obra' se necessário
+        obra: true,
       },
     });
 
@@ -54,12 +57,8 @@ class UserRepository implements IUserRepository {
     }
 
     // Ajuste a propriedade 'obra' para ser um array ou nulo conforme necessário
-    const adjustedUser: IUser = {
-      ...user,
-      obra: user.obra ? [user.obra] : null,
-    };
 
-    return adjustedUser;
+    return user;
   }
 
   async getByEmail(email: string): Promise<IUser | null> {
@@ -69,13 +68,14 @@ class UserRepository implements IUserRepository {
       },
       select: {
         id: true,
-        idObra: true,
         usuario: true,
         email: true,
-        ativo: true,
+        avatarUrl: true,
         role: true,
+        ativo: true,
         dataCriacao: true,
-        obra: true, // Inclua outras propriedades da 'obra' se necessário
+        idObra: true,
+        obra: true,
       },
     });
 
@@ -83,13 +83,7 @@ class UserRepository implements IUserRepository {
       return null; // Usuário não encontrado
     }
 
-    // Ajuste a propriedade 'obra' para ser um array ou nulo conforme necessário
-    const adjustedUser: IUser = {
-      ...user,
-      obra: user.obra ? [user.obra] : null,
-    };
-
-    return adjustedUser;
+    return user;
   }
 
   async update(userId: number, updatedUserData: IUser): Promise<void> {

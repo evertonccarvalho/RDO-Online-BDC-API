@@ -2,10 +2,11 @@ import { IObra } from "../../../obras/infra/entities/Obra";
 
 export interface IUser {
   id: number;
-  idObra?: number | null;
-  obra?: IObra[] | null;
+  idObra: number | null;
+  obra: IObra | null;
   usuario: string;
   email: string;
+  avatarUrl: string | null;
   ativo: boolean;
   role: string;
   dataCriacao: Date;

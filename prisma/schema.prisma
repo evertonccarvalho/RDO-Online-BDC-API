@@ -18,6 +18,7 @@ model Usuario {
   usuario     String
   email       String
   password    String
+  avatarUrl   String?
   ativo       Boolean
   role        String   @default("Usuário Padrão") // Defina o valor padrão como "Usuário"
   dataCriacao DateTime @default(now())

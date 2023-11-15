@@ -6,10 +6,10 @@ import { IObraRepository } from "../../infra/repositories/IObraRepository";
 class RegisterObraUseCase {
   constructor(
     @inject("ObraRepository")
-    private ObraRepository: IObraRepository
+    private obraRepository: IObraRepository
   ) {}
+
   async execute({
-    id,
     descricaoObra,
     empresaObra,
     logo,
@@ -17,17 +17,30 @@ class RegisterObraUseCase {
     nomeResponsavel,
     telefoneContato,
     ativo,
+    obra,
+    usuarios,
   }: IObra): Promise<void> {
-    await this.ObraRepository.register({
-      id,
-      descricaoObra,
-      empresaObra,
-      logo,
-      enderecoCompleto,
-      nomeResponsavel,
-      telefoneContato,
-      ativo,
-    });
+    try {
+      await this.obraRepository.register({
+        descricaoObra,
+        empresaObra,
+        logo,
+        enderecoCompleto,
+        nomeResponsavel,
+        telefoneContato,
+        obra,
+        usuarios,
+        ativo,
+        id: 0,
+        dataCriacao: new Date(),
+      });
+
+      // Retornar um valor ou objeto indicando sucesso
+      return; // ou um objeto { success: true } por exemplo
+    } catch (error) {
+      console.error("Erro ao registrar obra:", error);
+      throw new Error("Erro ao registrar obra");
+    }
   }
 }
 

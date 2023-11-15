@@ -9,5 +9,6 @@ export interface IObra {
   enderecoCompleto: string;
   logo: string;
   ativo: boolean;
+  usuarios?: IUser[]; // Se você quiser representar a relação com usuários
   dataCriacao: Date;
 }

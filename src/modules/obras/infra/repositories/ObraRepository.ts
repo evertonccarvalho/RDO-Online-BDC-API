@@ -3,20 +3,6 @@ import { db } from "../../../../api/config/prisma";
 import { IObraRepository } from "./IObraRepository";
 
 class ObraRepository implements IObraRepository {
-  private adaptObra(dbObra: any): IObra {
-    return {
-      id: dbObra.id,
-      empresaObra: dbObra.empresaObra,
-      descricaoObra: dbObra.descricaoObra,
-      logo: dbObra.logo,
-      enderecoCompleto: dbObra.enderecoCompleto,
-      nomeResponsavel: dbObra.nomeResponsavel,
-      telefoneContato: dbObra.telefoneContato,
-      ativo: dbObra.ativo,
-      dataCriacao: dbObra.dataCriacao,
-    };
-  }
-
   async register({
     descricaoObra,
     empresaObra,
@@ -25,6 +11,7 @@ class ObraRepository implements IObraRepository {
     nomeResponsavel,
     telefoneContato,
     ativo,
+    usuarios,
   }: IObra): Promise<void> {
     await db.obra.create({
       data: {
@@ -43,9 +30,8 @@ class ObraRepository implements IObraRepository {
     const obras = await db.obra.findMany();
 
     // Adaptar os produtos usando a função de adaptação
-    const adaptedObras: IObra[] = obras.map(this.adaptObra);
 
-    return adaptedObras;
+    return obras;
   }
 
   async getById(obraId: number): Promise<IObra | null> {
@@ -60,14 +46,13 @@ class ObraRepository implements IObraRepository {
     }
 
     // Adaptar o produto usando a função de adaptação
-    return this.adaptObra(obra);
+    return obra;
   }
 
   async getByIdWithDetails(obraId: number): Promise<IObra | null> {
     const obra = await db.obra.findUnique({
       where: { id: obraId },
       include: {
-        usuarios: true, // Inclui os usuários relacionados
         equipes: true, // Inclui as equipes relacionadas
         servicos: true, // Inclui os serviços relacionados
         efetivos: true, // Inclui os efetivos relacionados
