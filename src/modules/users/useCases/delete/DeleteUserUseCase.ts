@@ -1,22 +1,22 @@
-import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../infra/repositories/IUserRepository";
+import { inject, injectable } from 'tsyringe';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 @injectable()
 class DeleteUserUseCase {
-  constructor(
-    @inject("UserRepository")
-    private userRepository: IUserRepository
-  ) {}
+	constructor(
+		@inject('UserRepository')
+		private userRepository: IUserRepository
+	) {}
 
-  async execute(userId: number): Promise<void> {
-    const user = await this.userRepository.getById(userId);
+	async execute(userId: number): Promise<void> {
+		const user = await this.userRepository.getById(userId);
 
-    if (!user) {
-      throw new Error("Produto não encontrado");
-    }
+		if (!user) {
+			throw new Error('Produto não encontrado');
+		}
 
-    await this.userRepository.delete(userId);
-  }
+		await this.userRepository.delete(userId);
+	}
 }
 
 export { DeleteUserUseCase };

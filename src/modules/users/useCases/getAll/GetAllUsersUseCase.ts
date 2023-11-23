@@ -1,17 +1,17 @@
-import { inject, injectable } from "tsyringe";
-import { IUser } from "../../infra/entities/User";
-import { IUserRepository } from "../../infra/repositories/IUserRepository";
+import { inject, injectable } from 'tsyringe';
+import { IUser } from '../../interfaces/User';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 @injectable()
 class GetAllUsersUseCase {
-  constructor(
-    @inject("UserRepository")
-    private userRepository: IUserRepository
-  ) {}
+	constructor(
+		@inject('UserRepository')
+		private userRepository: IUserRepository
+	) {}
 
-  async execute(): Promise<IUser[]> {
-    return this.userRepository.read();
-  }
+	async execute(): Promise<IUser[]> {
+		return this.userRepository.read();
+	}
 }
 
 export { GetAllUsersUseCase };

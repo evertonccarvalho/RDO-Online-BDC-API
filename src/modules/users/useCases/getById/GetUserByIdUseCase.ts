@@ -1,17 +1,17 @@
-import { inject, injectable } from "tsyringe";
-import { IUser } from "../../infra/entities/User";
-import { IUserRepository } from "../../infra/repositories/IUserRepository";
+import { inject, injectable } from 'tsyringe';
+import { IUser } from '../../interfaces/User';
+import { IUserRepository } from '../../repositories/IUserRepository';
 
 @injectable()
 class GetUserByIdUseCase {
-  constructor(
-    @inject("UserRepository")
-    private userRepository: IUserRepository
-  ) {}
+	constructor(
+		@inject('UserRepository')
+		private userRepository: IUserRepository
+	) {}
 
-  async execute(userId: number): Promise<IUser | null> {
-    return this.userRepository.getById(userId);
-  }
+	async execute(userId: number): Promise<IUser | null> {
+		return this.userRepository.getById(userId);
+	}
 }
 
 export { GetUserByIdUseCase };

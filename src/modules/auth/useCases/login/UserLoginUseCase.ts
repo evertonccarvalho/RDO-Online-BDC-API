@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 import { jwtService } from '../../../../utils/jwt';
-import { IUserAuthRepository } from '../../infra/repositories/IUserAuthRepository';
+import { IUserAuthRepository } from '../../repositories/IUserAuthRepository';
 
 @injectable()
 class UserLoginUseCase {

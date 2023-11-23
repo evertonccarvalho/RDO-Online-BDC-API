@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { IRegisterUser } from '../../../users/infra/entities/User';
-import { UserRegisterUseCase } from './UserRegisterUseCase';
 import { container } from 'tsyringe';
+import { IRegisterUser } from '../../interfaces/User';
+import { UserRegisterUseCase } from './UserRegisterUseCase';
 
 class UserRegisterController {
 	async handle(req: Request, res: Response): Promise<Response> {
