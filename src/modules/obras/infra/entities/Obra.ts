@@ -1,14 +1,15 @@
-import { IUser } from "../../../users/infra/entities/User";
+import { IUser } from '../../../users/infra/entities/User';
 
 export interface IObra {
-  id: number;
-  descricaoObra: string;
-  empresaObra: string;
-  nomeResponsavel: string;
-  telefoneContato: string;
-  enderecoCompleto: string;
-  logo: string;
-  ativo: boolean;
-  usuarios?: IUser[]; // Se você quiser representar a relação com usuários
-  dataCriacao: Date;
+	id: number;
+	workDescription: string;
+	company: string;
+	nameResponsible: string;
+	phoneContact: string;
+	address: string;
+	logoUrl: string;
+	active: boolean;
+	users?: IUser[]; // Se você quiser representar a relação com usuários
+	createdAt: Date;
+	updatedAt: Date;
 }

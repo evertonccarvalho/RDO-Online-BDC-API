@@ -1,40 +1,40 @@
-import { inject, injectable } from "tsyringe";
-import { IUserAuthRepository } from "../../infra/repositories/IUserAuthRepository";
-import bcrypt from "bcrypt";
-import { jwtService } from "../../../../utils/jwt";
+import bcrypt from 'bcrypt';
+import { inject, injectable } from 'tsyringe';
+import { jwtService } from '../../../../utils/jwt';
+import { IUserAuthRepository } from '../../infra/repositories/IUserAuthRepository';
 
 @injectable()
 class UserLoginUseCase {
-  constructor(
-    @inject("UserAuthRepository")
-    private userAuthRepository: IUserAuthRepository
-  ) {}
+	constructor(
+		@inject('UserAuthRepository')
+		private userAuthRepository: IUserAuthRepository
+	) {}
 
-  async execute(email: string, password: string): Promise<string | null> {
-    const user = await this.userAuthRepository.login(email, password);
+	async execute(email: string, password: string): Promise<string | null> {
+		const user = await this.userAuthRepository.login(email, password);
 
-    if (!user) {
-      return null; // Usuário não encontrado
-    }
+		if (!user) {
+			return null; // Usuário não encontrado
+		}
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+		const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (passwordMatch) {
-      const payload = {
-        id: user.id,
-        usuario: user.usuario,
-        email: user.email,
-        role: user.role,
-        ativo: user.ativo,
-        idObra: user.idObra,
-      };
+		if (passwordMatch) {
+			const payload = {
+				id: user.id,
+				userName: user.userName,
+				email: user.email,
+				role: user.role,
+				active: user.active,
+				workId: user.workId,
+			};
 
-      const token = jwtService.signToken(payload, "15d");
-      return token;
-    }
+			const token = jwtService.signToken(payload, '15d');
+			return token;
+		}
 
-    throw new Error("Senha incorreta");
-  }
+		throw new Error('Senha incorreta');
+	}
 }
 
 export { UserLoginUseCase };
