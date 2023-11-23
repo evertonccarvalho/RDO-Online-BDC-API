@@ -14,7 +14,7 @@ class UserLoginUseCase {
 		const user = await this.userAuthRepository.login(email, password);
 
 		if (!user) {
-			return null; // Usuário não encontrado
+			return null;
 		}
 
 		const passwordMatch = await bcrypt.compare(password, user.password);

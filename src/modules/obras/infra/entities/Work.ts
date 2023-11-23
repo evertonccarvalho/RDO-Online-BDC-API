@@ -1,6 +1,6 @@
 import { IUser } from '../../../users/infra/entities/User';
 
-export interface IObra {
+export interface IWork {
 	id: number;
 	workDescription: string;
 	company: string;

@@ -1,15 +1,15 @@
 import { inject, injectable } from 'tsyringe';
-import { IObra } from '../../infra/entities/Obra';
-import { IObraRepository } from '../../infra/repositories/IObraRepository';
+import { IWork } from '../../infra/entities/Work';
+import { IWorkRepository } from '../../infra/repositories/IWorkRepository';
 
 @injectable()
 class RegisterObraUseCase {
 	constructor(
 		@inject('ObraRepository')
-		private obraRepository: IObraRepository
+		private obraRepository: IWorkRepository
 	) {}
 
-	async execute(work: IObra): Promise<void> {
+	async execute(work: IWork): Promise<void> {
 		try {
 			await this.obraRepository.register(work);
 		} catch (error) {

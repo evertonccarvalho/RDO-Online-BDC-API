@@ -1,9 +1,9 @@
-import { IObra } from '../../../obras/infra/entities/Obra';
+import { IWork } from '../../../obras/infra/entities/Work';
 
 export interface IUser {
 	id: number;
 	workId: number | null;
-	work: IObra | null;
+	work: IWork | null;
 	userName: string;
 	email: string;
 	avatarUrl: string | null;
@@ -19,6 +19,6 @@ export interface IRegisterUser {
 	password: string;
 	active?: boolean;
 	workId?: number | null;
-	work?: IObra | null;
+	work?: IWork | null;
 	role: string;
 }

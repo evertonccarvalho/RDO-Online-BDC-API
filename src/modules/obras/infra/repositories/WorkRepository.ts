@@ -1,8 +1,8 @@
 import { db } from '../../../../api/config/prisma';
-import { IObra } from '../entities/Obra';
-import { IObraRepository } from './IObraRepository';
+import { IWork } from '../entities/Work';
+import { IWorkRepository } from './IWorkRepository';
 
-class ObraRepository implements IObraRepository {
+class ObraRepository implements IWorkRepository {
 	async register({
 		workDescription,
 		company,
@@ -11,7 +11,7 @@ class ObraRepository implements IObraRepository {
 		nameResponsible,
 		phoneContact,
 		active,
-	}: IObra): Promise<void> {
+	}: IWork): Promise<void> {
 		await db.work.create({
 			data: {
 				workDescription,
@@ -25,13 +25,13 @@ class ObraRepository implements IObraRepository {
 		});
 	}
 
-	async read(): Promise<IObra[]> {
+	async read(): Promise<IWork[]> {
 		const obras = await db.work.findMany();
 
 		return obras;
 	}
 
-	async getById(workId: number): Promise<IObra | null> {
+	async getById(workId: number): Promise<IWork | null> {
 		const obra = await db.work.findUnique({
 			where: {
 				id: workId,
@@ -45,7 +45,7 @@ class ObraRepository implements IObraRepository {
 		return obra;
 	}
 
-	async getByIdWithDetails(workId: number): Promise<IObra | null> {
+	async getByIdWithDetails(workId: number): Promise<IWork | null> {
 		const obra = await db.work.findUnique({
 			where: { id: workId },
 			include: {
@@ -61,7 +61,7 @@ class ObraRepository implements IObraRepository {
 		return obra;
 	}
 
-	async update(workId: number, updateWorkData: IObra): Promise<void> {
+	async update(workId: number, updateWorkData: IWork): Promise<void> {
 		await db.work.updateMany({
 			where: {
 				id: workId,

@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { IObra } from '../../infra/entities/Obra';
-import { RegisterObraUseCase } from './RegisterObraUseCase';
+import { IWork } from '../../infra/entities/Work';
+import { RegisterObraUseCase } from './RegisterWorkUseCase';
 
 class RegisterObraController {
 	async handle(req: Request, res: Response): Promise<Response> {
-		const work: IObra = req.body;
+		const work: IWork = req.body;
 
 		const registerUseCase = container.resolve(RegisterObraUseCase);
 

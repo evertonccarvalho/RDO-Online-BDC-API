@@ -1,15 +1,18 @@
-import { IObra } from '../../../obras/infra/entities/Obra';
+import { IWork } from '../../../obras/infra/entities/Work';
 
-export interface IUserLogin {
-	id?: number;
-	userName: string;
+// Interface representando os dados do usuário para login
+export interface IUserLogin extends UserPayload {
 	email: string;
 	password: string;
-	active: boolean;
+}
+
+// Interface para representar o payload do usuário após o login
+export interface UserPayload {
+	id: number;
+	userName: string;
+	email: string;
 	role: string;
-	avatarUrl: string | null;
-	workId?: number | null;
-	work?: IObra[] | null;
-	createdAt: Date;
-	updatedAt: Date;
+	active: boolean;
+	workId: number | null;
+	work?: IWork[] | null;
 }
