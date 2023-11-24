@@ -9,7 +9,16 @@ export interface IWork {
 	address: string;
 	logoUrl: string;
 	active: boolean;
-	users?: IUser[]; // Se você quiser representar a relação com usuários
+	users?: IUser[];
 	createdAt: Date;
 	updatedAt: Date;
+}
+
+export interface IWorkDTO extends IWork {
+	address: string;
+	phoneContact: string;
+	nameResponsible: string;
+	active: boolean;
+	company: string;
+	workDescription: string;
 }
