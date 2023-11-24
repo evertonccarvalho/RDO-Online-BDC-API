@@ -9,14 +9,14 @@ class UpdateWorkUseCase {
 		private obraRepository: IWorkRepository
 	) {}
 
-	async execute(obraId: number, updatedWorkData: IWork): Promise<void> {
-		const obra = await this.obraRepository.getById(obraId);
+	async execute(workId: number, updatedWorkData: IWork): Promise<void> {
+		const obra = await this.obraRepository.getById(workId);
 
 		if (!obra) {
 			throw new Error('Work não encontrado');
 		}
 
-		await this.obraRepository.update(obraId, updatedWorkData);
+		await this.obraRepository.update(workId, updatedWorkData);
 	}
 }
 

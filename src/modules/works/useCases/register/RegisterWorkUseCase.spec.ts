@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 import { IWork } from '../../interfaces/Work';
-import { WorkRepository } from '../../repositories/WorkRepository';
+import { MockWorkRepository } from '../../repositories/MockWorkRepository';
 import { RegisterWorkUseCase } from './RegisterWorkUseCase';
 
 describe('RegisterWorkUseCase', () => {
 	it('deve registrar um trabalho com sucesso', async () => {
 		// Arrange
-		const workRepository = new WorkRepository();
-		const registerWorkUseCase = new RegisterWorkUseCase(workRepository);
+		const mockWorkRepository = new MockWorkRepository();
+		const registerWorkUseCase = new RegisterWorkUseCase(mockWorkRepository);
 		const mockWorkData: IWork = {
 			id: 1,
 			workDescription: 'Descrição da Obra',
@@ -29,12 +29,12 @@ describe('RegisterWorkUseCase', () => {
 
 	it('deve lidar com erros ao registrar um trabalho', async () => {
 		// Arrange
-		const workRepository = new WorkRepository(); // Usar a instância de MockWorkRepository
-		workRepository.register = async (_: IWork): Promise<void> => {
+		const mockWorkRepository = new MockWorkRepository();
+		mockWorkRepository.register = async (_: IWork): Promise<void> => {
 			// Simular um erro ao registrar o trabalho
 			throw new Error('Erro ao registrar obra');
 		};
-		const registerWorkUseCase = new RegisterWorkUseCase(workRepository);
+		const registerWorkUseCase = new RegisterWorkUseCase(mockWorkRepository);
 		const mockWorkData: IWork = {
 			id: 1,
 			workDescription: 'Descrição da Obra',
@@ -57,10 +57,10 @@ describe('RegisterWorkUseCase', () => {
 
 	it('deve lançar um erro ao tentar registrar uma obra com Endereço menor que 10 caracteres', async () => {
 		// Arrange
-		const workRepository = new WorkRepository();
-		const registerWorkUseCase = new RegisterWorkUseCase(workRepository);
+		const mockWorkRepository = new MockWorkRepository();
+		const registerWorkUseCase = new RegisterWorkUseCase(mockWorkRepository);
 		const mockWorkData: IWork = {
-			id: 1,
+			id: 1, // Defina um ID válido
 			workDescription: 'Descrição da Obra',
 			company: 'Nome da Empresa',
 			logoUrl: 'https://example.com/logo.png',
