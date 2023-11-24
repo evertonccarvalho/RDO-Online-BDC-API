@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { IWorkDTO } from '../../interfaces/Work';
+import { IWork } from '../../interfaces/Work';
 import { RegisterWorkUseCase } from './RegisterWorkUseCase';
 
 class RegisterWorkController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const work: IWorkDTO = req.body;
+			const work: IWork = req.body;
 			const registerUseCase = container.resolve(RegisterWorkUseCase);
 			await registerUseCase.execute(work);
 			return res

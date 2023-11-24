@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { IWorkDTO } from '../../interfaces/Work';
+import { IWork } from '../../interfaces/Work';
 import { WorkRepository } from '../../repositories/WorkRepository';
 import { RegisterWorkUseCase } from './RegisterWorkUseCase';
 
@@ -8,7 +8,7 @@ describe('RegisterWorkUseCase', () => {
 		// Arrange
 		const workRepository = new WorkRepository();
 		const registerWorkUseCase = new RegisterWorkUseCase(workRepository);
-		const mockWorkData: IWorkDTO = {
+		const mockWorkData: IWork = {
 			id: 1,
 			workDescription: 'Descrição da Obra',
 			company: 'Nome da Empresa',
@@ -30,12 +30,12 @@ describe('RegisterWorkUseCase', () => {
 	it('deve lidar com erros ao registrar um trabalho', async () => {
 		// Arrange
 		const workRepository = new WorkRepository(); // Usar a instância de MockWorkRepository
-		workRepository.register = async (_: IWorkDTO): Promise<void> => {
+		workRepository.register = async (_: IWork): Promise<void> => {
 			// Simular um erro ao registrar o trabalho
 			throw new Error('Erro ao registrar obra');
 		};
 		const registerWorkUseCase = new RegisterWorkUseCase(workRepository);
-		const mockWorkData: IWorkDTO = {
+		const mockWorkData: IWork = {
 			id: 1,
 			workDescription: 'Descrição da Obra',
 			company: 'Nome da Empresa',
@@ -59,7 +59,7 @@ describe('RegisterWorkUseCase', () => {
 		// Arrange
 		const workRepository = new WorkRepository();
 		const registerWorkUseCase = new RegisterWorkUseCase(workRepository);
-		const mockWorkData: IWorkDTO = {
+		const mockWorkData: IWork = {
 			id: 1,
 			workDescription: 'Descrição da Obra',
 			company: 'Nome da Empresa',

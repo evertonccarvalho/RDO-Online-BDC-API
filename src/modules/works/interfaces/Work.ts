@@ -13,12 +13,3 @@ export interface IWork {
 	createdAt: Date;
 	updatedAt: Date;
 }
-
-export interface IWorkDTO extends IWork {
-	address: string;
-	phoneContact: string;
-	nameResponsible: string;
-	active: boolean;
-	company: string;
-	workDescription: string;
-}

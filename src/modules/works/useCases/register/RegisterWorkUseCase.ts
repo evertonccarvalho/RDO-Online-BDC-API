@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { IWorkDTO } from '../../interfaces/Work';
+import { IWork } from '../../interfaces/Work';
 import { IWorkRepository } from '../../repositories/IWorkRepository';
 
 @injectable()
@@ -9,9 +9,9 @@ class RegisterWorkUseCase {
 		private workRepository: IWorkRepository
 	) {}
 
-	async execute(workDTO: IWorkDTO): Promise<void> {
+	async execute(work: IWork): Promise<void> {
 		// Verifica se todos os campos obrigatórios estão presentes e preenchidos
-		const requiredFields: (keyof IWorkDTO)[] = [
+		const requiredFields: (keyof IWork)[] = [
 			'address',
 			'phoneContact',
 			'nameResponsible',
@@ -21,7 +21,7 @@ class RegisterWorkUseCase {
 
 		const missingFields: string[] = [];
 		for (const field of requiredFields) {
-			if (!workDTO[field]) {
+			if (!work[field]) {
 				missingFields.push(field);
 			}
 		}
@@ -32,12 +32,12 @@ class RegisterWorkUseCase {
 			);
 		}
 
-		if (workDTO.address.length < 10) {
+		if (work.address.length < 10) {
 			throw new Error('Endereço da obra deve conter pelo menos 10 caracteres');
 		}
 
 		try {
-			await this.workRepository.register(workDTO);
+			await this.workRepository.register(work);
 		} catch (error) {
 			throw new Error('Erro ao registrar obra');
 		}
