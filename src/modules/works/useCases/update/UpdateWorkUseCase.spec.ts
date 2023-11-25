@@ -2,56 +2,62 @@ import 'reflect-metadata';
 import { IWork } from '../../interfaces/Work';
 import { MockWorkRepository } from '../../repositories/MockWorkRepository';
 import { RegisterWorkUseCase } from '../register/RegisterWorkUseCase';
-import { UpdateWorkUseCase } from './UpdateWorkUseCase'; // Suponhamos que exista a classe UpdateWorkUseCase
+import { UpdateWorkUseCase } from './UpdateWorkUseCase';
+
+class TestSetup {
+	static createMockWorkRepository(): MockWorkRepository {
+		return new MockWorkRepository();
+	}
+	static async createInitialWork(
+		mockWorkRepository: MockWorkRepository,
+		initialWorkData: IWork
+	): Promise<void> {
+		const registerWorkUseCase = new RegisterWorkUseCase(mockWorkRepository);
+		await registerWorkUseCase.execute(initialWorkData);
+	}
+}
 
 describe('UpdateWorkUseCase', () => {
+	const initialWorkData: IWork = {
+		id: 1,
+		workDescription: 'Descrição do Trabalho Inicial',
+		company: 'Empresa Inicial',
+		logoUrl: 'https://example.com/logo-inicial.png',
+		address: 'Endereço Inicial',
+		nameResponsible: 'Responsável Inicial',
+		phoneContact: '11111111111',
+		active: false,
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	};
+
+	const updatedWorkData: IWork = {
+		id: 1,
+		workDescription: 'Nova Descrição do Trabalho',
+		company: 'Nova Empresa',
+		logoUrl: 'https://example.com/logo-novo.png',
+		address: 'Novo Endereço',
+		nameResponsible: 'Novo Responsável',
+		phoneContact: '22222222222',
+		active: true,
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	};
+
 	it('deve atualizar um trabalho existente', async () => {
 		// Arrange
-		const mockWorkRepository = new MockWorkRepository();
-		const registerWorkUseCase = new RegisterWorkUseCase(mockWorkRepository);
+		const mockWorkRepository = TestSetup.createMockWorkRepository();
+		await TestSetup.createInitialWork(mockWorkRepository, initialWorkData);
 		const updateWorkUseCase = new UpdateWorkUseCase(mockWorkRepository);
 
-		// Crie um trabalho inicial para atualizar
-		const initialWorkData: IWork = {
-			id: 1,
-			workDescription: 'Descrição da Obra',
-			company: 'Nome da Empresa',
-			logoUrl: 'https://example.com/logo.png',
-			address: 'Endereço Completo',
-			nameResponsible: 'Nome do Responsável',
-			phoneContact: '88999999999',
-			active: false,
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		};
-
-		await registerWorkUseCase.execute(initialWorkData); // Registre um trabalho inicial
-
-		// Dados de atualização
-		const updatedWorkData: IWork = {
-			id: 1,
-			workDescription: 'NOVAI Descrição da Obra',
-			company: 'NOVA Nome da Empresa',
-			logoUrl: 'NOVA https://example.com/logo.png',
-			address: 'NOVA Endereço Completo',
-			nameResponsible: 'NOVA Nome do Responsável',
-			phoneContact: '888',
-			active: true,
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		};
+		// ID do trabalho inicial registrado
+		const initialWorkId = 1;
 
 		// Act
-		const initialWorkId = 1; // Obtenha o ID do trabalho inicial que você registrou
 		await updateWorkUseCase.execute(initialWorkId, updatedWorkData);
+
 		// Assert
-		const updatedWork = await mockWorkRepository.getById(1);
-		expect(updatedWork?.workDescription).toBe('NOVAI Descrição da Obra');
-		expect(updatedWork?.company).toBe('NOVA Nome da Empresa');
-		expect(updatedWork?.logoUrl).toBe('NOVA https://example.com/logo.png');
-		expect(updatedWork?.address).toBe('NOVA Endereço Completo');
-		expect(updatedWork?.nameResponsible).toBe('NOVA Nome do Responsável');
-		expect(updatedWork?.phoneContact).toBe('888');
-		expect(updatedWork?.active).toBe(true);
+		const updatedWork = await mockWorkRepository.getById(initialWorkId);
+		expect(updatedWork).toMatchObject(updatedWorkData);
 	});
 });

@@ -9,11 +9,7 @@ const updateValidator = {
 			.min(3)
 			.max(50)
 			.messages(customMessages('name')), // Use a função customMessages
-		email: Joi.string()
-			.required()
-			.min(3)
-			.max(50)
-			.messages(customMessages('email')), // Use a função customMessages
+		email: Joi.string().required().email().messages(customMessages('email')), // Use a função customMessages
 		avatarUrl: Joi.string()
 			.min(3)
 			.max(500)
