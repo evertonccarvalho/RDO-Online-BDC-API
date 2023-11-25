@@ -1,15 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { IUser } from '../modules/users/interfaces/User';
 import { UserRepository } from '../modules/users/repositories/UserRepository';
 import { jwtService } from '../utils/jwt';
-
-declare global {
-	namespace Express {
-		interface Request {
-			user?: IUser;
-		}
-	}
-}
 
 export async function ensureAuth(
 	req: Request,

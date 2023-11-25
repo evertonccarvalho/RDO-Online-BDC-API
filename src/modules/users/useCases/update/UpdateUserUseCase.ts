@@ -9,14 +9,14 @@ class UpdateUserUseCase {
 		private userRepository: IUserRepository
 	) {}
 
-	async execute(userId: number, updatedUserData: IUser): Promise<void> {
-		const user = await this.userRepository.getById(userId);
+	async execute(id: number, updatedUserData: IUser): Promise<void> {
+		const user = await this.userRepository.getById(id);
 
 		if (!user) {
 			throw new Error('Usuario não encontrado');
 		}
 
-		await this.userRepository.update(userId, updatedUserData);
+		await this.userRepository.update(id, updatedUserData);
 	}
 }
 

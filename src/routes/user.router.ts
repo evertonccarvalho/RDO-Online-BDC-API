@@ -14,8 +14,8 @@ const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
 
 userRoutes.get('/users', getAllUsersController.handle);
-userRoutes.get('/user/:userId', getUserByIdController.handle);
-userRoutes.put('/user/:userId', updateUserController.handle);
-userRoutes.delete('/user/:userId', ensureAdmin, deleteUserController.handle);
+userRoutes.get('/user/:id', getUserByIdController.handle);
+userRoutes.put('/user/:id', updateUserController.handle);
+userRoutes.delete('/user/:id', ensureAdmin, deleteUserController.handle);
 
 export { userRoutes };

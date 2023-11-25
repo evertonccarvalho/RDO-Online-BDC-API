@@ -8,14 +8,14 @@ class DeleteUserUseCase {
 		private userRepository: IUserRepository
 	) {}
 
-	async execute(userId: number): Promise<void> {
-		const user = await this.userRepository.getById(userId);
+	async execute(id: number): Promise<void> {
+		const user = await this.userRepository.getById(id);
 
 		if (!user) {
 			throw new Error('Produto não encontrado');
 		}
 
-		await this.userRepository.delete(userId);
+		await this.userRepository.delete(id);
 	}
 }
 

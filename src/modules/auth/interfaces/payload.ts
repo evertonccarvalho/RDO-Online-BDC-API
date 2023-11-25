@@ -1,4 +1,4 @@
-import { IWork } from '../../obras/interfaces/Work';
+import { IWork } from '../../works/interfaces/Work';
 
 export interface UserPayload {
 	id: number;

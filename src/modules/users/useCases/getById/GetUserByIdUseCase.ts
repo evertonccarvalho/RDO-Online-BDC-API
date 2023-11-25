@@ -9,8 +9,8 @@ class GetUserByIdUseCase {
 		private userRepository: IUserRepository
 	) {}
 
-	async execute(userId: number): Promise<IUser | null> {
-		return this.userRepository.getById(userId);
+	async execute(id: number): Promise<IUser | null> {
+		return this.userRepository.getById(id);
 	}
 }
 

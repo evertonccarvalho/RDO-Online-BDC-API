@@ -5,9 +5,9 @@ import { GetUserByIdUseCase } from './GetUserByIdUseCase';
 class GetUserByIdController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const { userId } = req.params;
+			const { id } = req.params;
 			const getUserByIdUseCase = container.resolve(GetUserByIdUseCase);
-			const user = await getUserByIdUseCase.execute(+userId);
+			const user = await getUserByIdUseCase.execute(+id);
 
 			if (!user) {
 				return res.status(404).json({ message: 'Usuário não encontrado' });

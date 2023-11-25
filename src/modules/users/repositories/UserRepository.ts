@@ -39,10 +39,10 @@ class UserRepository implements IUserRepository {
 		return users;
 	}
 
-	async getById(userId: number): Promise<IUser | null> {
+	async getById(id: number): Promise<IUser | null> {
 		const user = await db.user.findUnique({
 			where: {
-				id: userId, // Fornecer o valor para o campo id
+				id: id, // Fornecer o valor para o campo id
 			},
 			select: {
 				id: true,
@@ -93,19 +93,19 @@ class UserRepository implements IUserRepository {
 		return user;
 	}
 
-	async update(userId: number, updatedUserData: IUser): Promise<void> {
+	async update(id: number, updatedUserData: IUser): Promise<void> {
 		await db.user.updateMany({
 			where: {
-				id: userId,
+				id: id,
 			},
 			data: updatedUserData,
 		});
 	}
 
-	async delete(userId: number): Promise<void> {
+	async delete(id: number): Promise<void> {
 		await db.user.delete({
 			where: {
-				id: userId,
+				id: id,
 			},
 		});
 	}

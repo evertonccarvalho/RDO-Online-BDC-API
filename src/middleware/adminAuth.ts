@@ -3,11 +3,9 @@ import { IUser } from '../modules/users/interfaces/User';
 import { UserRepository } from '../modules/users/repositories/UserRepository';
 import { jwtService } from '../utils/jwt';
 
-declare global {
-	namespace Express {
-		interface Request {
-			user?: IUser;
-		}
+declare module 'express' {
+	interface Request {
+		user?: IUser; // Defina a propriedade 'user' e seu tipo aqui
 	}
 }
 
