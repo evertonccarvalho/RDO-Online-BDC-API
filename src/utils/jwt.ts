@@ -10,13 +10,8 @@ export const jwtService = {
 
 	verifyToken: (token: string): Promise<JwtPayload> => {
 		return new Promise((resolve, reject) => {
-			jwt.verify(token, JWT_KEY, (err, decoded) => {
-				if (err || typeof decoded === 'undefined') {
-					reject(err);
-				} else {
-					resolve(decoded as JwtPayload);
-				}
-			});
+			const decoded = jwt.verify(token, JWT_KEY);
+			resolve(decoded as JwtPayload);
 		});
 	},
 };

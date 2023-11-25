@@ -11,7 +11,7 @@ declare global {
 	}
 }
 
-export async function ensureAuth(
+export async function ensureAdmin(
 	req: Request,
 	res: Response,
 	next: NextFunction
@@ -28,18 +28,31 @@ export async function ensureAuth(
 
 	try {
 		const decoded = await jwtService.verifyToken(token);
+		const userRepository = new UserRepository();
+		const user = await userRepository.getByEmail(decoded.email as string);
 
 		if (!decoded || typeof decoded === 'undefined') {
 			return res
 				.status(401)
-				.json({ message: 'Não autorizado: token inválido' });
+				.json({ message: 'Não autorizado: token inválido!' });
 		}
 
-		const userRepository = new UserRepository();
-		const user = await userRepository.getByEmail(decoded.email as string);
-		req.user = user !== null ? user : undefined; // Verifica se o usuário não é nulo
+		if (
+			!user ||
+			typeof user === 'undefined' ||
+			!user.role ||
+			user.role !== 'admin'
+		) {
+			return res.status(403).json({
+				message:
+					'Acesso negado. Somente administradores podem acessar esta rota.',
+			});
+		}
+
+		req.user = user;
 		next();
 	} catch (error) {
-		return res.status(401).json({ message: 'Não autorizado: token inválido' });
+		console.error('Erro durante a verificação do token:', error);
+		return res.status(401).json({ message: 'Não autorizado: token inválido!' });
 	}
 }

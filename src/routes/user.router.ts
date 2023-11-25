@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { ensureAuth } from '../middleware/auth';
+import { ensureAdmin } from '../middleware/adminAuth';
 import { DeleteUserController } from '../modules/users/useCases/delete/DeleteUserController';
 import { GetAllUsersController } from '../modules/users/useCases/getAll/GetAllUsersController';
 import { GetUserByIdController } from '../modules/users/useCases/getById/GetUserByIdController';
@@ -16,6 +16,6 @@ const deleteUserController = new DeleteUserController();
 userRoutes.get('/users', getAllUsersController.handle);
 userRoutes.get('/user/:userId', getUserByIdController.handle);
 userRoutes.put('/user/:userId', updateUserController.handle);
-userRoutes.delete('/user/:userId', ensureAuth, deleteUserController.handle);
+userRoutes.delete('/user/:userId', ensureAdmin, deleteUserController.handle);
 
 export { userRoutes };
