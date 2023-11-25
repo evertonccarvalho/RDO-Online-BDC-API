@@ -53,7 +53,7 @@ describe('RegisterWorkUseCase', () => {
 
 	it('deve lançar um erro ao tentar registrar uma obra com Endereço menor que 10 caracteres', async () => {
 		const mockWorkDataInvalidAddress = testSetup.createMockWorkData();
-		mockWorkDataInvalidAddress.address = 'Endereço9'; // Endereço menor que 10 caracteres
+		mockWorkDataInvalidAddress.address = 'Endereço0'; // Endereço menor que 10 caracteres
 
 		await expect(
 			testSetup.registerWorkUseCase.execute(mockWorkDataInvalidAddress)

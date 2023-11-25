@@ -10,10 +10,10 @@ class UpdateWorkController {
 
 		try {
 			await updateWorkUseCase.execute(+workId, updatedWorkData);
-			return res.status(200).json({ message: 'Work atualizado com sucesso' });
+			return res.status(200).json({ message: 'Obra atualizada com sucesso' });
 		} catch (error) {
 			if (error instanceof Error) {
-				return res.status(404).json({ message: 'Work não encontrado' });
+				return res.status(404).json({ message: 'Obra não encontrado' });
 			}
 
 			return res.status(500).json({ message: 'Erro interno do servidor' });

@@ -6,11 +6,11 @@ import { IWorkRepository } from '../../repositories/IWorkRepository';
 class GetAllWorksUseCase {
 	constructor(
 		@inject('WorkRepository')
-		private productRepository: IWorkRepository
+		private workRepository: IWorkRepository
 	) {}
 
 	async execute(): Promise<IWork[]> {
-		return this.productRepository.read();
+		return this.workRepository.read();
 	}
 }
 

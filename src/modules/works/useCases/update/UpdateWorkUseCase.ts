@@ -6,17 +6,17 @@ import { IWorkRepository } from '../../repositories/IWorkRepository';
 class UpdateWorkUseCase {
 	constructor(
 		@inject('WorkRepository')
-		private obraRepository: IWorkRepository
+		private workRepository: IWorkRepository
 	) {}
 
 	async execute(workId: number, updatedWorkData: IWork): Promise<void> {
-		const obra = await this.obraRepository.getById(workId);
+		const obra = await this.workRepository.getById(workId);
 
 		if (!obra) {
-			throw new Error('Work não encontrado');
+			throw new Error('Obra não encontrado');
 		}
 
-		await this.obraRepository.update(workId, updatedWorkData);
+		await this.workRepository.update(workId, updatedWorkData);
 	}
 }
 

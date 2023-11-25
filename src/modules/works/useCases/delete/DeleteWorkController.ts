@@ -16,7 +16,7 @@ class DeleteWorkController {
 				return res.status(404).json({ message: 'Obra não encontrado' });
 			}
 
-			return res.status(500).json({ message: 'ErObraro interno do servidor' });
+			return res.status(500).json({ message: 'Erro interno do servidor' });
 		}
 	}
 }
