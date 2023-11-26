@@ -15,9 +15,13 @@ class UpdateUserController {
 				.json({ message: 'Usuário atualizado com sucesso' });
 		} catch (error) {
 			if (error instanceof Error) {
-				return res.status(404).json({ message: 'Usuário não encontrado' });
+				if (error.message === 'Usuário não encontrado') {
+					return res.status(404).json({ message: 'Usuário não encontrado' });
+				}
+				return res
+					.status(400)
+					.json({ message: 'Erro no registro: ' + error.message });
 			}
-
 			return res.status(500).json({ message: 'Erro interno do servidor' });
 		}
 	}

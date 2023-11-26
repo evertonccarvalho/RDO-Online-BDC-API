@@ -12,7 +12,7 @@ class DeleteUserUseCase {
 		const user = await this.userRepository.getById(id);
 
 		if (!user) {
-			throw new Error('Produto não encontrado');
+			throw new Error('Usuário não encontrado');
 		}
 
 		await this.userRepository.delete(id);
