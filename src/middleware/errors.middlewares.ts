@@ -1,17 +1,13 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
+import { ApiError } from '../helpers/api-erros';
 
-import { CelebrateError } from "celebrate";
-
-export const celebrateError = (error: Error, req: Request, res: Response, next: NextFunction) => {
-  if (error instanceof CelebrateError) {
-    const errorBody = error.details.get("body");
-    return res.status(400).json({
-      message: errorBody?.message,
-    });
-  }
-
-  return res.status(500).json({
-    status: "Error",
-    message: `Internal server error: ${error.message}`,
-  });
+export const errorMiddleware = (
+	error: Error & Partial<ApiError>,
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	const statusCode = error.statusCode ?? 500;
+	const message = error.statusCode ? error.message : 'Internal Server Error';
+	return res.status(statusCode).json({ message });
 };

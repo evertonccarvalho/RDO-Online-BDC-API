@@ -1,7 +1,13 @@
 import bcrypt from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
+import {
+	IncorrectEmailError,
+	IncorrectPasswordError,
+} from '../../../../helpers/api-erros';
 import { jwtService } from '../../../../utils/jwt';
 import { IUserAuthRepository } from '../../repositories/IUserAuthRepository';
+
+const JWT_EXPIRATION_TIME = '15d';
 
 @injectable()
 class UserLoginUseCase {
@@ -10,7 +16,16 @@ class UserLoginUseCase {
 		private userAuthRepository: IUserAuthRepository
 	) {}
 
+	private isValidEmail(email: string): boolean {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	}
+
 	async execute(email: string, password: string): Promise<string | null> {
+		if (!email || !this.isValidEmail(email)) {
+			throw new IncorrectEmailError('O e-mail é inválido');
+		}
+
 		const user = await this.userAuthRepository.login(email, password);
 
 		if (!user) {
@@ -29,11 +44,10 @@ class UserLoginUseCase {
 				workId: user.workId,
 			};
 
-			const token = jwtService.signToken(payload, '15d');
+			const token = jwtService.signToken(payload, JWT_EXPIRATION_TIME);
 			return token;
 		}
-
-		throw new Error('Senha incorreta');
+		throw new IncorrectPasswordError('As credenciais estão inválidas');
 	}
 }
 
