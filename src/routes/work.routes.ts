@@ -17,8 +17,8 @@ const deleteWorkController = new DeleteWorkController();
 
 workRoutes.get('/works', getAllWorksController.handle);
 workRoutes.post('/work', ensureAuth, registerWorkController.handle);
-workRoutes.get('/work/:workId', ensureAuth, getWorkByIdController.handle);
-workRoutes.put('/work/:workId', ensureAuth, updateWorkController.handle);
-workRoutes.delete('/work/:workId', ensureAuth, deleteWorkController.handle);
+workRoutes.get('/work/:id', ensureAuth, getWorkByIdController.handle);
+workRoutes.put('/work/:id', ensureAuth, updateWorkController.handle);
+workRoutes.delete('/work/:id', ensureAuth, deleteWorkController.handle);
 
 export { workRoutes };

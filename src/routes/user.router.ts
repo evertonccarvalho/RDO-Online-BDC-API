@@ -1,6 +1,4 @@
 import { Router } from 'express';
-
-// import { ensureAdmin } from '../middleware/adminAuth';
 import { ensureAdmin } from '../middleware/adminAuth';
 import { ensureAuth } from '../middleware/auth';
 import { DeleteUserController } from '../modules/users/useCases/delete/DeleteUserController';

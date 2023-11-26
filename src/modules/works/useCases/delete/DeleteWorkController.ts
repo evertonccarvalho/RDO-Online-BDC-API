@@ -4,11 +4,11 @@ import { DeleteWorkUseCase } from './DeleteWorkUseCase';
 
 class DeleteWorkController {
 	async handle(req: Request, res: Response): Promise<Response> {
-		const { workId } = req.params;
+		const { id } = req.params;
 		const deleteWorkUseCase = container.resolve(DeleteWorkUseCase);
 
 		try {
-			await deleteWorkUseCase.execute(+workId);
+			await deleteWorkUseCase.execute(+id);
 
 			return res.status(200).json({ message: 'Obra deletado com sucesso' });
 		} catch (error) {

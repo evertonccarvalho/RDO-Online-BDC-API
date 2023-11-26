@@ -8,14 +8,14 @@ class DeleteWorkUseCase {
 		private workRepository: IWorkRepository
 	) {}
 
-	async execute(workId: number): Promise<void> {
-		const work = await this.workRepository.getById(workId);
+	async execute(id: number): Promise<void> {
+		const work = await this.workRepository.getById(id);
 
 		if (!work) {
 			throw new Error('Obra não encontrado');
 		}
 
-		await this.workRepository.delete(workId);
+		await this.workRepository.delete(id);
 	}
 }
 

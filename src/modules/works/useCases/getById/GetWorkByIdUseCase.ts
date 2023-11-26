@@ -9,8 +9,8 @@ class GetWorkByIdUseCase {
 		private workRepository: IWorkRepository
 	) {}
 
-	async execute(workId: number): Promise<IWork | null> {
-		return this.workRepository.getByIdWithDetails(workId);
+	async execute(id: number): Promise<IWork | null> {
+		return this.workRepository.getByIdWithDetails(id);
 	}
 }
 

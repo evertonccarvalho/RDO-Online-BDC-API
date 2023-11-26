@@ -12,23 +12,23 @@ class MockWorkRepository implements IWorkRepository {
 		return this.works;
 	}
 
-	async getById(workId: number): Promise<IWork | null> {
-		return this.works.find((work) => work.id === workId) || null;
+	async getById(id: number): Promise<IWork | null> {
+		return this.works.find((work) => work.id === id) || null;
 	}
 
-	async getByIdWithDetails(workId: number): Promise<IWork | null> {
-		return this.works.find((work) => work.id === workId) || null;
+	async getByIdWithDetails(id: number): Promise<IWork | null> {
+		return this.works.find((work) => work.id === id) || null;
 	}
 
-	async update(workId: number, updateWorkData: IWork): Promise<void> {
-		const index = this.works.findIndex((work) => work.id === workId);
+	async update(id: number, updateWorkData: IWork): Promise<void> {
+		const index = this.works.findIndex((work) => work.id === id);
 		if (index !== -1) {
 			this.works[index] = updateWorkData;
 		}
 	}
 
-	async delete(workId: number): Promise<void> {
-		this.works = this.works.filter((work) => work.id !== workId);
+	async delete(id: number): Promise<void> {
+		this.works = this.works.filter((work) => work.id !== id);
 	}
 }
 

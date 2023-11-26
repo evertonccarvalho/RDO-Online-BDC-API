@@ -31,10 +31,10 @@ class WorkRepository implements IWorkRepository {
 		return works;
 	}
 
-	async getById(workId: number): Promise<IWork | null> {
+	async getById(id: number): Promise<IWork | null> {
 		const work = await db.work.findUnique({
 			where: {
-				id: workId,
+				id: id,
 			},
 		});
 
@@ -45,9 +45,9 @@ class WorkRepository implements IWorkRepository {
 		return work;
 	}
 
-	async getByIdWithDetails(workId: number): Promise<IWork | null> {
+	async getByIdWithDetails(id: number): Promise<IWork | null> {
 		const work = await db.work.findUnique({
-			where: { id: workId },
+			where: { id: id },
 			include: {
 				equipes: true, // Inclui as equipes relacionadas
 				servicos: true, // Inclui os serviços relacionados
@@ -61,19 +61,19 @@ class WorkRepository implements IWorkRepository {
 		return work;
 	}
 
-	async update(workId: number, updateWorkData: IWork): Promise<void> {
+	async update(id: number, updateWorkData: IWork): Promise<void> {
 		await db.work.updateMany({
 			where: {
-				id: workId,
+				id: id,
 			},
 			data: updateWorkData,
 		});
 	}
 
-	async delete(workId: number): Promise<void> {
+	async delete(id: number): Promise<void> {
 		await db.work.delete({
 			where: {
-				id: workId,
+				id: id,
 			},
 		});
 	}

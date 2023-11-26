@@ -5,7 +5,6 @@ import { workRoutes } from '../routes/work.routes';
 
 const router = Router();
 
-// router.use(productRoutes);
 router.use(workRoutes);
 router.use(authRouter);
 router.use(userRoutes);

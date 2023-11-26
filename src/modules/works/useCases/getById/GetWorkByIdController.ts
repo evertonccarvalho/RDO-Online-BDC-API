@@ -5,9 +5,9 @@ import { GetWorkByIdUseCase } from './GetWorkByIdUseCase';
 class GetWorkByIdController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const { workId } = req.params;
+			const { id } = req.params;
 			const getWorkByIdUseCase = container.resolve(GetWorkByIdUseCase);
-			const work = await getWorkByIdUseCase.execute(+workId);
+			const work = await getWorkByIdUseCase.execute(+id);
 
 			if (!work) {
 				return res.status(404).json({ message: 'Obra não encontrada' });
