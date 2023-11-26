@@ -17,8 +17,6 @@ export interface IRegisterUser {
 	userName: string;
 	email: string;
 	password: string;
-	active?: boolean;
-	workId?: number | null;
-	work?: IWork | null;
+	confirmPassword: string;
 	role: string;
 }
