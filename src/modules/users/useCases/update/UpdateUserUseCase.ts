@@ -19,6 +19,20 @@ class UpdateUserUseCase {
 		return emailRegex.test(email);
 	}
 
+	private convertToBoolean(value: string | boolean): boolean {
+		if (typeof value === 'string') {
+			return value.toLowerCase() === 'true';
+		}
+		return value;
+	}
+
+	private convertToNumber(value: string | number): number {
+		if (typeof value === 'string') {
+			return parseInt(value, 10); // ou Number(value)
+		}
+		return value;
+	}
+
 	async execute(id: number, updatedUserData: IUser): Promise<void> {
 		try {
 			const user = await this.userRepository.getById(id);
@@ -40,6 +54,16 @@ class UpdateUserUseCase {
 					throw new Error('E-mail já está em uso por outro usuário');
 				}
 			}
+
+			// Converte os campos para os tipos corretos antes de atualizar
+			if (
+				updatedUserData.workId !== null &&
+				updatedUserData.workId !== undefined
+			) {
+				updatedUserData.workId = this.convertToNumber(updatedUserData.workId);
+			}
+
+			updatedUserData.active = this.convertToBoolean(updatedUserData.active);
 
 			await this.userRepository.update(id, updatedUserData);
 		} catch (error) {
