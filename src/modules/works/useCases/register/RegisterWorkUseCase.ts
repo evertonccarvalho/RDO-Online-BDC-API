@@ -9,6 +9,12 @@ class RegisterWorkUseCase {
 		private workRepository: IWorkRepository
 	) {}
 
+	private convertToBoolean(value: string | boolean): boolean {
+		if (typeof value === 'string') {
+			return value.toLowerCase() === 'true';
+		}
+		return value;
+	}
 	async execute(work: IWork): Promise<void> {
 		// Verifica se todos os campos obrigatórios estão presentes e preenchidos
 		const requiredFields: (keyof IWork)[] = [
@@ -18,6 +24,7 @@ class RegisterWorkUseCase {
 			'company',
 			'workDescription',
 		];
+		work.active = this.convertToBoolean(work.active);
 
 		const missingFields: string[] = [];
 		for (const field of requiredFields) {

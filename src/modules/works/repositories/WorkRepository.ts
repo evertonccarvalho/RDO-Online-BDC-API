@@ -6,7 +6,6 @@ class WorkRepository implements IWorkRepository {
 	async register({
 		workDescription,
 		company,
-		logoUrl,
 		address,
 		nameResponsible,
 		phoneContact,
@@ -16,7 +15,6 @@ class WorkRepository implements IWorkRepository {
 			data: {
 				workDescription,
 				company,
-				logoUrl,
 				address,
 				nameResponsible,
 				phoneContact,

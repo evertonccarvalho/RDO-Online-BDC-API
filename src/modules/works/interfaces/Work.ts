@@ -7,7 +7,7 @@ export interface IWork {
 	nameResponsible: string;
 	phoneContact: string;
 	address: string;
-	logoUrl: string;
+	logoUrl?: string | null;
 	active: boolean;
 	users?: IUser[];
 	createdAt: Date;

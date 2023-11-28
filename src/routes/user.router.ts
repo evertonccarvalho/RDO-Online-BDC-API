@@ -13,7 +13,7 @@ const getUserByIdController = new GetUserByIdController();
 const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
 
-userRoutes.get('/users', getAllUsersController.handle);
+userRoutes.get('/users', ensureAdmin, getAllUsersController.handle);
 userRoutes.get('/user/:id', ensureAuth, getUserByIdController.handle);
 userRoutes.put('/user/:id', ensureAuth, updateUserController.handle);
 userRoutes.delete('/user/:id', ensureAdmin, deleteUserController.handle);

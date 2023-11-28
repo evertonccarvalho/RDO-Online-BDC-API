@@ -33,7 +33,7 @@ model Work {
   nameResponsible String // Nome da pessoa responsável pela obra
   phoneContact    String // Número de contato da obra
   address         String // Endereço completo da obra
-  logoUrl         String // Logotipo da obra
+  logoUrl         String? // Logotipo da obra
   active          Boolean // Indica se a obra está ativa
   users           User[] // Relacionamento com os usuários associados à obra
   equipes         Equipe[] // Relacionamento com as equipes da obra
