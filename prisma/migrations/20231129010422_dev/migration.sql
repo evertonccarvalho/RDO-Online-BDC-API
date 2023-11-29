@@ -22,7 +22,7 @@ CREATE TABLE "Work" (
     "nameResponsible" TEXT NOT NULL,
     "phoneContact" TEXT NOT NULL,
     "address" TEXT NOT NULL,
-    "logoUrl" TEXT NOT NULL,
+    "logoUrl" TEXT,
     "active" BOOLEAN NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

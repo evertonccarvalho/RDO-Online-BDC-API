@@ -4,10 +4,11 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "tsx watch src/api/server.ts",
+		"dev": "tsx watch src/api/index.ts",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
-		"build": "tsup src"
+		"build": "tsup src",
+		"vercel-build": "sequelize-cli db:migrate && sequelize db:seed:all"
 	},
 	"prisma": {
 		"schema": "prisma/schema.prisma",
