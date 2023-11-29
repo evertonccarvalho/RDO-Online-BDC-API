@@ -18,7 +18,7 @@ export class App {
 		this.server.use(cors());
 		this.server.use(express.json());
 		this.server.use(errorMiddleware); // Adicione o middleware de Erros
-		this.server.use(router);
+		this.server.use('/api/', router);
 	}
 }
 
