@@ -8,7 +8,7 @@
 		"test": "jest",
 		"test:watch": "jest --watchAll",
 		"build": "tsup src",
-		"vercel-build": "sequelize-cli db:migrate && sequelize db:seed:all"
+		"vercel-build": "prisma migrate deploy && prisma db seed"
 	},
 	"prisma": {
 		"schema": "prisma/schema.prisma",
