@@ -5,10 +5,12 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "tsx watch src/api/index.ts",
+		"start": "node ./dist/src/api/index.js",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
-		"build": "tsup src",
-		"vercel-build": "prisma migrate deploy && prisma db seed"
+		"postinstall": "prisma generate",
+		"build": "tsc",
+		"vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && tsc"
 	},
 	"prisma": {
 		"schema": "prisma/schema.prisma",
