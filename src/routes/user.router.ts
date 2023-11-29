@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { ensureAdmin } from '../middleware/adminAuth';
-import { ensureAuth } from '../middleware/auth';
 import { DeleteUserController } from '../modules/users/useCases/delete/DeleteUserController';
 import { GetAllUsersController } from '../modules/users/useCases/getAll/GetAllUsersController';
 import { GetUserByIdController } from '../modules/users/useCases/getById/GetUserByIdController';
@@ -16,7 +15,7 @@ const deleteUserController = new DeleteUserController();
 
 userRoutes.get('/', homeController.index);
 userRoutes.get('/users', ensureAdmin, getAllUsersController.handle);
-userRoutes.get('/user/:id', ensureAuth, getUserByIdController.handle);
+userRoutes.get('/user/:id', getUserByIdController.handle);
 userRoutes.put('/user/:id', ensureAdmin, updateUserController.handle);
 userRoutes.delete('/user/:id', ensureAdmin, deleteUserController.handle);
 

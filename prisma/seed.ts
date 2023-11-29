@@ -26,6 +26,17 @@ async function main() {
 			password: '$2b$10$l11sVUEG6IjUDiGEJ2PDC.vg6CjPpNXintZf4K4MxZvgsNTX6fst2',
 		},
 	});
+	await prisma.user.create({
+		data: {
+			userName: 'Usuário',
+			email: 'user@email.com',
+			avatarUrl: null,
+			role: 'Usuário',
+			active: true,
+			workId: null,
+			password: '$2b$10$l11sVUEG6IjUDiGEJ2PDC.vg6CjPpNXintZf4K4MxZvgsNTX6fst2',
+		},
+	});
 }
 
 main()

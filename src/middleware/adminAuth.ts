@@ -39,7 +39,7 @@ export async function ensureAdmin(
 			!user ||
 			typeof user === 'undefined' ||
 			!user.role ||
-			(user.role !== 'Administrator' && user.role !== 'root')
+			(user.role !== 'Administrador' && user.role !== 'root')
 		) {
 			return res.status(403).json({
 				message:
