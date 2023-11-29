@@ -17,6 +17,8 @@ class RegisterWorkUseCase {
 	}
 	async execute(work: IWork): Promise<void> {
 		// Verifica se todos os campos obrigatórios estão presentes e preenchidos
+		work.active = this.convertToBoolean(work.active);
+
 		const requiredFields: (keyof IWork)[] = [
 			'address',
 			'phoneContact',
@@ -24,7 +26,6 @@ class RegisterWorkUseCase {
 			'company',
 			'workDescription',
 		];
-		work.active = this.convertToBoolean(work.active);
 
 		const missingFields: string[] = [];
 		for (const field of requiredFields) {

@@ -15,7 +15,7 @@ const deleteUserController = new DeleteUserController();
 
 userRoutes.get('/users', ensureAdmin, getAllUsersController.handle);
 userRoutes.get('/user/:id', ensureAuth, getUserByIdController.handle);
-userRoutes.put('/user/:id', ensureAuth, updateUserController.handle);
+userRoutes.put('/user/:id', ensureAdmin, updateUserController.handle);
 userRoutes.delete('/user/:id', ensureAdmin, deleteUserController.handle);
 
 export { userRoutes };
