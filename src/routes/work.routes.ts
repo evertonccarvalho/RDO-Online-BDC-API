@@ -19,6 +19,6 @@ workRoutes.get('/works', ensureAuth, getAllWorksController.handle);
 workRoutes.post('/work', ensureAuth, registerWorkController.handle);
 workRoutes.get('/work/:id', ensureAuth, getWorkByIdController.handle);
 workRoutes.put('/work/:id', ensureAuth, updateWorkController.handle);
-workRoutes.delete('/work/:id', ensureAuth, deleteWorkController.handle);
+workRoutes.get('/work/:id', ensureAuth, deleteWorkController.handle);
 
 export { workRoutes };
