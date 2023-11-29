@@ -9,8 +9,7 @@
 		"dev": "tsx watch src/api/index.ts",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
-		"postinstall": "prisma generate",
-		"vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && tsc"
+		"postinstall": "prisma generate"
 	},
 	"prisma": {
 		"schema": "prisma/schema.prisma",
