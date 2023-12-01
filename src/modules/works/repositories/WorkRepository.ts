@@ -3,22 +3,31 @@ import { IWork } from '../interfaces/Work';
 import { IWorkRepository } from './IWorkRepository';
 
 class WorkRepository implements IWorkRepository {
-	async register({
-		workDescription,
-		company,
-		address,
-		nameResponsible,
-		phoneContact,
-		active,
-	}: IWork): Promise<void> {
+	// async register({
+	// 	workDescription,
+	// 	company,
+	// 	address,
+	// 	nameResponsible,
+	// 	phoneContact,
+	// 	active,
+	// }: IWork): Promise<void> {
+	// 	await db.work.create({
+	// 		data: {
+	// 			workDescription,
+	// 			company,
+	// 			address,
+	// 			nameResponsible,
+	// 			phoneContact,
+	// 			active,
+	// 		},
+	// 	});
+	// }
+
+	async register(userId: number, work: IWork): Promise<void> {
 		await db.work.create({
 			data: {
-				workDescription,
-				company,
-				address,
-				nameResponsible,
-				phoneContact,
-				active,
+				...work,
+				users: { connect: { id: userId } }, // Associa a obra ao usuário com o ID fornecido
 			},
 		});
 	}

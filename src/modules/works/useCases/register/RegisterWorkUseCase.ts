@@ -15,7 +15,7 @@ class RegisterWorkUseCase {
 		}
 		return value;
 	}
-	async execute(work: IWork): Promise<void> {
+	async execute(userId: number, work: IWork): Promise<void> {
 		// Verifica se todos os campos obrigatórios estão presentes e preenchidos
 		work.active = this.convertToBoolean(work.active);
 
@@ -45,7 +45,7 @@ class RegisterWorkUseCase {
 		}
 
 		try {
-			await this.workRepository.register(work);
+			await this.workRepository.register(userId, work);
 		} catch (error) {
 			throw new Error('Erro ao registrar obra');
 		}
