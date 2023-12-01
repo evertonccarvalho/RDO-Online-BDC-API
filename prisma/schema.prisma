@@ -6,22 +6,23 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 // Modelo de Usuário
 model User {
-  id        Int      @id @default(autoincrement()) // ID único do usuário
-  workId    Int? // ID da obra associada ao usuário
-  work      Work?    @relation(fields: [workId], references: [id]) // Relação com a obra
+  id Int @id @default(autoincrement()) // ID único do usuário
+
   userName  String // Nome de usuário
   email     String // Email do usuário
   password  String // Senha do usuário
   avatarUrl String? // URL do avatar do usuário
   active    Boolean // Indica se o usuário está ativo
   role      String   @default("Usuário Padrão") // Define o valor padrão como "Usuário Padrão"
+  workId    Int? // ID da obra associada ao usuário
+  work      Work?    @relation(fields: [workId], references: [id]) // Relação com a obra
   createdAt DateTime @default(now()) // Data e hora de criação
   updatedAt DateTime @default(now()) // Data e hora de atualização
 }

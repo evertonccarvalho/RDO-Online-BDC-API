@@ -24,16 +24,41 @@ class WorkRepository implements IWorkRepository {
 	// }
 
 	async register(userId: number, work: IWork): Promise<void> {
+		const existingUser = await db.user.findUnique({
+			where: { id: userId },
+			include: { work: true }, // Verifique se o relacionamento é chamado 'work' em vez de 'works'
+		});
+
+		if (!existingUser) {
+			throw new Error('Usuário não encontrado');
+		}
+
 		await db.work.create({
 			data: {
 				...work,
-				users: { connect: { id: userId } }, // Associa a obra ao usuário com o ID fornecido
+				users: {
+					connect: { id: userId },
+				},
 			},
 		});
 	}
 
-	async read(): Promise<IWork[]> {
-		const works = await db.work.findMany();
+	// async read(): Promise<IWork[]> {
+	// 	const works = await db.work.findMany();
+
+	// 	return works;
+	// }
+
+	async read(userId: number): Promise<IWork[]> {
+		const works = await db.work.findMany({
+			where: {
+				users: {
+					some: {
+						id: userId, // Filtra obras onde pelo menos um usuário tem o id correspondente a userId
+					},
+				},
+			},
+		});
 
 		return works;
 	}

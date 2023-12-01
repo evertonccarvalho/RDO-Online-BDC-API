@@ -9,8 +9,8 @@ class GetAllWorksUseCase {
 		private workRepository: IWorkRepository
 	) {}
 
-	async execute(): Promise<IWork[]> {
-		return this.workRepository.read();
+	async execute(userId: number): Promise<IWork[]> {
+		return this.workRepository.read(userId);
 	}
 }
 
