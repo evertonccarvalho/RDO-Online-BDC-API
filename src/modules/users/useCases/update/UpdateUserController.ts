@@ -20,7 +20,7 @@ class UpdateUserController {
 				}
 				return res
 					.status(400)
-					.json({ message: 'Erro no registro: ' + error.message });
+					.json({ message: 'Erro ao atualizar: ' + error.message });
 			}
 			return res.status(500).json({ message: 'Erro interno do servidor' });
 		}
