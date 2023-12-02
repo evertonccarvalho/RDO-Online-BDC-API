@@ -1,8 +1,5 @@
 import { container } from 'tsyringe';
-import { IUserAuthRepository } from '../../modules/auth/repositories/IUserAuthRepository';
-import { UserAuthRepository } from '../../modules/auth/repositories/UserAuthRepository.1';
-import { IUserRepository } from '../../modules/users/repositories/IUserRepository';
-import { UserRepository } from '../../modules/users/repositories/UserRepository';
+
 import { DeleteRepository } from '../../modules/works/delete/repositories/DeleteRepository';
 import { IDeleteRepository } from '../../modules/works/delete/repositories/IDeleteRepository';
 import { GetAllRepository } from '../../modules/works/getAll/repositories/GetAllRepository';
@@ -12,13 +9,6 @@ import { IGetByIdRepository } from '../../modules/works/getById/repositories/IGe
 import { RegisterRepository } from '../../modules/works/register/repositories/RegisterRepository';
 import { IUpdateRepository } from '../../modules/works/update/repositories/IUpdateRepository';
 import { UpdateRepository } from '../../modules/works/update/repositories/UpdateRepository';
-
-container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
-
-container.registerSingleton<IUserAuthRepository>(
-	'UserAuthRepository',
-	UserAuthRepository
-);
 
 container.registerSingleton<RegisterRepository>(
 	'RegisterRepository',

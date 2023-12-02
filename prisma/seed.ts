@@ -10,7 +10,6 @@ async function main() {
 			avatarUrl: null,
 			role: 'root',
 			active: true,
-			workId: null,
 			password: '$2b$10$l11sVUEG6IjUDiGEJ2PDC.vg6CjPpNXintZf4K4MxZvgsNTX6fst2',
 		},
 	});
@@ -22,7 +21,6 @@ async function main() {
 			avatarUrl: null,
 			role: 'Administrador',
 			active: true,
-			workId: null,
 			password: '$2b$10$l11sVUEG6IjUDiGEJ2PDC.vg6CjPpNXintZf4K4MxZvgsNTX6fst2',
 		},
 	});
@@ -33,7 +31,6 @@ async function main() {
 			avatarUrl: null,
 			role: 'Usuário',
 			active: true,
-			workId: null,
 			password: '$2b$10$l11sVUEG6IjUDiGEJ2PDC.vg6CjPpNXintZf4K4MxZvgsNTX6fst2',
 		},
 	});

@@ -1,14 +1,13 @@
-import { IWork } from '../../works/interfaces/Work';
+import { IWorkDTO } from '../../works/interfaces/Work';
 
 export interface IUser {
 	id: number;
-	workId: number | null;
-	work: IWork | null;
 	userName: string;
 	email: string;
 	avatarUrl: string | null;
 	active: boolean;
 	role: string;
+	work: IWorkDTO[];
 	createdAt: Date;
 	updatedAt: Date;
 }

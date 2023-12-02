@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces/User';
+import { IUser } from '../../users/interfaces/User';
 
 interface IUserRepository {
 	getByEmail(email: string): Promise<IUser | null>;

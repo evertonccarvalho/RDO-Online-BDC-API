@@ -1,4 +1,5 @@
 import { db } from '../../../api/config/prisma';
+import { IWork } from '../../works/interfaces/Work';
 import { IRegisterUser, IUser } from '../interfaces/User';
 import { IUserRepository } from './IUserRepository';
 
@@ -29,10 +30,23 @@ class UserRepository implements IUserRepository {
 				avatarUrl: true,
 				role: true,
 				active: true,
-				workId: true,
-				work: true,
 				createdAt: true,
 				updatedAt: true,
+				work: {
+					select: {
+						id: true,
+						workDescription: true,
+						company: true,
+						nameResponsible: true,
+						phoneContact: true,
+						address: true,
+						active: true,
+						createdAt: true,
+						updatedAt: true,
+						logoUrl: true,
+						// Outros campos de trabalho que você deseja selecionar
+					},
+				},
 			},
 		});
 
@@ -40,49 +54,48 @@ class UserRepository implements IUserRepository {
 	}
 
 	async getById(id: number): Promise<IUser | null> {
-		const user = await db.user.findUnique({
+		const userWithWorks = await db.user.findUnique({
 			where: {
-				id: id, // Fornecer o valor para o campo id
+				id: id,
 			},
-			select: {
-				id: true,
-				workId: true,
-				userName: true,
-				email: true,
-				avatarUrl: true,
-				role: true,
-				active: true,
-				work: true,
-				createdAt: true,
-				updatedAt: true,
+			include: {
+				work: {
+					select: {
+						id: true,
+						workDescription: true,
+						company: true,
+						nameResponsible: true,
+						phoneContact: true,
+						address: true,
+						active: true,
+						createdAt: true,
+						updatedAt: true,
+						logoUrl: true,
+						// Outros campos de trabalho que você deseja selecionar
+					},
+				},
 			},
 		});
 
-		if (!user) {
-			return null; // Usuário não encontrado
+		if (!userWithWorks) {
+			return null; // Retorna null se nenhum usuário for encontrado
 		}
 
-		// Ajuste a propriedade 'obra' para ser um array ou nulo conforme necessário
+		const { work, ...user } = userWithWorks;
 
-		return user;
+		return {
+			...user,
+			work: work as IWork[], // Certifique-se de que a propriedade work corresponda à interface IWork
+		};
 	}
 
 	async getByEmail(email: string): Promise<IUser | null> {
 		const user = await db.user.findFirst({
 			where: {
-				email,
+				email: email,
 			},
-			select: {
-				id: true,
-				userName: true,
-				email: true,
-				avatarUrl: true,
-				role: true,
-				active: true,
-				workId: true,
+			include: {
 				work: true,
-				createdAt: true,
-				updatedAt: true,
 			},
 		});
 

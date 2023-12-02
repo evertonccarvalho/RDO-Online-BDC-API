@@ -1,5 +1,5 @@
 import { db } from '../../../api/config/prisma';
-import { IRegisterUser, IUser } from '../interfaces/User';
+import { IUser } from '../../users/interfaces/User';
 import { IUserRepository } from './IUserRepository';
 
 class UserRepository implements IUserRepository {
@@ -15,7 +15,6 @@ class UserRepository implements IUserRepository {
 				avatarUrl: true,
 				role: true,
 				active: true,
-				workId: true,
 				work: true,
 				createdAt: true,
 				updatedAt: true,

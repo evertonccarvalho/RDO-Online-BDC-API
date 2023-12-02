@@ -1,24 +1,26 @@
 // import { celebrate } from 'celebrate';
 import { Router } from 'express';
 import { ensureAuth } from '../middleware/auth';
-import { DeleteWorkController } from '../modules/works/useCases/delete/DeleteWorkController';
-import { GetAllWorksController } from '../modules/works/useCases/getAll/GetAllWorksController';
-import { GetWorkByIdController } from '../modules/works/useCases/getById/GetWorkByIdController';
-import { RegisterWorkController } from '../modules/works/useCases/register/RegisterWorkController';
-import { UpdateWorkController } from '../modules/works/useCases/update/UpdateWorkController';
+import { DeleteController } from '../modules/works/delete/useCases/DeleteController';
+import { GetAllController } from '../modules/works/getAll/useCases/GetAllController';
+import { GetByIdController } from '../modules/works/getById/useCases/GetByIdController';
+import { RegisterController } from '../modules/works/register/useCases/RegisterController';
+import { UpdateWorkController } from '../modules/works/update/useCases/UpdateWorkController';
 
 const workRoutes = Router();
 
-const registerWorkController = new RegisterWorkController();
-const getAllWorksController = new GetAllWorksController();
-const getWorkByIdController = new GetWorkByIdController();
-const updateWorkController = new UpdateWorkController();
-const deleteWorkController = new DeleteWorkController();
+const registerWorkController = new RegisterController();
 
-workRoutes.get('/user/works', ensureAuth, getAllWorksController.handle);
+const getByIdController = new GetByIdController();
+const updateWorkController = new UpdateWorkController();
+
+const getAllController = new GetAllController();
+const deleteController = new DeleteController();
+
+workRoutes.get('/user/works', ensureAuth, getAllController.handle);
 workRoutes.post('/user/work', ensureAuth, registerWorkController.handle);
 workRoutes.put('/work/:id', ensureAuth, updateWorkController.handle);
-workRoutes.get('/work/:id', ensureAuth, getWorkByIdController.handle);
-workRoutes.delete('/work/:id', ensureAuth, deleteWorkController.handle);
+workRoutes.get('/work/:id', ensureAuth, getByIdController.handle);
+workRoutes.delete('/work/:id', ensureAuth, deleteController.handle);
 
 export { workRoutes };
