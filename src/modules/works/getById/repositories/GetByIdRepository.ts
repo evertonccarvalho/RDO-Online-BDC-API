@@ -3,10 +3,11 @@ import { IGetByIdWork } from '../interfaces/IGetWorkById';
 import { IGetByIdRepository } from './IGetByIdRepository';
 
 class GetByIdRepository implements IGetByIdRepository {
-	async getById(id: number): Promise<IGetByIdWork | null> {
+	async getById(id: number, userId: number): Promise<IGetByIdWork | null> {
 		const work = await db.work.findUnique({
 			where: {
 				id: id,
+				userId,
 			},
 		});
 

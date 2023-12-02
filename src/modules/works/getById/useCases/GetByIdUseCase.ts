@@ -9,8 +9,8 @@ class GetByIdUseCase {
 		private getByIdUseCase: IGetByIdRepository
 	) {}
 
-	async execute(id: number): Promise<IGetByIdWork | null> {
-		return this.getByIdUseCase.getById(id);
+	async execute(id: number, userId: number): Promise<IGetByIdWork | null> {
+		return this.getByIdUseCase.getById(id, userId);
 	}
 }
 

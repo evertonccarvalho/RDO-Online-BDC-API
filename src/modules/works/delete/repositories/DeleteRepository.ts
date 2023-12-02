@@ -1,4 +1,5 @@
 import { db } from '../../../../api/config/prisma';
+import { IGetByIdWork } from '../../getById/interfaces/IGetWorkById';
 import { IDeleteRepository } from './IDeleteRepository';
 
 class DeleteRepository implements IDeleteRepository {
