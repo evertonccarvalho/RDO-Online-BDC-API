@@ -7,10 +7,11 @@ class GetByIdRepository implements IGetByIdRepository {
 		const work = await db.work.findUnique({
 			where: {
 				id: id,
-				userId,
+				user: {
+					id: userId,
+				},
 			},
 		});
-
 		if (!work) {
 			return null;
 		}

@@ -5,11 +5,13 @@ import { UpdateWorkUseCase } from './UpdateWorkUseCase';
 class UpdateWorkController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
+		const userId = req.user!.id;
 		const updatedWorkData = req.body;
 		const updateWorkUseCase = container.resolve(UpdateWorkUseCase);
 
 		try {
-			await updateWorkUseCase.execute(+id, updatedWorkData);
+			await updateWorkUseCase.execute(+id, userId, updatedWorkData);
+
 			return res.status(200).json({ message: 'Obra atualizada com sucesso' });
 		} catch (error) {
 			if (error instanceof Error) {

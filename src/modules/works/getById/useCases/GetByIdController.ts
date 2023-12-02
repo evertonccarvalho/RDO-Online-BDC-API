@@ -12,7 +12,11 @@ class GetByIdController {
 			const work = await getByIdUseCase.execute(+id, userId);
 
 			if (!work) {
-				return res.status(404).json({ message: 'Obra não encontrada' });
+				return res
+					.status(404)
+					.json({
+						message: 'A obra não foi encontrada ou não pertence ao usupario',
+					});
 			}
 			return res.status(200).json(work);
 		} catch (error) {
