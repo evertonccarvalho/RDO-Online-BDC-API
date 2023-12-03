@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import 'reflect-metadata';
-import { IRegisterUser } from '../../interfaces/User';
+import { IRegisterUser } from '../../interfaces/IUser';
 import { MockUserRepository } from '../../repositories/MockUserRepository';
 import { UserRegisterUseCase } from './UserRegisterUseCase';
 

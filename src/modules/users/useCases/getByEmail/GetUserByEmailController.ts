@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
+import { UserRepository } from '../../repositories/UserRepository';
 import { GetUserByEmailUseCase } from './GetUserByEmailUseCase';
-import { container } from 'tsyringe';
 
 class GetUserByEmailController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
 			const { email } = req.params;
-			const getUserByEmailUseCase = container.resolve(GetUserByEmailUseCase);
+			const getUserByEmailUseCase = new GetUserByEmailUseCase(
+				new UserRepository()
+			);
 			const user = await getUserByEmailUseCase.execute(email);
 
 			if (!user) {

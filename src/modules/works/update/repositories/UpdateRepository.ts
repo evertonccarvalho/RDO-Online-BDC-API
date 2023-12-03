@@ -1,12 +1,12 @@
 import { db } from '../../../../api/config/prisma';
-import { IUpdateWork } from '../interfaces/IUpdateWork';
+import { IWork } from '../../interface/IWork';
 import { IUpdateRepository } from './IUpdateRepository';
 
 class UpdateRepository implements IUpdateRepository {
 	async update(
 		id: number,
 		userId: number,
-		updateWorkData: IUpdateWork
+		updateWorkData: IWork
 	): Promise<void> {
 		const work = await db.work.findUnique({
 			where: {

@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
+import { UserRepository } from '../../repositories/UserRepository';
 import { GetAllUsersUseCase } from './GetAllUsersUseCase';
-import { container } from 'tsyringe';
 
 class GetAllUsersController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const getAllUsersUseCase = container.resolve(GetAllUsersUseCase);
+			const getAllUsersUseCase = new GetAllUsersUseCase(new UserRepository());
 			const users = await getAllUsersUseCase.execute();
 
 			return res.status(200).json(users);

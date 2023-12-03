@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { container } from 'tsyringe';
+import { UpdateRepository } from '../repositories/UpdateRepository';
 import { UpdateUseCase } from './UpdateUseCase';
 
 class UpdateController {
@@ -7,7 +7,7 @@ class UpdateController {
 		const { id } = req.params;
 		const userId = req.user!.id;
 		const updatedWorkData = req.body;
-		const updateWorkUseCase = container.resolve(UpdateUseCase);
+		const updateWorkUseCase = new UpdateUseCase(new UpdateRepository());
 
 		try {
 			await updateWorkUseCase.execute(+id, userId, updatedWorkData);

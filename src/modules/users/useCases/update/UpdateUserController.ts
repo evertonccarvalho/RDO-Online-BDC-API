@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { container } from 'tsyringe';
+import { UserRepository } from '../../repositories/UserRepository';
 import { UpdateUserUseCase } from './UpdateUserUseCase';
 
 class UpdateUserController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 		const updatedUserData = req.body;
-		const updateUserUseCase = container.resolve(UpdateUserUseCase);
+		const updateUserUseCase = new UpdateUserUseCase(new UserRepository());
 
 		try {
 			await updateUserUseCase.execute(+id, updatedUserData);

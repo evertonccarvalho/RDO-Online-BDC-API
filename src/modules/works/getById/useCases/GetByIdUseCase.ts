@@ -1,16 +1,12 @@
 import { inject, injectable } from 'tsyringe';
-import { IGetByIdWork } from '../interfaces/IGetWorkById';
 import { IGetByIdRepository } from '../repositories/IGetByIdRepository';
+import { IWork } from '../../interface/IWork';
 
-@injectable()
 class GetByIdUseCase {
-	constructor(
-		@inject('GetByIdRepository')
-		private getByIdUseCase: IGetByIdRepository
-	) {}
+	constructor(private GetByIdUseCase: IGetByIdRepository) {}
 
-	async execute(id: number, userId: number): Promise<IGetByIdWork | null> {
-		return this.getByIdUseCase.getById(id, userId);
+	async execute(id: number, userId: number): Promise<IWork | null> {
+		return this.GetByIdUseCase.getById(id, userId);
 	}
 }
 

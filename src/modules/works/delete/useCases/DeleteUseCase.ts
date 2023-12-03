@@ -1,15 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 import { IDeleteRepository } from '../repositories/IDeleteRepository';
 
-@injectable()
 class DeleteUseCase {
-	constructor(
-		@inject('DeleteRepository')
-		private deleteRepository: IDeleteRepository
-	) {}
+	constructor(private DeleteRepository: IDeleteRepository) {}
 
 	async execute(workId: number, userId: number): Promise<void> {
-		return this.deleteRepository.delete(workId, userId);
+		return this.DeleteRepository.delete(workId, userId);
 	}
 }
 

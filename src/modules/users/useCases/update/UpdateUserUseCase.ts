@@ -1,13 +1,8 @@
-import { inject, injectable } from 'tsyringe';
-import { IUser } from '../../interfaces/User';
+import { IUser } from '../../interfaces/IUser';
 import { IUserRepository } from '../../repositories/IUserRepository';
 
-@injectable()
 class UpdateUserUseCase {
-	constructor(
-		@inject('UserRepository')
-		private userRepository: IUserRepository
-	) {}
+	constructor(private userRepository: IUserRepository) {}
 
 	private async isEmailAlreadyRegistered(email: string): Promise<boolean> {
 		const existingUser = await this.userRepository.getByEmail(email);
@@ -53,14 +48,6 @@ class UpdateUserUseCase {
 				if (isEmailTaken) {
 					throw new Error('E-mail já está em uso por outro usuário');
 				}
-			}
-
-			// Converte os campos para os tipos corretos antes de atualizar
-			if (
-				updatedUserData.workId !== null &&
-				updatedUserData.workId !== undefined
-			) {
-				updatedUserData.workId = this.convertToNumber(updatedUserData.workId);
 			}
 
 			updatedUserData.active = this.convertToBoolean(updatedUserData.active);

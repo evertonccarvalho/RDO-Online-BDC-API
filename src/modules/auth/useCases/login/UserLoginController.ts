@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
-import { container } from 'tsyringe';
 import {
 	IncorrectEmailError,
 	IncorrectPasswordError,
 } from '../../../../helpers/api-erros';
+import { UserAuthRepository } from '../../repositories/UserAuthRepository.1';
 import { UserLoginUseCase } from './UserLoginUseCase';
 
 class UserLoginController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { email, password } = req.body;
-		const userLoginUseCase = container.resolve(UserLoginUseCase);
+		const userLoginUseCase = new UserLoginUseCase(new UserAuthRepository());
 
 		try {
 			if (!email) {

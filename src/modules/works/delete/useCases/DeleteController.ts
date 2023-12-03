@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { container } from 'tsyringe';
+import { DeleteRepository } from '../repositories/DeleteRepository';
 import { DeleteUseCase } from './DeleteUseCase';
 
 class DeleteController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 		const userId = req.user!.id;
-		const deleteUseCase = container.resolve(DeleteUseCase);
+		const deleteUseCase = new DeleteUseCase(new DeleteRepository());
 
 		try {
 			await deleteUseCase.execute(+id, userId);

@@ -1,14 +1,9 @@
 import bcrypt from 'bcrypt';
-import { inject, injectable } from 'tsyringe';
-import { IRegisterUser } from '../../interfaces/User';
+import { IRegisterUser } from '../../interfaces/IUser';
 import { IUserRepository } from '../../repositories/IUserRepository';
 
-@injectable()
 class UserRegisterUseCase {
-	constructor(
-		@inject('UserRepository')
-		private userRepository: IUserRepository
-	) {}
+	constructor(private userRepository: IUserRepository) {}
 
 	private async isEmailAlreadyRegistered(email: string): Promise<boolean> {
 		const existingUser = await this.userRepository.getByEmail(email);

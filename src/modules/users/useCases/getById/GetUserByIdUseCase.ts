@@ -1,13 +1,8 @@
-import { inject, injectable } from 'tsyringe';
-import { IUser } from '../../interfaces/User';
+import { IUser } from '../../interfaces/IUser';
 import { IUserRepository } from '../../repositories/IUserRepository';
 
-@injectable()
 class GetUserByIdUseCase {
-	constructor(
-		@inject('UserRepository')
-		private userRepository: IUserRepository
-	) {}
+	constructor(private userRepository: IUserRepository) {}
 
 	async execute(id: number): Promise<IUser | null> {
 		return this.userRepository.getById(id);

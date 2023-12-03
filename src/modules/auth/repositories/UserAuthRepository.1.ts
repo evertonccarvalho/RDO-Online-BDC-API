@@ -1,5 +1,5 @@
 import { db } from '../../../api/config/prisma';
-import { IUserLogin } from '../interfaces/user-login';
+import { IUserLogin } from '../../users/interfaces/IUser';
 import { IUserAuthRepository } from './IUserAuthRepository';
 
 class UserAuthRepository implements IUserAuthRepository {

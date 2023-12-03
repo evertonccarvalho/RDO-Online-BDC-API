@@ -1,4 +1,4 @@
-import { IRegisterUser, IUser } from '../interfaces/User';
+import { IRegisterUser, IUser } from '../interfaces/IUser';
 
 interface IUserRepository {
 	register(user: IRegisterUser): Promise<void>;

@@ -1,16 +1,11 @@
-import { inject, injectable } from 'tsyringe';
-import { IGetAll } from '../interfaces/IGetAll';
+import { IWork } from '../../interface/IWork';
 import { IGetAllRepository } from '../repositories/IGetAllRepository';
 
-@injectable()
 class GetAllUseCase {
-	constructor(
-		@inject('GetAllRepository')
-		private getAllRepository: IGetAllRepository
-	) {}
+	constructor(private GetAllRepository: IGetAllRepository) {}
 
-	async execute(userId: number): Promise<IGetAll[]> {
-		return this.getAllRepository.read(userId);
+	async execute(userId: number): Promise<IWork[]> {
+		return this.GetAllRepository.read(userId);
 	}
 }
 

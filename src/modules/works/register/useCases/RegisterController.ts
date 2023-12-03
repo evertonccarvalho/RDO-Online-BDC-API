@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { container } from 'tsyringe';
-import { IWork } from '../interfaces/IRegisterWork';
+import { IWork } from '../../interface/IWork';
+import { RegisterRepository } from '../repositories/RegisterRepository';
 import { RegisterUseCase } from './RegisterUseCase';
 
 class RegisterController {
@@ -8,7 +8,7 @@ class RegisterController {
 		try {
 			const userId = req.user!.id;
 			const work: IWork = req.body;
-			const registerUseCase = container.resolve(RegisterUseCase);
+			const registerUseCase = new RegisterUseCase(new RegisterRepository());
 			await registerUseCase.execute(userId, work);
 			return res
 				.status(201)

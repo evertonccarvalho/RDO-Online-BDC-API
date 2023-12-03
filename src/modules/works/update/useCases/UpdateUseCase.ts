@@ -1,20 +1,15 @@
-import { inject, injectable } from 'tsyringe';
-import { IUpdateWork } from '../interfaces/IUpdateWork';
+import { IWork } from '../../interface/IWork';
 import { IUpdateRepository } from '../repositories/IUpdateRepository';
 
-@injectable()
 class UpdateUseCase {
-	constructor(
-		@inject('UpdateRepository')
-		private updateRepository: IUpdateRepository
-	) {}
+	constructor(private UpdateRepository: IUpdateRepository) {}
 
 	async execute(
 		workId: number,
 		userId: number,
-		updatedWorkData: IUpdateWork
+		updatedWorkData: IWork
 	): Promise<void> {
-		return this.updateRepository.update(workId, userId, updatedWorkData);
+		return this.UpdateRepository.update(workId, userId, updatedWorkData);
 	}
 }
 

@@ -1,5 +1,4 @@
-export interface IGetAll {
-	id: number;
+export interface IWork {
 	workDescription: string;
 	company: string;
 	nameResponsible: string;
@@ -7,6 +6,10 @@ export interface IGetAll {
 	address: string;
 	logoUrl: string | null;
 	active: boolean;
+}
+
+export interface IWorkBase {
+	id: number;
 	createdAt: Date;
 	updatedAt: Date;
 }

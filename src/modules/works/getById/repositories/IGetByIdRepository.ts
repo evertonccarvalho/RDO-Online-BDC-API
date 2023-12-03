@@ -1,7 +1,7 @@
-import { IGetByIdWork } from '../interfaces/IGetWorkById';
+import { IWork } from '../../interface/IWork';
 
 interface IGetByIdRepository {
-	getById(id: number, userId: number): Promise<IGetByIdWork | null>;
+	getById(id: number, userId: number): Promise<IWork | null>;
 }
 
 export { IGetByIdRepository };

@@ -1,9 +1,9 @@
 import { db } from '../../../../api/config/prisma';
-import { IWork } from '../interfaces/IRegisterWork';
+import { IWork } from '../../interface/IWork';
 import { IRegisterRepository } from './IRegisterRepository';
 
 class RegisterRepository implements IRegisterRepository {
-	async register(userId: number, work: IWork): Promise<IWork> {
+	public async register(userId: number, work: IWork): Promise<IWork> {
 		const newWork = await db.work.create({
 			data: {
 				active: work.active,

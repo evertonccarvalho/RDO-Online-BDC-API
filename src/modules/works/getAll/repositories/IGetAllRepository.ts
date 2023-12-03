@@ -1,7 +1,7 @@
-import { IGetAll } from '../interfaces/IGetAll';
+import { IWork } from '../../interface/IWork';
 
 interface IGetAllRepository {
-	read(userId: number): Promise<IGetAll[]>;
+	read(userId: number): Promise<IWork[]>;
 }
 
 export { IGetAllRepository };

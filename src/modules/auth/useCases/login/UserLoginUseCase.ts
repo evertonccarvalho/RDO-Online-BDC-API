@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import { inject, injectable } from 'tsyringe';
 import {
 	IncorrectEmailError,
 	IncorrectPasswordError,
@@ -9,12 +8,8 @@ import { IUserAuthRepository } from '../../repositories/IUserAuthRepository';
 
 const JWT_EXPIRATION_TIME = '15d';
 
-@injectable()
 class UserLoginUseCase {
-	constructor(
-		@inject('UserAuthRepository')
-		private userAuthRepository: IUserAuthRepository
-	) {}
+	constructor(private userAuthRepository: IUserAuthRepository) {}
 
 	private isValidEmail(email: string): boolean {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,7 +36,6 @@ class UserLoginUseCase {
 				email: user.email,
 				role: user.role,
 				active: user.active,
-				workId: user.workId,
 			};
 
 			const token = jwtService.signToken(payload, JWT_EXPIRATION_TIME);

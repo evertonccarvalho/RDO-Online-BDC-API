@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { container } from 'tsyringe';
+import { GetByIdRepository } from '../repositories/GetByIdRepository';
 import { GetByIdUseCase } from './GetByIdUseCase';
 
 class GetByIdController {
@@ -8,15 +8,13 @@ class GetByIdController {
 			const { id } = req.params;
 			const userId = req.user!.id; // Supondo que o userId seja obtido dos parâmetros da requisição
 
-			const getByIdUseCase = container.resolve(GetByIdUseCase);
+			const getByIdUseCase = new GetByIdUseCase(new GetByIdRepository());
 			const work = await getByIdUseCase.execute(+id, userId);
 
 			if (!work) {
-				return res
-					.status(404)
-					.json({
-						message: 'A obra não foi encontrada ou não pertence ao usupario',
-					});
+				return res.status(404).json({
+					message: 'A obra não foi encontrada ou não pertence ao usupario',
+				});
 			}
 			return res.status(200).json(work);
 		} catch (error) {

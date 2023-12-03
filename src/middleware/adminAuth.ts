@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { IUser } from '../modules/users/interfaces/User';
+import { IUser } from '../modules/users/interfaces/IUser';
 import { UserRepository } from '../modules/users/repositories/UserRepository';
 import { jwtService } from '../utils/jwt';
 

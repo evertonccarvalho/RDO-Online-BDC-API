@@ -1,11 +1,7 @@
-import { IUpdateWork } from '../interfaces/IUpdateWork';
+import { IWork } from '../../interface/IWork';
 
 interface IUpdateRepository {
-	update(
-		id: number,
-		userId: number,
-		updatedWorkData: IUpdateWork
-	): Promise<void>;
+	update(id: number, userId: number, updatedWorkData: IWork): Promise<void>;
 }
 
 export { IUpdateRepository };

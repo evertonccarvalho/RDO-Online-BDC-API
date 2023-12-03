@@ -1,13 +1,8 @@
-import { inject, injectable } from 'tsyringe';
-import { IWork } from '../interfaces/IRegisterWork';
+import { IWork } from '../../interface/IWork';
 import { IRegisterRepository } from '../repositories/IRegisterRepository';
 
-@injectable()
 class RegisterUseCase {
-	constructor(
-		@inject('RegisterRepository')
-		private registerRepository: IRegisterRepository
-	) {}
+	constructor(private RegisterRepository: IRegisterRepository) {}
 
 	private convertToBoolean(value: string | boolean): boolean {
 		if (typeof value === 'string') {
@@ -45,7 +40,7 @@ class RegisterUseCase {
 		}
 
 		try {
-			await this.registerRepository.register(userId, work);
+			await this.RegisterRepository.register(userId, work);
 		} catch (error) {
 			throw new Error('Erro ao registrar obra');
 		}

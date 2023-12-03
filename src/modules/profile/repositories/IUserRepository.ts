@@ -1,8 +1,7 @@
-import { IUser } from '../../users/interfaces/User';
+import { IUser, IUserProfileUpdate } from '../../users/interfaces/IUser';
 
 interface IUserRepository {
-	getByEmail(email: string): Promise<IUser | null>;
-	update(id: number, updatedUserData: IUser): Promise<void>;
+	update(id: number, updatedUserData: IUserProfileUpdate): Promise<void>;
 }
 
 export { IUserRepository };

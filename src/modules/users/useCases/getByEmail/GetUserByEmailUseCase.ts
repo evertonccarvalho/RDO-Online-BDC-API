@@ -1,13 +1,8 @@
-import { inject, injectable } from 'tsyringe';
-import { IUser } from '../../interfaces/User';
+import { IUser } from '../../interfaces/IUser';
 import { IUserRepository } from '../../repositories/IUserRepository';
 
-@injectable()
 class GetUserByEmailUseCase {
-	constructor(
-		@inject('UserRepository')
-		private userRepository: IUserRepository
-	) {}
+	constructor(private userRepository: IUserRepository) {}
 
 	async execute(email: string): Promise<IUser | null> {
 		return this.userRepository.getByEmail(email);

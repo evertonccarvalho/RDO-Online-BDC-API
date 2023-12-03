@@ -1,21 +1,15 @@
 import { db } from '../../../api/config/prisma';
-import { IWork } from '../../works/interfaces/Work';
-import { IRegisterUser, IUser } from '../interfaces/User';
+import { IWork } from '../../works/interface/IWork';
+import { IRegisterUser, IUser } from '../interfaces/IUser';
 import { IUserRepository } from './IUserRepository';
 
 class UserRepository implements IUserRepository {
-	async register({
-		userName,
-		email,
-		password,
-		role,
-	}: IRegisterUser): Promise<void> {
+	async register({ userName, email, password }: IRegisterUser): Promise<void> {
 		await db.user.create({
 			data: {
 				userName,
 				email,
 				password,
-				role,
 				active: true,
 			},
 		});
