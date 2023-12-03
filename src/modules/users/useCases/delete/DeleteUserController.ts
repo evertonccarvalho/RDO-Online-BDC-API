@@ -9,12 +9,12 @@ class DeleteUserController {
 
 		try {
 			await deleteUserUseCase.execute(+id);
-			return res.status(200).json({ message: 'Usuário deletado com sucesso' });
+			return res.status(200).json({ message: 'Usuário excluído com sucesso' });
 		} catch (error) {
 			if (error instanceof Error) {
 				return res
-					.status(404)
-					.json({ message: 'Usuário tem obras e não pode ser apagado' });
+					.status(400)
+					.json({ message: 'Usuario tem obras ativas ou ' + error.message });
 			}
 			return res.status(500).json({ message: 'Erro interno do servidor' });
 		}
