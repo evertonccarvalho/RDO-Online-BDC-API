@@ -2,7 +2,6 @@ import cors from 'cors';
 import express from 'express';
 import 'reflect-metadata';
 import { errorMiddleware } from '../middleware/errors.middlewares';
-import './container';
 import { router } from './routes';
 
 export class App {
