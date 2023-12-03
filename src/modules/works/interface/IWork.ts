@@ -1,4 +1,4 @@
-export interface IWork {
+export interface IWork extends IWorkBase {
 	workDescription: string;
 	company: string;
 	nameResponsible: string;
