@@ -3,7 +3,7 @@ import { IUpdateWork } from '../interfaces/IUpdateWork';
 import { IUpdateRepository } from '../repositories/IUpdateRepository';
 
 @injectable()
-class UpdateWorkUseCase {
+class UpdateUseCase {
 	constructor(
 		@inject('UpdateRepository')
 		private updateRepository: IUpdateRepository
@@ -18,4 +18,4 @@ class UpdateWorkUseCase {
 	}
 }
 
-export { UpdateWorkUseCase };
+export { UpdateUseCase };

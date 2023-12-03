@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { UpdateWorkUseCase } from './UpdateWorkUseCase';
+import { UpdateUseCase } from './UpdateUseCase';
 
-class UpdateWorkController {
+class UpdateController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 		const userId = req.user!.id;
 		const updatedWorkData = req.body;
-		const updateWorkUseCase = container.resolve(UpdateWorkUseCase);
+		const updateWorkUseCase = container.resolve(UpdateUseCase);
 
 		try {
 			await updateWorkUseCase.execute(+id, userId, updatedWorkData);
@@ -23,4 +23,4 @@ class UpdateWorkController {
 	}
 }
 
-export { UpdateWorkController };
+export { UpdateController };

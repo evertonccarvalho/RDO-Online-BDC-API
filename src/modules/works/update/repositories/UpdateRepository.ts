@@ -8,7 +8,7 @@ class UpdateRepository implements IUpdateRepository {
 		userId: number,
 		updateWorkData: IUpdateWork
 	): Promise<void> {
-		const work = await db.work.findFirst({
+		const work = await db.work.findUnique({
 			where: {
 				id: id,
 				user: {

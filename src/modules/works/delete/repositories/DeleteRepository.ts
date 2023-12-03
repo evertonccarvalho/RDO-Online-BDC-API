@@ -3,7 +3,7 @@ import { IDeleteRepository } from './IDeleteRepository';
 
 class DeleteRepository implements IDeleteRepository {
 	async delete(id: number, userId: number): Promise<void> {
-		const work = await db.work.findFirst({
+		const work = await db.work.findUnique({
 			where: {
 				id: id,
 				user: {
