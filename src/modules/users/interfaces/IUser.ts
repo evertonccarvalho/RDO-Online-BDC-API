@@ -1,4 +1,3 @@
-import { IService } from '../../services/interface/IService';
 import { IWork } from '../../works/interface/IWork';
 
 export interface IUser extends IUserBase {
@@ -7,7 +6,6 @@ export interface IUser extends IUserBase {
 	active: boolean;
 	role: string;
 	work: IWork[];
-	services: IService[];
 }
 
 export interface IUserBase {
