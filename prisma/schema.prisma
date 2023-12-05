@@ -20,14 +20,14 @@ model User {
   avatarUrl String? // URL do avatar do usuário
   active    Boolean // Indica se o usuário está ativo
   role      String   @default("Usuário Padrão") // Define o valor padrão como "Usuário Padrão"
-  work      Work[]
+  work      Work[] // Relacionamento com obras associadas ao usuário
   createdAt DateTime @default(now()) // Data e hora de criação
   updatedAt DateTime @default(now()) // Data e hora de atualização
 }
 
 // Modelo de Obra
 model Work {
-  id              Int      @id @default(autoincrement()) // ID único da obra
+  id              Int       @id @default(autoincrement()) // ID único da obra
   workDescription String // Descrição da obra
   company         String // Nome da empresa da obra
   nameResponsible String // Nome da pessoa responsável pela obra
@@ -35,52 +35,51 @@ model Work {
   address         String // Endereço completo da obra
   logoUrl         String? // Logotipo da obra
   active          Boolean // Indica se a obra está ativa
-  createdAt       DateTime @default(now()) // Data e hora de criação
-  updatedAt       DateTime @default(now()) // Data e hora de atualização
-  user            User     @relation(fields: [userId], references: [id])
+  createdAt       DateTime  @default(now()) // Data e hora de criação
+  updatedAt       DateTime  @default(now()) // Data e hora de atualização
+  user            User      @relation(fields: [userId], references: [id]) // Relacionamento com o usuário
   userId          Int
+  services        Service[] // Relacionamento com serviços associados à obra
+  // equipes         Equipe[] // Relacionamento com as equipes da obra
+  // efetivos        Efetivo[] // Relacionamento com os efetivos da obra
+  // turnos          Turno[] // Relacionamento com os turnos da obra
+  // interferencias  Interferencia[] // Relacionamento com as interferências da obra
+  // locais          Local[] // Relacionamento com os locais da obra
 }
 
-// equipes         Equipe[] // Relacionamento com as equipes da obra
-// servicos        Servico[] // Relacionamento com os serviços da obra
-// efetivos        Efetivo[] // Relacionamento com os efetivos da obra
-// turnos          Turno[] // Relacionamento com os turnos da obra
-// interferencias  Interferencia[] // Relacionamento com as interferências da obra
-// locais          Local[] // Relacionamento com os locais da obra
+// Modelo de Serviço
+model Service {
+  id                 Int                @id @default(autoincrement()) // ID único do serviço
+  workId             Int // ID da obra associada ao serviço
+  work               Work               @relation(fields: [workId], references: [id]) // Relacionamento com a obra
+  serviceDescription String // Descrição do serviço
+  unit               String // Unidade de medida do serviço
+  status             String // Status do serviço
+  subcategoryId      Int // ID da subcategoria do serviço
+  subcategory        SubServiceCategory @relation(fields: [subcategoryId], references: [id]) // Relacionamento com a subcategoria do serviço
+  createdAt          DateTime           @default(now()) // Data e hora de criação
+  updatedAt          DateTime           @default(now()) // Data e hora de atualização
+}
 
-// // Modelo de Categoria de Serviço
-// model CategoriaServico {
-//   id            Int                   @id @default(autoincrement()) // ID único da categoria de serviço
-//   name          String // Nome da categoria de serviço
-//   active        Boolean // Indica se a categoria de serviço está ativa
-//   subcategorias SubCategoriaServico[] // Relacionamento com as subcategorias de serviço
-//   createdAt     DateTime              @default(now()) // Data e hora de criação
-//   updatedAt     DateTime              @default(now()) // Data e hora de atualização
-// }
+// Modelo de Categoria de Serviço
+model ServiceCategory {
+  id            Int                  @id @default(autoincrement()) // ID único da categoria de serviço
+  name          String // Nome da categoria de serviço
+  status        String // Status da categoria de serviço
+  subcategories SubServiceCategory[] // Relacionamento com subcategorias de serviço
+  createdAt     DateTime             @default(now()) // Data e hora de criação
+  updatedAt     DateTime             @default(now()) // Data e hora de atualização
+}
 
-// // Modelo de Subcategoria de Serviço
-// model SubCategoriaServico {
-//   id                 Int              @id @default(autoincrement()) // ID único da subcategoria de serviço
-//   nome               String // Nome da subcategoria de serviço
-//   ativo              Boolean // Indica se a subcategoria de serviço está ativa
-//   categoriaServicoId Int // ID da categoria de serviço à qual a subcategoria pertence
-//   categoriaServico   CategoriaServico @relation(fields: [categoriaServicoId], references: [id]) // Relacionamento com a categoria de serviço
-//   servicos           Servico[] // Relacionamento com os serviços associados à subcategoria
-// }
-
-// // Modelo de Serviço
-// model Servico {
-//   id               Int                 @id @default(autoincrement()) // ID único do serviço
-//   workId           Int // ID da obra à qual o serviço está associado
-//   work             Work                @relation(fields: [workId], references: [id]) // Relacionamento com a obra
-//   descricaoServico String // Descrição do serviço
-//   unidade          String // Unidade de medida do serviço
-//   ative            Boolean // Indica se o serviço está ativo
-//   subcategoriaId   Int // ID da subcategoria de serviço à qual o serviço pertence
-//   subcategoria     SubCategoriaServico @relation(fields: [subcategoriaId], references: [id]) // Relacionamento com a subcategoria de serviço
-//   createdAt        DateTime            @default(now()) // Data e hora de criação
-//   updatedAt        DateTime            @default(now()) // Data e hora de atualização
-// }
+// Modelo de Subcategoria de Serviço
+model SubServiceCategory {
+  id                Int             @id @default(autoincrement()) // ID único da subcategoria de serviço
+  name              String // Nome da subcategoria de serviço
+  status            String // Status da subcategoria de serviço
+  serviceCategoryId Int // ID da categoria de serviço à qual a subcategoria pertence
+  serviceCategory   ServiceCategory @relation(fields: [serviceCategoryId], references: [id]) // Relacionamento com a categoria de serviço
+  services          Service[] // Relacionamento com serviços associados à subcategoria
+}
 
 // // Modelo de Equipe
 // model Equipe {
