@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { GetByIdRepository } from '../repositories/GetByIdRepository';
 import { GetByIdUseCase } from './GetByIdUseCase';
+import { WorkRepository } from '../../repositories/WorkRepository';
 
 class GetByIdController {
 	async handle(req: Request, res: Response): Promise<Response> {
@@ -8,7 +8,7 @@ class GetByIdController {
 			const { id } = req.params;
 			const userId = req.user!.id; // Supondo que o userId seja obtido dos parâmetros da requisição
 
-			const getByIdUseCase = new GetByIdUseCase(new GetByIdRepository());
+			const getByIdUseCase = new GetByIdUseCase(new WorkRepository());
 			const work = await getByIdUseCase.execute(+id, userId);
 
 			if (!work) {

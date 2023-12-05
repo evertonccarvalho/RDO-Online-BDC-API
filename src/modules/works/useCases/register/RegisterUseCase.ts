@@ -1,8 +1,8 @@
 import { IWork } from '../../interface/IWork';
-import { IRegisterRepository } from '../repositories/IRegisterRepository';
+import { IWorkRepository } from '../../repositories/IWorkRepository';
 
 class RegisterUseCase {
-	constructor(private RegisterRepository: IRegisterRepository) {}
+	constructor(private RegisterRepository: IWorkRepository) {}
 
 	private convertToBoolean(value: string | boolean): boolean {
 		if (typeof value === 'string') {

@@ -1,11 +1,11 @@
 // import { celebrate } from 'celebrate';
 import { Router } from 'express';
 import { ensureAuth } from '../middleware/auth';
-import { DeleteController } from '../modules/works/delete/useCases/DeleteController';
-import { GetAllController } from '../modules/works/getAll/useCases/GetAllController';
-import { GetByIdController } from '../modules/works/getById/useCases/GetByIdController';
-import { RegisterController } from '../modules/works/register/useCases/RegisterController';
-import { UpdateController } from '../modules/works/update/useCases/UpdateController';
+import { DeleteController } from '../modules/works/useCases/delete/DeleteController';
+import { GetAllController } from '../modules/works/useCases/getAll/GetAllController';
+import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
+import { RegisterController } from '../modules/works/useCases/register/RegisterController';
+import { UpdateController } from '../modules/works/useCases/update/UpdateController';
 
 const workRoutes = Router();
 

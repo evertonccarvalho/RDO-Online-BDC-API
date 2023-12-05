@@ -1,8 +1,8 @@
 import { IWork } from '../../interface/IWork';
-import { IGetAllRepository } from '../repositories/IGetAllRepository';
+import { IWorkRepository } from '../../repositories/IWorkRepository';
 
 class GetAllUseCase {
-	constructor(private GetAllRepository: IGetAllRepository) {}
+	constructor(private GetAllRepository: IWorkRepository) {}
 
 	async execute(userId: number): Promise<IWork[]> {
 		return this.GetAllRepository.read(userId);

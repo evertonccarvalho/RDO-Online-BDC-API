@@ -1,8 +1,8 @@
 import { IWork } from '../../interface/IWork';
-import { IUpdateRepository } from '../repositories/IUpdateRepository';
+import { IWorkRepository } from '../../repositories/IWorkRepository';
 
 class UpdateUseCase {
-	constructor(private UpdateRepository: IUpdateRepository) {}
+	constructor(private UpdateRepository: IWorkRepository) {}
 
 	async execute(
 		workId: number,

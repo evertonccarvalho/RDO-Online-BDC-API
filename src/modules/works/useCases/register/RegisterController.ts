@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { IWork } from '../../interface/IWork';
-import { RegisterRepository } from '../repositories/RegisterRepository';
 import { RegisterUseCase } from './RegisterUseCase';
+import { WorkRepository } from '../../repositories/WorkRepository';
 
 class RegisterController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
 			const userId = req.user!.id;
 			const work: IWork = req.body;
-			const registerUseCase = new RegisterUseCase(new RegisterRepository());
+			const registerUseCase = new RegisterUseCase(new WorkRepository());
 			await registerUseCase.execute(userId, work);
 			return res
 				.status(201)

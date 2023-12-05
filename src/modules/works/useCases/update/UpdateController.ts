@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { UpdateRepository } from '../repositories/UpdateRepository';
 import { UpdateUseCase } from './UpdateUseCase';
+import { WorkRepository } from '../../repositories/WorkRepository';
 
 class UpdateController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 		const userId = req.user!.id;
 		const updatedWorkData = req.body;
-		const updateWorkUseCase = new UpdateUseCase(new UpdateRepository());
+		const updateWorkUseCase = new UpdateUseCase(new WorkRepository());
 
 		try {
 			await updateWorkUseCase.execute(+id, userId, updatedWorkData);

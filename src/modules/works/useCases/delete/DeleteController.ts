@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { DeleteRepository } from '../repositories/DeleteRepository';
+import { WorkRepository } from '../../repositories/WorkRepository';
 import { DeleteUseCase } from './DeleteUseCase';
 
 class DeleteController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 		const userId = req.user!.id;
-		const deleteUseCase = new DeleteUseCase(new DeleteRepository());
+		const deleteUseCase = new DeleteUseCase(new WorkRepository());
 
 		try {
 			await deleteUseCase.execute(+id, userId);
