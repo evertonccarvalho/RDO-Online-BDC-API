@@ -38,6 +38,7 @@ class UserRepository implements IUserRepository {
 						createdAt: true,
 						updatedAt: true,
 						logoUrl: true,
+						userId: true,
 						// Outros campos de trabalho que você deseja selecionar
 					},
 				},

@@ -5,10 +5,13 @@ interface ISubServiceCategoryRepository {
 		subServiceCategory: ISubServiceCategory,
 		serviceCategoryId: number
 	): Promise<ISubServiceCategory>;
-	// read(workId: number): Promise<IService[]>;
-	// // update(id: number, userId: number, updatedWorkData: IWork): Promise<void>;
 
-	// getById(id: number, workId: number): Promise<IService | null>;
-	// delete(id: number, workId: number): Promise<void>;
+	read(): Promise<ISubServiceCategory[]>;
+
+	update(id: number, updateData: ISubServiceCategory): Promise<void>;
+
+	getById(id: number): Promise<ISubServiceCategory | null>;
+
+	delete(id: number): Promise<void>;
 }
 export { ISubServiceCategoryRepository };

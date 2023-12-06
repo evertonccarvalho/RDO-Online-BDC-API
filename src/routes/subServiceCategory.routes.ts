@@ -2,9 +2,9 @@
 import { Router } from 'express';
 import { ensureAuth } from '../middleware/auth';
 import { DeleteController } from '../modules/works/useCases/delete/DeleteController';
-import { GetAllController } from '../modules/works/useCases/getAll/GetAllController';
 import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
 
+import { GetAllController } from '../modules/services/subServiceCategory/useCases/getAll/GetAllController';
 import { RegisterController } from '../modules/services/subServiceCategory/useCases/register/RegisterController';
 import { UpdateController } from '../modules/works/useCases/update/UpdateController';
 
@@ -17,11 +17,15 @@ const updateController = new UpdateController();
 const deleteController = new DeleteController();
 
 subServiceCategoryRoutes.post(
-	'/user/work/subcategory',
+	'/subcategory',
 	ensureAuth,
 	registerController.handle
 );
-// workRoutes.get('/user/works', ensureAuth, getAllController.handle);
+subServiceCategoryRoutes.get(
+	'/subcategory',
+	ensureAuth,
+	getAllController.handle
+);
 // workRoutes.get('/work/:id', ensureAuth, getByIdController.handle);
 // workRoutes.put('/work/:id', ensureAuth, updateController.handle);
 // workRoutes.delete('/work/:id', ensureAuth, deleteController.handle);

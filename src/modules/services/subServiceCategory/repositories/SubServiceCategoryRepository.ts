@@ -23,86 +23,60 @@ class SubServiceCategoryRepository implements ISubServiceCategoryRepository {
 		}
 	}
 
-	// async read(workId: number): Promise<IService[]> {
-	// 	const services = await db.service.findMany({
-	// 		where: {
-	// 			work: {
-	// 				services: {
-	// 					some: {
-	// 						workId,
-	// 					},
-	// 				},
-	// 			},
-	// 		},
-	// 	});
-	// 	return services;
-	// }
+	async read(): Promise<ISubServiceCategory[]> {
+		const subCategory = await db.subServiceCategory.findMany();
+		return subCategory;
+	}
 
-	// async getById(id: number, workId: number): Promise<IService | null> {
-	// 	const service = await db.service.findUnique({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 	});
-	// 	if (!service) {
-	// 		return null;
-	// 	}
+	async getById(id: number): Promise<ISubServiceCategory | null> {
+		const subCategory = await db.subServiceCategory.findUnique({
+			where: {
+				id: id,
+			},
+		});
+		if (!subCategory) {
+			return null;
+		}
 
-	// 	return service;
-	// }
+		return subCategory;
+	}
 
-	// async update(
-	// 	id: number,
-	// 	workId: number,
-	// 	updateServiceData: IService
-	// ): Promise<void> {
-	// 	const service = await db.service.findUnique({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 	});
+	async update(id: number, updateData: ISubServiceCategory): Promise<void> {
+		const service = await db.subServiceCategory.findUnique({
+			where: {
+				id: id,
+			},
+		});
 
-	// 	if (!service) {
-	// 		throw new Error('A obra não foi encontrada ou não pertence ao usupario');
-	// 	}
+		if (!service) {
+			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+		}
 
-	// 	await db.service.update({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 		data: updateServiceData,
-	// 	});
-	// }
+		await db.subServiceCategory.update({
+			where: {
+				id: id,
+			},
+			data: updateData,
+		});
+	}
 
-	// async delete(id: number, workId: number): Promise<void> {
-	// 	const service = await db.service.findUnique({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 	});
+	async delete(id: number): Promise<void> {
+		const subCategory = await db.subServiceCategory.findUnique({
+			where: {
+				id: id,
+			},
+		});
 
-	// 	if (!service) {
-	// 		throw new Error('A obra não foi encontrada ou não pertence ao usupario');
-	// 	}
+		if (!subCategory) {
+			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+		}
 
-	// 	await db.service.delete({
-	// 		where: {
-	// 			id: id,
-	// 		},
-	// 	});
-	// }
+		await db.subServiceCategory.delete({
+			where: {
+				id: id,
+			},
+		});
+	}
 }
 
 export { SubServiceCategoryRepository };
