@@ -1,12 +1,12 @@
 // import { celebrate } from 'celebrate';
 import { Router } from 'express';
 import { ensureAuth } from '../middleware/auth';
-import { DeleteController } from '../modules/works/useCases/delete/DeleteController';
-import { GetAllController } from '../modules/works/useCases/getAll/GetAllController';
-import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
+import { DeleteController } from '../modules/services/serviceCategory/useCases/delete/DeleteController';
+import { GetAllController } from '../modules/services/serviceCategory/useCases/getAll/GetAllController';
+import { GetByIdController } from '../modules/services/serviceCategory/useCases/getById/GetByIdController';
 
 import { RegisterController } from '../modules/services/serviceCategory/useCases/register/RegisterController';
-import { UpdateController } from '../modules/works/useCases/update/UpdateController';
+import { UpdateController } from '../modules/services/serviceCategory/useCases/update/UpdateController';
 
 const serviceCategoryRoutes = Router();
 
@@ -16,14 +16,22 @@ const getByIdController = new GetByIdController();
 const updateController = new UpdateController();
 const deleteController = new DeleteController();
 
-serviceCategoryRoutes.post(
-	'/user/work/category',
+serviceCategoryRoutes.post('/category', ensureAuth, registerController.handle);
+
+serviceCategoryRoutes.get('/category', ensureAuth, getAllController.handle);
+
+serviceCategoryRoutes.get(
+	'/category/:id',
 	ensureAuth,
-	registerController.handle
+	getByIdController.handle
 );
-// workRoutes.get('/user/works', ensureAuth, getAllController.handle);
-// workRoutes.get('/work/:id', ensureAuth, getByIdController.handle);
-// workRoutes.put('/work/:id', ensureAuth, updateController.handle);
-// workRoutes.delete('/work/:id', ensureAuth, deleteController.handle);
+
+serviceCategoryRoutes.put('/category/:id', ensureAuth, updateController.handle);
+
+serviceCategoryRoutes.delete(
+	'/category/:id',
+	ensureAuth,
+	deleteController.handle
+);
 
 export { serviceCategoryRoutes };
