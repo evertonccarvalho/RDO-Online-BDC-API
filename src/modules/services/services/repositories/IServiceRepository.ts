@@ -7,9 +7,10 @@ interface IServiceRepository {
 		subcategoryId: number
 	): Promise<IService>;
 	read(workId: number): Promise<IService[]>;
-	// update(id: number, userId: number, updatedWorkData: IWork): Promise<void>;
 
 	getById(id: number, workId: number): Promise<IService | null>;
+
+	update(id: number, workId: number, updatedData: IService): Promise<void>;
 	delete(id: number, workId: number): Promise<void>;
 }
 export { IServiceRepository };

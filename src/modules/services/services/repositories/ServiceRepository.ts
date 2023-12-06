@@ -60,7 +60,7 @@ class ServiceRepository implements IServiceRepository {
 	async update(
 		id: number,
 		workId: number,
-		updateServiceData: IService
+		updatedData: IService
 	): Promise<void> {
 		const service = await db.service.findUnique({
 			where: {
@@ -82,7 +82,7 @@ class ServiceRepository implements IServiceRepository {
 					id: workId,
 				},
 			},
-			data: updateServiceData,
+			data: updatedData,
 		});
 	}
 

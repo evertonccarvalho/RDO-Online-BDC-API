@@ -6,10 +6,12 @@ import { RegisterUseCase } from './RegisterUseCase';
 class RegisterController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const { workId, subcategoryId } = req.body;
+			const { subcategoryId } = req.body;
+			const workId = req.params.workid;
+
 			const service: IService = req.body;
 			const registerUseCase = new RegisterUseCase(new ServiceRepository());
-			await registerUseCase.execute(service, workId, subcategoryId);
+			await registerUseCase.execute(service, +workId, subcategoryId);
 			return res
 				.status(201)
 				.json({ message: 'Registro realizado com sucesso!' });

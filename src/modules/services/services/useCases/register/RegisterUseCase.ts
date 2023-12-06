@@ -15,7 +15,6 @@ class RegisterUseCase {
 			'serviceDescription',
 			'unit',
 			'status',
-			'workId',
 			'subcategoryId',
 		];
 
