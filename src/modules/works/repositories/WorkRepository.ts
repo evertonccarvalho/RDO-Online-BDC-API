@@ -32,16 +32,31 @@ class WorkRepository implements IWorkRepository {
 					},
 				},
 			},
+			include: {
+				services: true,
+				Team: true,
+				Interference: true,
+				Shift: true,
+				Location: true,
+				Effective: true,
+			},
 		});
 		return works;
 	}
+
 	async getById(id: number, userId: number): Promise<IWork | null> {
 		const work = await db.work.findUnique({
 			where: {
 				id: id,
-				user: {
-					id: userId,
-				},
+				userId: userId,
+			},
+			include: {
+				services: true,
+				Team: true,
+				Interference: true,
+				Shift: true,
+				Location: true,
+				Effective: true,
 			},
 		});
 		if (!work) {

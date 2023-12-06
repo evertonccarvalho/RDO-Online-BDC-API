@@ -65,6 +65,54 @@ async function main() {
 			// Outros campos do serviço
 		},
 	});
+
+	// Crie dados para o modelo Team
+	const team = await prisma.team.create({
+		data: {
+			workId: 1, // Substitua com o ID correto da obra
+			descricaoEquipe: 'Descrição da Equipe',
+			empresaContratada: 'Nome da Empresa',
+			status: 'Ativo', // Status da equipe
+			Shifts: {
+				create: [
+					{
+						workId: 1, // Substitua com o ID correto da obra
+						description: 'Descrição do Turno 1',
+						feasibility: 'Alta',
+						weatherCondition: 'Ensolarado',
+						status: 'Ativo',
+					},
+					{
+						workId: 1, // Substitua com o ID correto da obra
+						description: 'Descrição do Turno 2',
+						feasibility: 'Média',
+						weatherCondition: 'Chuvoso',
+						status: 'Inativo',
+					},
+					// Adicione mais turnos conforme necessário
+				],
+			},
+			Interferences: {
+				create: [
+					{
+						workId: 1, // Substitua com o ID correto da obra
+						interferenceResponsible: 'Responsável pela Interferência 1',
+						category: 'Categoria 1',
+						subCategory: 'Subcategoria 1',
+						status: 'Ativo',
+					},
+					{
+						workId: 1, // Substitua com o ID correto da obra
+						interferenceResponsible: 'Responsável pela Interferência 2',
+						category: 'Categoria 2',
+						subCategory: 'Subcategoria 2',
+						status: 'Inativo',
+					},
+					// Adicione mais interferências conforme necessário
+				],
+			},
+		},
+	});
 }
 
 main()
