@@ -42,13 +42,13 @@ class SubServiceCategoryRepository implements ISubServiceCategoryRepository {
 	}
 
 	async update(id: number, updateData: ISubServiceCategory): Promise<void> {
-		const service = await db.subServiceCategory.findUnique({
+		const subCategory = await db.subServiceCategory.findUnique({
 			where: {
 				id: id,
 			},
 		});
 
-		if (!service) {
+		if (!subCategory) {
 			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
 		}
 

@@ -1,12 +1,12 @@
 // import { celebrate } from 'celebrate';
 import { Router } from 'express';
 import { ensureAuth } from '../middleware/auth';
-import { DeleteController } from '../modules/works/useCases/delete/DeleteController';
-import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
 
+import { DeleteController } from '../modules/services/subServiceCategory/useCases/delete/DeleteController';
 import { GetAllController } from '../modules/services/subServiceCategory/useCases/getAll/GetAllController';
+import { GetByIdController } from '../modules/services/subServiceCategory/useCases/getById/GetByIdController';
 import { RegisterController } from '../modules/services/subServiceCategory/useCases/register/RegisterController';
-import { UpdateController } from '../modules/works/useCases/update/UpdateController';
+import { UpdateController } from '../modules/services/subServiceCategory/useCases/update/UpdateController';
 
 const subServiceCategoryRoutes = Router();
 
@@ -26,8 +26,20 @@ subServiceCategoryRoutes.get(
 	ensureAuth,
 	getAllController.handle
 );
-// workRoutes.get('/work/:id', ensureAuth, getByIdController.handle);
-// workRoutes.put('/work/:id', ensureAuth, updateController.handle);
-// workRoutes.delete('/work/:id', ensureAuth, deleteController.handle);
+subServiceCategoryRoutes.get(
+	'/subcategory/:id',
+	ensureAuth,
+	getByIdController.handle
+);
+subServiceCategoryRoutes.put(
+	'/subcategory/:id',
+	ensureAuth,
+	updateController.handle
+);
+subServiceCategoryRoutes.delete(
+	'/subcategory/:id',
+	ensureAuth,
+	deleteController.handle
+);
 
 export { subServiceCategoryRoutes };
