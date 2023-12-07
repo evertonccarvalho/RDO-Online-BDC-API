@@ -113,6 +113,42 @@ async function main() {
 			},
 		},
 	});
+	await prisma.location.createMany({
+		data: [
+			{
+				workId: 1,
+				descriptionLocation: 'Descrição do local 1',
+				responsibleLocation: 'Responsável 1',
+				status: 'Ativo',
+			},
+			{
+				workId: 1,
+				descriptionLocation: 'Descrição do local 2',
+				responsibleLocation: 'Responsável 2',
+				status: 'Inativo',
+			},
+			// Adicione mais exemplos de locais conforme necessário
+		],
+	});
+
+	// Criar exemplos de Efetivo
+	await prisma.effective.createMany({
+		data: [
+			{
+				workId: 1,
+				type: 'Tipo 1',
+				descriptionEffective: 'Descrição do Efetivo 1',
+				status: 'Ativo',
+			},
+			{
+				workId: 1,
+				type: 'Tipo 2',
+				descriptionEffective: 'Descrição do Efetivo 2',
+				status: 'Inativo',
+			},
+			// Adicione mais exemplos de efetivos conforme necessário
+		],
+	});
 }
 
 main()

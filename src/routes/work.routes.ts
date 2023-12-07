@@ -6,7 +6,9 @@ import { GetAllController } from '../modules/works/useCases/getAll/GetAllControl
 import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
 import { RegisterController } from '../modules/works/useCases/register/RegisterController';
 import { UpdateController } from '../modules/works/useCases/update/UpdateController';
+import { effectiveRoutes } from './effective.routes';
 import { interferenceRoutes } from './interference.routes';
+import { locationRoutes } from './location.routes';
 import { serviceRoutes } from './service.routes';
 import { shiftRoutes } from './shift.routes';
 import { teamRoutes } from './team.routes';
@@ -29,4 +31,6 @@ workRoutes.use(serviceRoutes);
 workRoutes.use(teamRoutes);
 workRoutes.use(shiftRoutes);
 workRoutes.use(interferenceRoutes);
+workRoutes.use(locationRoutes);
+workRoutes.use(effectiveRoutes);
 export { workRoutes };
