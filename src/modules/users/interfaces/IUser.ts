@@ -1,16 +1,15 @@
 import { IWork } from '../../works/interface/IWork';
 
 export interface IUser extends IUserBase {
+	userName: string;
 	email: string;
 	avatarUrl: string | null;
 	active: boolean;
 	role: string;
-	work: IWork[];
 }
 
 export interface IUserBase {
 	id: number;
-	userName: string;
 	createdAt: Date;
 	updatedAt: Date;
 }

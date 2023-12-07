@@ -26,6 +26,7 @@ class UserRepository implements IUserRepository {
 				active: true,
 				createdAt: true,
 				updatedAt: true,
+
 				work: {
 					select: {
 						id: true,
@@ -49,7 +50,7 @@ class UserRepository implements IUserRepository {
 	}
 
 	async getById(id: number): Promise<IUser | null> {
-		const userWithWorks = await db.user.findUnique({
+		const user = await db.user.findUnique({
 			where: {
 				id: id,
 			},
@@ -71,17 +72,7 @@ class UserRepository implements IUserRepository {
 				},
 			},
 		});
-
-		if (!userWithWorks) {
-			return null; // Retorna null se nenhum usuário for encontrado
-		}
-
-		const { work, ...user } = userWithWorks;
-
-		return {
-			...user,
-			work: work as IWork[], // Certifique-se de que a propriedade work corresponda à interface IWork
-		};
+		return user;
 	}
 
 	async getByEmail(email: string): Promise<IUser | null> {
@@ -101,12 +92,20 @@ class UserRepository implements IUserRepository {
 		return user;
 	}
 
-	async update(id: number, updatedUserData: IUser): Promise<void> {
-		await db.user.updateMany({
+	async update(id: number, updatedData: IUser): Promise<void> {
+		const user = await db.user.findUnique({
 			where: {
 				id: id,
 			},
-			data: updatedUserData,
+		});
+		if (!user) {
+			throw new Error('Usuário não encontrado');
+		}
+		await db.user.update({
+			where: {
+				id: id,
+			},
+			data: updatedData,
 		});
 	}
 

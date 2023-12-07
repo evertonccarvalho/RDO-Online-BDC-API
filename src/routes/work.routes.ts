@@ -6,7 +6,9 @@ import { GetAllController } from '../modules/works/useCases/getAll/GetAllControl
 import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
 import { RegisterController } from '../modules/works/useCases/register/RegisterController';
 import { UpdateController } from '../modules/works/useCases/update/UpdateController';
+import { interferenceRoutes } from './interference.routes';
 import { serviceRoutes } from './service.routes';
+import { shiftRoutes } from './shift.routes';
 import { teamRoutes } from './team.routes';
 
 const workRoutes = Router();
@@ -25,4 +27,6 @@ workRoutes.delete('/work/:id', ensureAuth, deleteController.handle);
 
 workRoutes.use(serviceRoutes);
 workRoutes.use(teamRoutes);
+workRoutes.use(shiftRoutes);
+workRoutes.use(interferenceRoutes);
 export { workRoutes };

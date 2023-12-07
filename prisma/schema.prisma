@@ -11,6 +11,13 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Status {
+  Ativo
+  Inativo
+  Concluido
+  Paralizado
+}
+
 // Modelo de Usuário
 model User {
   id        Int      @id @default(autoincrement()) // ID único do usuário

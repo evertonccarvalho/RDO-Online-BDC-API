@@ -23,90 +23,79 @@ class ShiftRepository implements IShiftRepository {
 			return newShift;
 		} catch (error) {
 			// Aqui você pode tratar o erro de alguma forma específica para o seu aplicativo
-			throw new Error(`Erro ao criar o equipe: ${error}`);
+			throw new Error(`Erro ao criar o turno: ${error}`);
 		}
 	}
 
-	// async read(workId: number): Promise<IService[]> {
-	// 	const services = await db.service.findMany({
-	// 		where: {
-	// 			work: {
-	// 				services: {
-	// 					some: {
-	// 						workId,
-	// 					},
-	// 				},
-	// 			},
-	// 		},
-	// 	});
-	// 	return services;
-	// }
+	async read(workId: number): Promise<IShift[]> {
+		const services = await db.shift.findMany({
+			where: {
+				work: {
+					services: {
+						some: {
+							workId,
+						},
+					},
+				},
+			},
+		});
+		return services;
+	}
 
-	// async getById(id: number, workId: number): Promise<IService | null> {
-	// 	const service = await db.service.findUnique({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 	});
-	// 	if (!service) {
-	// 		return null;
-	// 	}
+	async getById(id: number, workId: number): Promise<IShift | null> {
+		const shift = await db.shift.findUnique({
+			where: {
+				id: id,
+				workId: workId,
+			},
+		});
+		if (!shift) {
+			return null;
+		}
 
-	// 	return service;
-	// }
+		return shift;
+	}
 
-	// async update(
-	// 	id: number,
-	// 	workId: number,
-	// 	updatedData: IService
-	// ): Promise<void> {
-	// 	const service = await db.service.findUnique({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 	});
+	async update(id: number, workId: number, updatedData: IShift): Promise<void> {
+		const shift = await db.shift.findUnique({
+			where: {
+				id: id,
+				workId: workId,
+			},
+		});
 
-	// 	if (!service) {
-	// 		throw new Error('A obra não foi encontrada ou não pertence ao usupario');
-	// 	}
+		if (!shift) {
+			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+		}
 
-	// 	await db.service.update({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 		data: updatedData,
-	// 	});
-	// }
+		await db.shift.update({
+			where: {
+				id: id,
+				workId: workId,
+			},
+			data: updatedData,
+		});
+	}
 
-	// async delete(id: number, workId: number): Promise<void> {
-	// 	const service = await db.service.findUnique({
-	// 		where: {
-	// 			id: id,
-	// 			work: {
-	// 				id: workId,
-	// 			},
-	// 		},
-	// 	});
+	async delete(id: number, teamId: number, workId: number): Promise<void> {
+		const shift = await db.shift.findUnique({
+			where: {
+				id: id,
+				workId: workId,
+				teamId: teamId,
+			},
+		});
 
-	// 	if (!service) {
-	// 		throw new Error('A obra não foi encontrada ou não pertence ao usupario');
-	// 	}
+		if (!shift) {
+			throw new Error('Não foi encontrada ou não pertence a obra?');
+		}
 
-	// 	await db.service.delete({
-	// 		where: {
-	// 			id: id,
-	// 		},
-	// 	});
-	// }
+		await db.shift.delete({
+			where: {
+				id: id,
+			},
+		});
+	}
 }
 
 export { ShiftRepository };

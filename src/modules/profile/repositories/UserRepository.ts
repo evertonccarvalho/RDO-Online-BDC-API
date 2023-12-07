@@ -14,7 +14,7 @@ class UserRepository implements IUserRepository {
 			throw new Error('Usuário não encontrado');
 		}
 
-		await db.user.updateMany({
+		await db.user.update({
 			where: {
 				id: id,
 			},
