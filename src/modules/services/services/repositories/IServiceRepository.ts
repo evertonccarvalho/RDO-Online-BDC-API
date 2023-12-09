@@ -6,7 +6,7 @@ interface IServiceRepository {
 		workId: number,
 		subcategoryId: number
 	): Promise<IService>;
-	read(workId: number): Promise<IService[]>;
+	read(workId: number, userId: number): Promise<IService[]>;
 
 	getById(id: number, workId: number): Promise<IService | null>;
 

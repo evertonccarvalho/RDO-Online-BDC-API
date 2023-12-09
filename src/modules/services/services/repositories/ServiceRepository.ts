@@ -26,19 +26,35 @@ class ServiceRepository implements IServiceRepository {
 		}
 	}
 
-	async read(workId: number): Promise<IService[]> {
+	async read(workId: number, userId: number): Promise<IService[]> {
 		const services = await db.service.findMany({
 			where: {
-				work: {
-					services: {
-						some: {
-							workId,
+				AND: [
+					{
+						workId: workId,
+					},
+					{
+						work: {
+							userId: userId,
 						},
 					},
-				},
+				],
 			},
 		});
 		return services;
+		// 	async read(workId: number): Promise<IService[]> {
+		// 	const services = await db.service.findMany({
+		// 		where: {
+		// 			work: {
+		// 				services: {
+		// 					some: {
+		// 						workId,
+		// 					},
+		// 				},
+		// 			},
+		// 		},
+		// 	});
+		// 	return services;
 	}
 
 	async getById(id: number, workId: number): Promise<IService | null> {

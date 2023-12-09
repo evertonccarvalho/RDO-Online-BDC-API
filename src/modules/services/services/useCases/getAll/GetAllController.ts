@@ -6,9 +6,10 @@ class GetAllController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
 			// const { workId } = req.body; // vamos tentar melhor a forma de pegar o id da obra
+			const userId = req.user!.id;
 			const workId = req.params.workid;
 			const getAllUseCase = new GetAllUseCase(new ServiceRepository());
-			const works = await getAllUseCase.execute(Number(workId));
+			const works = await getAllUseCase.execute(+workId, userId);
 
 			return res.status(200).json(works);
 		} catch (error) {
