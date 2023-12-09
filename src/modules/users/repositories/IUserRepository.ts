@@ -6,7 +6,7 @@ interface IUserRepository {
 	getByEmail(email: string): Promise<IUser | null>;
 	read(): Promise<IUser[]>;
 	update(id: number, updatedData: IUser): Promise<void>;
-	delete(pid: number): Promise<void>;
+	delete(id: number): Promise<void>;
 }
 
 export { IUserRepository };

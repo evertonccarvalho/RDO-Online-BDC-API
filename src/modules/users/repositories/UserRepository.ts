@@ -1,5 +1,4 @@
 import { db } from '../../../api/config/prisma';
-import { IWork } from '../../works/interface/IWork';
 import { IRegisterUser, IUser } from '../interfaces/IUser';
 import { IUserRepository } from './IUserRepository';
 
@@ -26,23 +25,7 @@ class UserRepository implements IUserRepository {
 				active: true,
 				createdAt: true,
 				updatedAt: true,
-
-				work: {
-					select: {
-						id: true,
-						workDescription: true,
-						company: true,
-						nameResponsible: true,
-						phoneContact: true,
-						address: true,
-						active: true,
-						createdAt: true,
-						updatedAt: true,
-						logoUrl: true,
-						userId: true,
-						// Outros campos de trabalho que você deseja selecionar
-					},
-				},
+				work: true,
 			},
 		});
 
@@ -54,22 +37,16 @@ class UserRepository implements IUserRepository {
 			where: {
 				id: id,
 			},
-			include: {
-				work: {
-					select: {
-						id: true,
-						workDescription: true,
-						company: true,
-						nameResponsible: true,
-						phoneContact: true,
-						address: true,
-						active: true,
-						createdAt: true,
-						updatedAt: true,
-						logoUrl: true,
-						// Outros campos de trabalho que você deseja selecionar
-					},
-				},
+			select: {
+				id: true,
+				userName: true,
+				email: true,
+				avatarUrl: true,
+				active: true,
+				role: true,
+				createdAt: true,
+				updatedAt: true,
+				work: true,
 			},
 		});
 		return user;
@@ -86,7 +63,7 @@ class UserRepository implements IUserRepository {
 		});
 
 		if (!user) {
-			return null; // Usuário não encontrado
+			return null;
 		}
 
 		return user;

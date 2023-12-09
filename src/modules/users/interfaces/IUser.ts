@@ -21,8 +21,7 @@ export interface IRegisterUser {
 	confirmPassword: string;
 }
 
-export interface ShowUser {
-	id: number;
+export interface ShowUser extends IUserBase {
 	email: string;
 	userName: string;
 	role: string;
