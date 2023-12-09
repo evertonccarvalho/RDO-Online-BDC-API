@@ -1,6 +1,6 @@
 // import { celebrate } from 'celebrate';
 import { Router } from 'express';
-import { ensureAuth } from '../middleware/auth';
+import { ensureAuth } from '../middleware/userAuth';
 import { DeleteController } from '../modules/shift/useCases/delete/DeleteController';
 import { GetAllController } from '../modules/shift/useCases/getAll/GetAllController';
 import { GetByIdController } from '../modules/shift/useCases/getById/GetByIdController';

@@ -1,16 +1,31 @@
 import { Request, Response } from 'express';
+import { ShowUser } from '../users/interfaces/IUser';
 
 export const showUser = {
 	show: async (req: Request, res: Response) => {
 		try {
-			const currentUser = req.user;
+			const currentUser: ShowUser | undefined = req.user;
 			if (!currentUser) {
 				console.log('No user information found in the request.');
 				return res
 					.status(400)
 					.json({ message: 'User information not available.' });
 			}
-			return res.json(currentUser);
+
+			const { id, userName, email, active, role, avatarUrl, work }: ShowUser =
+				currentUser;
+
+			const userInformation = {
+				id,
+				userName,
+				email,
+				avatarUrl,
+				active,
+				role,
+				work,
+			};
+
+			return res.json(userInformation);
 		} catch (err) {
 			if (err instanceof Error) {
 				return res.status(400).json({ message: err.message });

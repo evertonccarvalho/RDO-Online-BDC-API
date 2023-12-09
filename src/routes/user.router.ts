@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ensureAuth } from '../middleware/auth';
+import { ensureAuth } from '../middleware/userAuth';
 import { showUser } from '../modules/profile/ShowUser';
 import { UpdateUserController } from '../modules/profile/useCases/update/UpdateUserController';
 

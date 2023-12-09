@@ -21,16 +21,17 @@ export interface IRegisterUser {
 	confirmPassword: string;
 }
 
-export interface UserPayload {
+export interface ShowUser {
 	id: number;
 	email: string;
 	userName: string;
 	role: string;
+	avatarUrl: string | null;
 	active: boolean;
 	work?: IWork[] | null;
 }
 
-export interface IUserLogin extends UserPayload {
+export interface IUserLogin extends ShowUser {
 	email: string;
 	password: string;
 }

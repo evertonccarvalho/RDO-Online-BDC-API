@@ -12,21 +12,5 @@ class UserAuthRepository implements IUserAuthRepository {
 
 		return user;
 	}
-
-	async getById(id: number): Promise<IUserLogin | null> {
-		const user = await db.user.findUnique({
-			where: {
-				id: id, // Fornecer o valor para o campo id
-			},
-		});
-
-		if (!user) {
-			return null; // Usuário não encontrado
-		}
-
-		// Ajuste a propriedade 'obra' para ser um array ou nulo conforme necessário
-
-		return user;
-	}
 }
 export { UserAuthRepository };
