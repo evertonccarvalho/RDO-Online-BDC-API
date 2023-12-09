@@ -42,28 +42,26 @@ class ServiceRepository implements IServiceRepository {
 			},
 		});
 		return services;
-		// 	async read(workId: number): Promise<IService[]> {
-		// 	const services = await db.service.findMany({
-		// 		where: {
-		// 			work: {
-		// 				services: {
-		// 					some: {
-		// 						workId,
-		// 					},
-		// 				},
-		// 			},
-		// 		},
-		// 	});
-		// 	return services;
 	}
 
-	async getById(id: number, workId: number): Promise<IService | null> {
+	async getById(
+		id: number,
+		workId: number,
+		userId: number
+	): Promise<IService | null> {
 		const service = await db.service.findUnique({
 			where: {
 				id: id,
-				work: {
-					id: workId,
-				},
+				AND: [
+					{
+						workId: workId,
+					},
+					{
+						work: {
+							userId: userId,
+						},
+					},
+				],
 			},
 		});
 		if (!service) {
@@ -76,38 +74,44 @@ class ServiceRepository implements IServiceRepository {
 	async update(
 		id: number,
 		workId: number,
+		userId: number,
 		updatedData: IService
 	): Promise<void> {
 		const service = await db.service.findUnique({
 			where: {
 				id: id,
+				workId: workId,
 				work: {
-					id: workId,
+					userId: userId,
 				},
 			},
 		});
 
 		if (!service) {
-			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+			throw new Error(
+				'O serviço não foi encontrado ou não pertence ao usuário'
+			);
 		}
 
 		await db.service.update({
 			where: {
 				id: id,
+				workId: workId,
 				work: {
-					id: workId,
+					userId: userId,
 				},
 			},
 			data: updatedData,
 		});
 	}
 
-	async delete(id: number, workId: number): Promise<void> {
+	async delete(id: number, workId: number, userId: number): Promise<void> {
 		const service = await db.service.findUnique({
 			where: {
 				id: id,
+				workId: workId,
 				work: {
-					id: workId,
+					userId: userId,
 				},
 			},
 		});

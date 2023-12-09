@@ -8,9 +8,14 @@ interface IServiceRepository {
 	): Promise<IService>;
 	read(workId: number, userId: number): Promise<IService[]>;
 
-	getById(id: number, workId: number): Promise<IService | null>;
+	getById(id: number, workId: number, userId: number): Promise<IService | null>;
 
-	update(id: number, workId: number, updatedData: IService): Promise<void>;
-	delete(id: number, workId: number): Promise<void>;
+	update(
+		id: number,
+		workId: number,
+		userId: number,
+		updatedData: IService
+	): Promise<void>;
+	delete(id: number, workId: number, userId: number): Promise<void>;
 }
 export { IServiceRepository };

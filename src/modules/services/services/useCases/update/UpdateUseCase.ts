@@ -7,9 +7,10 @@ class UpdateUseCase {
 	async execute(
 		id: number,
 		workId: number,
+		userId: number,
 		updatedData: IService
 	): Promise<void> {
-		return this.UpdateRepository.update(id, workId, updatedData);
+		return this.UpdateRepository.update(id, workId, userId, updatedData);
 	}
 }
 

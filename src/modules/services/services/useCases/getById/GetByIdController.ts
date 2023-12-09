@@ -7,12 +7,14 @@ class GetByIdController {
 		try {
 			const { id } = req.params;
 			const workid = req.params.workid;
+			const userid = req.user!.id;
+
 			const getByIdUseCase = new GetByIdUseCase(new ServiceRepository());
-			const work = await getByIdUseCase.execute(+id, +workid);
+			const work = await getByIdUseCase.execute(+id, +workid, userid);
 
 			if (!work) {
 				return res.status(404).json({
-					message: 'A obra não foi encontrada ou não pertence ao usupario',
+					message: 'A obra não foi encontrada ou não pertence ao usuário',
 				});
 			}
 			return res.status(200).json(work);
