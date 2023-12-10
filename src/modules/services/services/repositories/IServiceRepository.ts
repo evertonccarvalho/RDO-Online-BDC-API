@@ -4,6 +4,7 @@ interface IServiceRepository {
 	create(
 		service: IService,
 		workId: number,
+		userId: number,
 		subcategoryId: number
 	): Promise<IService>;
 	read(workId: number, userId: number): Promise<IService[]>;

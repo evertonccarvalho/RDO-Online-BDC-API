@@ -8,10 +8,10 @@ class RegisterController {
 		try {
 			const { subcategoryId } = req.body;
 			const workId = req.params.workid;
-
+			const userid = req.user!.id;
 			const service: IService = req.body;
 			const registerUseCase = new RegisterUseCase(new ServiceRepository());
-			await registerUseCase.execute(service, +workId, subcategoryId);
+			await registerUseCase.execute(service, +workId, userid, subcategoryId);
 			return res
 				.status(201)
 				.json({ message: 'Registro realizado com sucesso!' });

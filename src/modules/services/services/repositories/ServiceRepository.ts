@@ -6,9 +6,22 @@ class ServiceRepository implements IServiceRepository {
 	public async create(
 		service: IService,
 		workId: number,
+		userId: number,
 		subcategoryId: number
 	): Promise<IService> {
 		try {
+			// Verificar se o trabalho pertence ao usuário
+			const work = await db.work.findFirst({
+				where: {
+					id: workId,
+					userId: userId,
+				},
+			});
+
+			if (!work) {
+				throw new Error('O trabalho não pertence ao usuário fornecido');
+			}
+
 			const newService = await db.service.create({
 				data: {
 					serviceDescription: service.serviceDescription,
