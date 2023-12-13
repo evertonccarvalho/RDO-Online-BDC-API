@@ -8,7 +8,7 @@ class RegisterUseCase {
 		service: IService,
 		workId: number,
 		userId: number,
-		subcategoryId: number
+		subcategoryId: string
 	): Promise<void> {
 		// Verifica se todos os campos obrigatórios estão presentes e preenchidos
 
@@ -32,12 +32,14 @@ class RegisterUseCase {
 			);
 		}
 
+		const subcategoryIdAsNumber = parseInt(subcategoryId, 10);
+
 		try {
 			await this.RegisterRepository.create(
 				service,
 				workId,
 				userId,
-				subcategoryId
+				subcategoryIdAsNumber
 			);
 		} catch (error) {
 			throw new Error('Erro ao registrar obra');
