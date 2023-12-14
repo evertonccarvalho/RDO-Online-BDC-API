@@ -1,17 +1,33 @@
 import { Request, Response } from 'express';
-import { IService } from '../../../interface/IService';
 import { ServiceRepository } from '../../repositories/ServiceRepository';
 import { RegisterUseCase } from './RegisterUseCase';
 
 class RegisterController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		try {
-			const { subcategoryId } = req.body;
+			const { subcategoryId, serviceDescription, unit, status, totalAmount } =
+				req.body;
 			const workId = req.params.workid;
-			const userid = req.user!.id;
-			const service: IService = req.body;
+			const userId = req.user!.id;
+
 			const registerUseCase = new RegisterUseCase(new ServiceRepository());
-			await registerUseCase.execute(service, +workId, userid, subcategoryId);
+			await registerUseCase.execute(
+				{
+					id: 0,
+					workId: +workId,
+					serviceDescription,
+					unit,
+					status,
+					totalAmount: +totalAmount,
+					subcategoryId,
+					createdAt: new Date(),
+					updatedAt: new Date(),
+				},
+				+workId,
+				userId,
+				+subcategoryId
+			);
+
 			return res
 				.status(201)
 				.json({ message: 'Registro realizado com sucesso!' });

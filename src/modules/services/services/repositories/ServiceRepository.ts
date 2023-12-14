@@ -21,11 +21,13 @@ class ServiceRepository implements IServiceRepository {
 			if (!work) {
 				throw new Error('O trabalho não pertence ao usuário fornecido');
 			}
+			const totalAmountString = service.totalAmount.toString();
 
 			const newService = await db.service.create({
 				data: {
 					serviceDescription: service.serviceDescription,
 					unit: service.unit,
+					totalAmount: service.totalAmount,
 					status: service.status,
 					subcategoryId: subcategoryId,
 					workId: workId,

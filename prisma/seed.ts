@@ -13,7 +13,6 @@ async function main() {
 			password: '$2b$10$l11sVUEG6IjUDiGEJ2PDC.vg6CjPpNXintZf4K4MxZvgsNTX6fst2',
 		},
 	});
-
 	await prisma.user.create({
 		data: {
 			userName: 'admin',

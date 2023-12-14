@@ -3,6 +3,7 @@ export interface IService extends BaseInterface {
 	serviceDescription: string;
 	unit: string;
 	status: string;
+	totalAmount: number;
 	subcategoryId: number;
 }
 

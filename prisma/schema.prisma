@@ -63,6 +63,7 @@ model Service {
   unit               String // Unidade de medida do serviço
   status             String // Status do serviço
   subcategoryId      Int // ID da subcategoria do serviço
+  totalAmount        Int // Total amount do serviço
   subcategory        SubServiceCategory @relation(fields: [subcategoryId], references: [id]) // Relacionamento com a subcategoria do serviço
   createdAt          DateTime           @default(now()) // Data e hora de criação
   updatedAt          DateTime           @default(now()) // Data e hora de atualização
