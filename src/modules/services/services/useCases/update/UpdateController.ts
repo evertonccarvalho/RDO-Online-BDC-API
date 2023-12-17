@@ -5,13 +5,24 @@ import { UpdateUseCase } from './UpdateUseCase';
 class UpdateController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
-		const workid = req.params.workid;
-		const userid = req.user!.id;
-		const updatedData = req.body;
-		const updateWorkUseCase = new UpdateUseCase(new ServiceRepository());
+		const userId = req.user!.id;
+		const workId = req.params.workid;
+		const { subcategoryId, serviceDescription, unit, status, totalAmount } =
+			req.body;
+		const updateUseCase = new UpdateUseCase(new ServiceRepository());
 
 		try {
-			await updateWorkUseCase.execute(+id, +workid, userid, updatedData);
+			await updateUseCase.execute(+id, +workId, userId, {
+				id: 0,
+				workId: +workId,
+				serviceDescription,
+				unit,
+				status,
+				totalAmount: +totalAmount,
+				subcategoryId,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			});
 
 			return res.status(200).json({ message: 'Atualizada com sucesso' });
 		} catch (error) {

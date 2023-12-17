@@ -10,7 +10,7 @@ class ServiceRepository implements IServiceRepository {
 		subcategoryId: number
 	): Promise<IService> {
 		try {
-			// Verificar se o trabalho pertence ao usuário
+			// Verificar se o serviço pertence ao trabalho e ao usuário
 			const work = await db.work.findFirst({
 				where: {
 					id: workId,
@@ -21,7 +21,6 @@ class ServiceRepository implements IServiceRepository {
 			if (!work) {
 				throw new Error('O trabalho não pertence ao usuário fornecido');
 			}
-			const totalAmountString = service.totalAmount.toString();
 
 			const newService = await db.service.create({
 				data: {
@@ -92,6 +91,7 @@ class ServiceRepository implements IServiceRepository {
 		userId: number,
 		updatedData: IService
 	): Promise<void> {
+		// Verificar se o serviço pertence ao trabalho e ao usuário
 		const service = await db.service.findUnique({
 			where: {
 				id: id,
@@ -116,7 +116,13 @@ class ServiceRepository implements IServiceRepository {
 					userId: userId,
 				},
 			},
-			data: updatedData,
+			data: {
+				serviceDescription: service.serviceDescription,
+				unit: service.unit,
+				totalAmount: service.totalAmount,
+				status: service.status,
+				workId: workId,
+			},
 		});
 	}
 
