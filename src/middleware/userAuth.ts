@@ -27,7 +27,7 @@ export async function ensureAuth(
 		}
 
 		const userRepository = new UserRepository();
-		const user = await userRepository.getByEmail(decoded.email as string);
+		const user = await userRepository.getById(decoded.id);
 		req.user = user !== null ? user : undefined; // Verifica se o usuário não é nulo
 		next();
 	} catch (error) {

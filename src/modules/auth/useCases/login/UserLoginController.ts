@@ -9,6 +9,7 @@ import { UserLoginUseCase } from './UserLoginUseCase';
 class UserLoginController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { email, password } = req.body;
+
 		const userLoginUseCase = new UserLoginUseCase(new UserAuthRepository());
 
 		try {

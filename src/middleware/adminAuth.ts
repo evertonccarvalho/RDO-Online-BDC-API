@@ -27,7 +27,7 @@ export async function ensureAdmin(
 	try {
 		const decoded = await jwtService.verifyToken(token);
 		const userRepository = new UserRepository();
-		const user = await userRepository.getByEmail(decoded.email as string);
+		const user = await userRepository.getById(decoded.id);
 
 		if (!decoded || typeof decoded === 'undefined') {
 			return res

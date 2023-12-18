@@ -21,7 +21,7 @@ class UserLoginUseCase {
 			throw new IncorrectEmailError('O e-mail é inválido');
 		}
 
-		const user = await this.userAuthRepository.login(email, password);
+		const user = await this.userAuthRepository.login(email);
 
 		if (!user) {
 			return null;
@@ -32,10 +32,6 @@ class UserLoginUseCase {
 		if (passwordMatch) {
 			const payload = {
 				id: user.id,
-				userName: user.userName,
-				email: user.email,
-				role: user.role,
-				active: user.active,
 			};
 
 			const token = jwtService.signToken(payload, JWT_EXPIRATION_TIME);
