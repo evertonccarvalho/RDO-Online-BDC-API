@@ -12,8 +12,15 @@ export const showUser = {
 					.json({ message: 'User information not available.' });
 			}
 
-			const { id, userName, email, active, role, avatarUrl, works }: ShowUser =
-				currentUser;
+			const {
+				id,
+				userName,
+				email,
+				active,
+				role,
+				avatarUrl,
+				workUsers,
+			}: ShowUser = currentUser;
 
 			const userInformation = {
 				id,
@@ -22,7 +29,7 @@ export const showUser = {
 				avatarUrl,
 				active,
 				role,
-				works,
+				workUsers,
 			};
 
 			return res.json(userInformation);

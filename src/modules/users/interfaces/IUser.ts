@@ -1,5 +1,3 @@
-import { IWork } from '../../works/interface/IWork';
-
 export interface IUser extends IUserBase {
 	userName: string;
 	email: string;
@@ -27,7 +25,7 @@ export interface ShowUser extends IUserBase {
 	role: string;
 	avatarUrl: string | null;
 	active: boolean;
-	works?: IWork[] | null;
+	workUsers?: IWorkUser;
 }
 
 export interface IUserLogin extends ShowUser {
@@ -39,4 +37,10 @@ export interface IUserProfileUpdate {
 	id: number;
 	userName: string;
 	avatarUrl: string | null;
+}
+
+export interface IWorkUser {
+	id: number;
+	userId: number;
+	workId: number;
 }

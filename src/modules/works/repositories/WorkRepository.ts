@@ -97,6 +97,7 @@ class WorkRepository implements IWorkRepository {
 				Shift: true,
 				Location: true,
 				Effective: true,
+				workUsers: true,
 			},
 		});
 		if (!work) {
