@@ -11,12 +11,10 @@ class DeleteController {
 		try {
 			await deleteUseCase.execute(+id, +workId, userId);
 
-			return res.status(200).json({ message: 'Obra deletado com sucesso' });
+			return res.status(200).json({ message: 'serviço deletado com sucesso' });
 		} catch (error) {
 			if (error instanceof Error) {
-				return res
-					.status(404)
-					.json({ message: 'Obra não encontrado ou não pertence ao usuário' });
+				return res.status(404).json({ message: error.message });
 			}
 
 			return res.status(500).json({ message: 'Erro interno do servidor' });

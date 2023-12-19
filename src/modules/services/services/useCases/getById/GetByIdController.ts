@@ -10,16 +10,17 @@ class GetByIdController {
 			const userid = req.user!.id;
 
 			const getByIdUseCase = new GetByIdUseCase(new ServiceRepository());
-			const work = await getByIdUseCase.execute(+id, +workid, userid);
+			const service = await getByIdUseCase.execute(+id, +workid, userid);
 
-			if (!work) {
-				return res.status(404).json({
-					message: 'A obra não foi encontrada ou não pertence ao usuário',
-				});
-			}
-			return res.status(200).json(work);
+			return res.status(200).json(service);
 		} catch (error) {
-			return res.status(500).json({ message: 'Erro interno do servidor' });
+			if (error instanceof Error) {
+				return res.status(400).json({ error: error.message });
+			} else {
+				return res
+					.status(500)
+					.json({ error: 'Erro interno ao processar a requisição' });
+			}
 		}
 	}
 }

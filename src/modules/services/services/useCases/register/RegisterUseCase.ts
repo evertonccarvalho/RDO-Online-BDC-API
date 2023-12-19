@@ -41,7 +41,7 @@ class RegisterUseCase {
 				subcategoryId
 			);
 		} catch (error) {
-			throw new Error('Erro ao registrar obra');
+			if (error instanceof Error) throw new Error(error.message);
 		}
 	}
 }

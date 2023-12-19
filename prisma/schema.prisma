@@ -6,9 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 enum Status {
@@ -20,38 +20,48 @@ enum Status {
 
 // Modelo de Usuário
 model User {
-  id        Int      @id @default(autoincrement()) // ID único do usuário
-  userName  String // Nome de usuário
-  email     String // Email do usuário
-  password  String // Senha do usuário
-  avatarUrl String? // URL do avatar do usuário
-  active    Boolean // Indica se o usuário está ativo
-  role      String   @default("Usuário Padrão") // Define o valor padrão como "Usuário Padrão"
-  work      Work[] // Relacionamento com obras associadas ao usuário
-  createdAt DateTime @default(now()) // Data e hora de criação
-  updatedAt DateTime @default(now()) // Data e hora de atualização
+  id        Int        @id @default(autoincrement())
+  userName  String
+  email     String
+  password  String
+  avatarUrl String?
+  active    Boolean
+  role      String     @default("Usuário Padrão")
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now())
+  works     Work[]     @relation("UserWorks") // Relacionamento muitos para muitos com obras
+  workUsers WorkUser[]
 }
 
 // Modelo de Obra
 model Work {
-  id              Int            @id @default(autoincrement()) // ID único da obra
-  workDescription String // Descrição da obra
-  company         String // Nome da empresa da obra
-  nameResponsible String // Nome da pessoa responsável pela obra
-  phoneContact    String // Número de contato da obra
-  address         String // Endereço completo da obra
-  logoUrl         String? // Logotipo da obra
-  active          Boolean // Indica se a obra está ativa
-  createdAt       DateTime       @default(now()) // Data e hora de criação
-  updatedAt       DateTime       @default(now()) // Data e hora de atualização
-  user            User           @relation(fields: [userId], references: [id]) // Relacionamento com o usuário
-  userId          Int
-  services        Service[] // Relacionamento com serviços associados à obra
-  Team            Team[] //// Relacionamento com as equipes da obra
-  Shift           Shift[] //Relacionamento com os turnos da obra
-  Interference    Interference[] //Relacionamento com as interferências da obra
-  Location        Location[] // Relacionamento com os locais da obra
-  Effective       Effective[] // Relacionamento com os efetivos da obra
+  id              Int            @id @default(autoincrement())
+  workDescription String
+  company         String
+  nameResponsible String
+  phoneContact    String
+  address         String
+  logoUrl         String?
+  active          Boolean
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now())
+  services        Service[]
+  Team            Team[]
+  Shift           Shift[]
+  Interference    Interference[]
+  Location        Location[]
+  Effective       Effective[]
+  users           User[]         @relation("UserWorks") // Relacionamento muitos para muitos com usuários
+  workUsers       WorkUser[]
+}
+
+// Tabela de Associação
+model WorkUser {
+  id     Int  @id @default(autoincrement()) // ID único da associação
+  user   User @relation(fields: [userId], references: [id]) // Referência ao usuário
+  userId Int // Chave estrangeira para o ID do usuário
+  work   Work @relation(fields: [workId], references: [id]) // Referência à obra
+  workId Int // Chave estrangeira para o ID da obra
 }
 
 // Modelo de Serviço

@@ -24,10 +24,12 @@ class UpdateController {
 				updatedAt: new Date(),
 			});
 
-			return res.status(200).json({ message: 'Atualizada com sucesso' });
+			return res
+				.status(200)
+				.json({ message: 'Serviço atualizado com sucesso' });
 		} catch (error) {
 			if (error instanceof Error) {
-				return res.status(404).json({ message: 'Não encontrada' });
+				return res.status(404).json({ message: error.message });
 			}
 
 			return res.status(500).json({ message: 'Erro interno do servidor' });

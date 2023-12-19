@@ -27,7 +27,7 @@ export interface ShowUser extends IUserBase {
 	role: string;
 	avatarUrl: string | null;
 	active: boolean;
-	work?: IWork[] | null;
+	works?: IWork[] | null;
 }
 
 export interface IUserLogin extends ShowUser {

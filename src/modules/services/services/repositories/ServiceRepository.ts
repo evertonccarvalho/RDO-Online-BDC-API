@@ -11,15 +11,28 @@ class ServiceRepository implements IServiceRepository {
 	): Promise<IService> {
 		try {
 			// Verificar se o serviço pertence ao trabalho e ao usuário
-			const work = await db.work.findFirst({
+			const workUser = await db.workUser.findFirst({
 				where: {
-					id: workId,
+					workId: workId,
 					userId: userId,
 				},
 			});
 
-			if (!work) {
+			if (!workUser) {
 				throw new Error('O trabalho não pertence ao usuário fornecido');
+			}
+
+			// Verificar se o subcategoryId existe na tabela Subcategory
+			const subcategory = await db.subServiceCategory.findUnique({
+				where: {
+					id: subcategoryId,
+				},
+			});
+
+			if (!subcategory) {
+				throw new Error(
+					'O subcategoryId fornecido não existe na tabela Subcategory'
+				);
 			}
 
 			const newService = await db.service.create({
@@ -41,21 +54,32 @@ class ServiceRepository implements IServiceRepository {
 	}
 
 	async read(workId: number, userId: number): Promise<IService[]> {
-		const services = await db.service.findMany({
-			where: {
-				AND: [
-					{
-						workId: workId,
-					},
-					{
-						work: {
-							userId: userId,
-						},
-					},
-				],
-			},
-		});
-		return services;
+		try {
+			const workUser = await db.workUser.findFirst({
+				where: {
+					workId: workId,
+					userId: userId,
+				},
+			});
+
+			if (!workUser) {
+				throw new Error('O trabalho não pertence ao usuário fornecido');
+			}
+
+			const services = await db.service.findMany({
+				where: {
+					workId: workId,
+				},
+			});
+
+			if (services.length === 0) {
+				throw new Error('O serviço não foi encontrado');
+			}
+
+			return services;
+		} catch (error) {
+			throw new Error(`Erro ao buscar os serviços: ${error}`);
+		}
 	}
 
 	async getById(
@@ -63,26 +87,32 @@ class ServiceRepository implements IServiceRepository {
 		workId: number,
 		userId: number
 	): Promise<IService | null> {
-		const service = await db.service.findUnique({
-			where: {
-				id: id,
-				AND: [
-					{
-						workId: workId,
-					},
-					{
-						work: {
-							userId: userId,
-						},
-					},
-				],
-			},
-		});
-		if (!service) {
-			return null;
-		}
+		try {
+			const workUser = await db.workUser.findFirst({
+				where: {
+					workId: workId,
+					userId: userId,
+				},
+			});
 
-		return service;
+			if (!workUser) {
+				throw new Error('O trabalho não pertence ao usuário fornecido');
+			}
+
+			const service = await db.service.findUnique({
+				where: {
+					id: id,
+				},
+			});
+
+			if (!service) {
+				throw new Error('O serviço não foi encontrado');
+			}
+
+			return service;
+		} catch (error) {
+			throw new Error(`Erro ao buscar os serviços: ${error}`);
+		}
 	}
 
 	async update(
@@ -91,62 +121,109 @@ class ServiceRepository implements IServiceRepository {
 		userId: number,
 		updatedData: IService
 	): Promise<void> {
-		// Verificar se o serviço pertence ao trabalho e ao usuário
-		const service = await db.service.findUnique({
-			where: {
-				id: id,
-				workId: workId,
-				work: {
+		try {
+			const workUser = await db.workUser.findFirst({
+				where: {
+					workId: workId,
 					userId: userId,
 				},
-			},
-		});
+			});
 
-		if (!service) {
-			throw new Error(
-				'O serviço não foi encontrado ou não pertence ao usuário'
-			);
+			if (!workUser) {
+				throw new Error('O trabalho não pertence ao usuário fornecido');
+			}
+
+			const service = await db.service.findUnique({
+				where: {
+					id: id,
+				},
+			});
+
+			if (!service) {
+				throw new Error('O serviço não foi encontrado');
+			}
+
+			await db.service.update({
+				where: {
+					id: id,
+					workId: workId,
+				},
+				data: {
+					serviceDescription: service.serviceDescription,
+					unit: service.unit,
+					totalAmount: service.totalAmount,
+					status: service.status,
+					workId: workId,
+				},
+			});
+		} catch (error) {
+			throw new Error(`Erro ao buscar os serviços: ${error}`);
 		}
-
-		await db.service.update({
-			where: {
-				id: id,
-				workId: workId,
-				work: {
-					userId: userId,
-				},
-			},
-			data: {
-				serviceDescription: service.serviceDescription,
-				unit: service.unit,
-				totalAmount: service.totalAmount,
-				status: service.status,
-				workId: workId,
-			},
-		});
 	}
-
 	async delete(id: number, workId: number, userId: number): Promise<void> {
-		const service = await db.service.findUnique({
-			where: {
-				id: id,
-				workId: workId,
-				work: {
+		try {
+			const workUser = await db.workUser.findFirst({
+				where: {
+					workId: workId,
 					userId: userId,
 				},
-			},
-		});
+			});
 
-		if (!service) {
-			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+			if (!workUser) {
+				throw new Error('O trabalho não pertence ao usuário fornecido');
+			}
+
+			const service = await db.service.findUnique({
+				where: {
+					id: id,
+				},
+			});
+
+			if (!service) {
+				throw new Error('O serviço não foi encontrado');
+			}
+
+			await db.service.delete({
+				where: {
+					id: id,
+				},
+			});
+		} catch (error) {
+			throw new Error(`Erro ao buscar os serviços: ${error}`);
 		}
-
-		await db.service.delete({
-			where: {
-				id: id,
-			},
-		});
 	}
+
+	// async delete(id: number, workId: number, userId: number): Promise<void> {
+	// 	const service = await db.service.findUnique({
+	// 		where: {
+	// 			id: id,
+	// 			AND: [
+	// 				{
+	// 					workId: workId,
+	// 				},
+	// 				{
+	// 					work: {
+	// 						users: {
+	// 							some: {
+	// 								id: userId,
+	// 							},
+	// 						},
+	// 					},
+	// 				},
+	// 			],
+	// 		},
+	// 	});
+
+	// 	if (!service) {
+	// 		throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+	// 	}
+
+	// 	await db.service.delete({
+	// 		where: {
+	// 			id: id,
+	// 		},
+	// 	});
+	// }
 }
 
 export { ServiceRepository };

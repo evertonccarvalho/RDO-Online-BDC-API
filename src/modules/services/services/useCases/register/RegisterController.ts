@@ -33,9 +33,7 @@ class RegisterController {
 				.json({ message: 'Registro realizado com sucesso!' });
 		} catch (error) {
 			if (error instanceof Error) {
-				return res
-					.status(400)
-					.json({ error: 'Erro ao registrar obra: ' + error.message });
+				return res.status(400).json({ error: error.message });
 			} else {
 				return res
 					.status(500)

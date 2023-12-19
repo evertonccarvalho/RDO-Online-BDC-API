@@ -25,7 +25,7 @@ class UserRepository implements IUserRepository {
 				active: true,
 				createdAt: true,
 				updatedAt: true,
-				work: true,
+				works: true,
 			},
 		});
 
@@ -46,7 +46,7 @@ class UserRepository implements IUserRepository {
 				role: true,
 				createdAt: true,
 				updatedAt: true,
-				work: true,
+				works: true,
 			},
 		});
 		return user;
@@ -58,7 +58,7 @@ class UserRepository implements IUserRepository {
 				email: email,
 			},
 			include: {
-				work: true,
+				works: true,
 			},
 		});
 

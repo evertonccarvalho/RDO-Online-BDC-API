@@ -13,7 +13,13 @@ class GetAllController {
 
 			return res.status(200).json(works);
 		} catch (error) {
-			return res.status(500).json({ message: 'Erro interno do servidor' });
+			if (error instanceof Error) {
+				return res.status(400).json({ error: error.message });
+			} else {
+				return res
+					.status(500)
+					.json({ error: 'Erro interno ao processar a requisição' });
+			}
 		}
 	}
 }

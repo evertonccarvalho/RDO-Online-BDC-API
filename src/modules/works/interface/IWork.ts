@@ -6,7 +6,6 @@ export interface IWork extends IWorkBase {
 	address: string;
 	logoUrl: string | null;
 	active: boolean;
-	userId: number;
 }
 
 export interface IWorkBase {
