@@ -17,7 +17,6 @@ class WorkRepository implements IWorkRepository {
 					phoneContact: work.phoneContact,
 					workDescription: work.workDescription,
 					workUsers: {
-						// Use WorkUser para associar o trabalho ao usuário
 						create: {
 							userId: userId,
 						},
@@ -30,74 +29,46 @@ class WorkRepository implements IWorkRepository {
 		}
 	}
 
-	public async s(userId: number): Promise<IWork[]> {
-		try {
-			const user = await db.user.findUnique({
-				where: {
-					id: userId,
-				},
-				select: {
-					works: {
-						include: {
-							services: true,
-							Team: true,
-							Interference: true,
-							Shift: true,
-							Location: true,
-							Effective: true,
-						},
+	async read(userId: number): Promise<IWork[]> {
+		const works = await db.work.findMany({
+			where: {
+				workUsers: {
+					some: {
+						userId,
 					},
 				},
-			});
-
-			if (!user) {
-				return []; // Retorna uma lista vazia se o usuário não for encontrado
-			}
-
-			return user.works;
-		} catch (error) {
-			throw new Error(`Erro ao ler os trabalhos do usuário: ${error}`);
-		}
-	}
-
-	public async read(): Promise<IWork[]> {
-		try {
-			const works = await db.work.findMany({
-				include: {
-					services: true,
-					Team: true,
-					Interference: true,
-					Shift: true,
-					Location: true,
-					Effective: true,
-					workUsers: true,
-				},
-			});
-
-			return works;
-		} catch (error) {
-			throw new Error(`Erro ao ler todos os trabalhos: ${error}`);
-		}
-	}
-
-	async getById(id: number, userId: number): Promise<IWork | null> {
-		const work = await db.work.findUnique({
-			where: {
-				id: id,
 			},
 			include: {
-				users: {
-					where: {
-						id: userId,
-					},
-				},
+				workUsers: true,
 				services: true,
 				Team: true,
 				Interference: true,
 				Shift: true,
 				Location: true,
 				Effective: true,
+			},
+		});
+		return works;
+	}
+
+	async getById(id: number, userId: number): Promise<IWork | null> {
+		const work = await db.work.findUnique({
+			where: {
+				id: id,
+				workUsers: {
+					some: {
+						userId,
+					},
+				},
+			},
+			include: {
 				workUsers: true,
+				services: true,
+				Team: true,
+				Interference: true,
+				Shift: true,
+				Location: true,
+				Effective: true,
 			},
 		});
 		if (!work) {
@@ -108,30 +79,28 @@ class WorkRepository implements IWorkRepository {
 	}
 
 	async update(
-		id: number,
+		workId: number,
 		userId: number,
 		updateWorkData: IWork
 	): Promise<void> {
 		const work = await db.work.findUnique({
 			where: {
-				id: id,
-			},
-			include: {
-				users: {
-					where: {
-						id: userId,
+				id: workId,
+				workUsers: {
+					some: {
+						userId,
 					},
 				},
 			},
 		});
 
 		if (!work) {
-			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+			throw new Error('A obra não foi encontrada ou não pertence ao usuário');
 		}
 
 		await db.work.update({
 			where: {
-				id: id,
+				id: workId,
 			},
 			data: updateWorkData,
 		});
@@ -142,11 +111,9 @@ class WorkRepository implements IWorkRepository {
 			const work = await db.work.findUnique({
 				where: {
 					id: workId,
-				},
-				include: {
-					users: {
-						where: {
-							id: userId,
+					workUsers: {
+						some: {
+							userId,
 						},
 					},
 				},
