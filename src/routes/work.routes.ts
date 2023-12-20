@@ -12,6 +12,7 @@ import { locationRoutes } from './location.routes';
 import { serviceRoutes } from './service.routes';
 import { shiftRoutes } from './shift.routes';
 import { teamRoutes } from './team.routes';
+import { workUserRoutes } from './workUser.routes';
 
 const workRoutes = Router();
 
@@ -33,4 +34,5 @@ workRoutes.use(shiftRoutes);
 workRoutes.use(interferenceRoutes);
 workRoutes.use(locationRoutes);
 workRoutes.use(effectiveRoutes);
+workRoutes.use(workUserRoutes);
 export { workRoutes };

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { UpdateUseCase } from './UpdateUseCase';
 import { WorkRepository } from '../../repositories/WorkRepository';
+import { UpdateUseCase } from './UpdateUseCase';
 
 class UpdateController {
 	async handle(req: Request, res: Response): Promise<Response> {

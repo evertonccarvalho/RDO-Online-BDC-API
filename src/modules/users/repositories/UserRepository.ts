@@ -69,20 +69,48 @@ class UserRepository implements IUserRepository {
 		return user;
 	}
 
-	async update(id: number, updatedData: IUser): Promise<void> {
+	async update(userId: number, workId: number): Promise<void> {
 		const user = await db.user.findUnique({
 			where: {
-				id: id,
+				id: userId,
+			},
+			include: {
+				workUsers: true,
 			},
 		});
+
 		if (!user) {
 			throw new Error('Usuário não encontrado');
 		}
+
+		// // Verificar se o usuário já está associado a essa obra
+		// const userAlreadyAssociated = user.workUsers.some(
+		// 	(workUser) => workUser.workId === workId
+		// );
+
+		// if (!userAlreadyAssociated) {
+		// 	// Se não estiver associado, conectar ou criar na tabela WorkUser
+		// 	await db.workUser.create({
+		// 		data: {
+		// 			userId: userId,
+		// 			workId: workId,
+		// 		},
+		// 	});
+		// }
+
+		// Atualizar outros campos do usuário, exceto workUsers
 		await db.user.update({
 			where: {
-				id: id,
+				id: userId,
 			},
-			data: updatedData,
+			data: {
+				active: user.active,
+				avatarUrl: user.avatarUrl,
+				email: user.email,
+				role: user.role,
+				userName: user.userName,
+				// Não incluir workUsers aqui, pois já foi tratado acima
+			},
 		});
 	}
 

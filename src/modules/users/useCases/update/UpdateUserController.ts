@@ -5,11 +5,29 @@ import { UpdateUserUseCase } from './UpdateUserUseCase';
 class UpdateUserController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
-		const updatedData = req.body;
 		const updateUserUseCase = new UpdateUserUseCase(new UserRepository());
 
+		const {
+			id: userId,
+			userName,
+			workId,
+			email,
+			role,
+			avatarUrl,
+			active,
+		} = req.body;
 		try {
-			await updateUserUseCase.execute(+id, updatedData);
+			await updateUserUseCase.execute(+id, +workId, {
+				id: userId,
+				active: active,
+				email: email,
+				userName: userName,
+				avatarUrl: avatarUrl,
+				role: role,
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			});
+
 			return res
 				.status(200)
 				.json({ message: 'Usuário atualizado com sucesso' });

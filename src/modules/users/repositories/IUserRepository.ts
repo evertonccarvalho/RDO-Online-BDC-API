@@ -5,7 +5,7 @@ interface IUserRepository {
 	getById(id: number): Promise<IUser | null>;
 	getByEmail(email: string): Promise<IUser | null>;
 	read(): Promise<IUser[]>;
-	update(id: number, updatedData: IUser): Promise<void>;
+	update(id: number, workId: number, updatedData: IUser): Promise<void>;
 	delete(id: number): Promise<void>;
 }
 
