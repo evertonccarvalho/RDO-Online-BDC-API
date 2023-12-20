@@ -1,18 +1,17 @@
 // import { celebrate } from 'celebrate';
 import { Router } from 'express';
 import { ensureAuth } from '../middleware/userAuth';
-import { DeleteController } from '../modules/works/useCases/delete/DeleteController';
-import { GetAllController } from '../modules/works/useCases/getAll/GetAllController';
-import { GetByIdController } from '../modules/works/useCases/getById/GetByIdController';
-import { RegisterController } from '../modules/works/useCases/register/RegisterController';
-import { UpdateController } from '../modules/works/useCases/update/UpdateController';
-import { effectiveRoutes } from './effective.routes';
-import { interferenceRoutes } from './interference.routes';
-import { locationRoutes } from './location.routes';
-import { serviceRoutes } from './service.routes';
-import { shiftRoutes } from './shift.routes';
-import { teamRoutes } from './team.routes';
-import { workUserRoutes } from './workUser.routes';
+import { DeleteController } from '../modules/WORKS/works/useCases/delete/DeleteController';
+import { GetAllController } from '../modules/WORKS/works/useCases/getAll/GetAllController';
+import { GetByIdController } from '../modules/WORKS/works/useCases/getById/GetByIdController';
+import { RegisterController } from '../modules/WORKS/works/useCases/register/RegisterController';
+import { UpdateController } from '../modules/WORKS/works/useCases/update/UpdateController';
+import { effectiveRoutes } from './WORKS/effective.routes';
+import { interferenceRoutes } from './WORKS/interference.routes';
+import { locationRoutes } from './WORKS/location.routes';
+import { serviceRoutes } from './WORKS/service.routes';
+import { shiftRoutes } from './WORKS/shift.routes';
+import { teamRoutes } from './WORKS/team.routes';
 
 const workRoutes = Router();
 
@@ -34,5 +33,4 @@ workRoutes.use(shiftRoutes);
 workRoutes.use(interferenceRoutes);
 workRoutes.use(locationRoutes);
 workRoutes.use(effectiveRoutes);
-workRoutes.use(workUserRoutes);
 export { workRoutes };

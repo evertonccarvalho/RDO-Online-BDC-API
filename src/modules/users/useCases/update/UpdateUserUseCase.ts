@@ -16,7 +16,6 @@ class UpdateUserUseCase {
 				throw new Error('Usuário não encontrado');
 			}
 
-			// Verifica se o e-mail foi alterado
 			if (updatedUserData.email && updatedUserData.email !== user.email) {
 				const existingUser = await this.userRepository.getByEmail(
 					updatedUserData.email

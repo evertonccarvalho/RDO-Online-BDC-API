@@ -5,10 +5,10 @@ import { RemoveWorkUserUseCase } from './RemoveWorkUserUseCase ';
 class RemoveWorkUserController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { userId, workId } = req.body;
-
 		const removeWorkUserUseCase = new RemoveWorkUserUseCase(
 			new WorkUserRepository()
 		);
+		
 		try {
 			await removeWorkUserUseCase.execute(userId, workId);
 			return res

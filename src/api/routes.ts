@@ -1,14 +1,16 @@
 import { Router } from 'express';
-import { adminRoutes } from '../routes/admin.router';
 import { authRouter } from '../routes/auth.router';
-import { userRoutes } from '../routes/user.router';
+import { profileRoutes } from '../routes/profile.router';
+import { usersRoutes } from '../routes/users.router';
 import { workRoutes } from '../routes/work.routes';
+import { workUserRoutes } from '../routes/workUser.routes';
 import homeController from '../utils/home.controller';
 
 const router = Router();
-adminRoutes.get('/', homeController.index);
-router.use(userRoutes);
+router.get('/', homeController.index);
+router.use(profileRoutes);
 router.use(authRouter);
 router.use(workRoutes);
-router.use(adminRoutes);
+router.use(usersRoutes);
+router.use(workUserRoutes);
 export { router };
