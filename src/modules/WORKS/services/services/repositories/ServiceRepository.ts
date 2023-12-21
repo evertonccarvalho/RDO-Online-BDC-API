@@ -72,8 +72,8 @@ class ServiceRepository implements IServiceRepository {
 				},
 			});
 
-			if (services.length === 0) {
-				throw new Error('O serviço não foi encontrado');
+			if (!services || services.length === 0) {
+				return []; // Retorna uma lista vazia se nenhum serviço for encontrado
 			}
 
 			return services;
@@ -146,20 +146,20 @@ class ServiceRepository implements IServiceRepository {
 			await db.service.update({
 				where: {
 					id: id,
-					workId: workId,
 				},
 				data: {
-					serviceDescription: service.serviceDescription,
-					unit: service.unit,
-					totalAmount: service.totalAmount,
-					status: service.status,
-					workId: workId,
+					serviceDescription: updatedData.serviceDescription,
+					unit: updatedData.unit,
+					totalAmount: updatedData.totalAmount,
+					status: updatedData.status,
+					// Adicione outras propriedades que precisam ser atualizadas conforme necessário
 				},
 			});
 		} catch (error) {
 			throw new Error(`Erro ao buscar os serviços: ${error}`);
 		}
 	}
+
 	async delete(id: number, workId: number, userId: number): Promise<void> {
 		try {
 			const workUser = await db.workUser.findFirst({

@@ -11,6 +11,12 @@ class GetAllController {
 			const getAllUseCase = new GetAllUseCase(new ServiceRepository());
 			const works = await getAllUseCase.execute(+workId, userId);
 
+			if (!works || works.length === 0) {
+				return res
+					.status(404)
+					.json({ error: 'Nenhum serviço encontrado para este trabalho.' });
+			}
+
 			return res.status(200).json(works);
 		} catch (error) {
 			if (error instanceof Error) {
