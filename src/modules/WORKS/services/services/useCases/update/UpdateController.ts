@@ -19,7 +19,7 @@ class UpdateController {
 				unit,
 				status,
 				totalAmount: +totalAmount,
-				subcategoryId,
+				subcategoryId: +subcategoryId,
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});

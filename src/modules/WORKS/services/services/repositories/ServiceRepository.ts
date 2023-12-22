@@ -152,6 +152,7 @@ class ServiceRepository implements IServiceRepository {
 					unit: updatedData.unit,
 					totalAmount: updatedData.totalAmount,
 					status: updatedData.status,
+					subcategoryId: updatedData.subcategoryId,
 					// Adicione outras propriedades que precisam ser atualizadas conforme necessário
 				},
 			});
