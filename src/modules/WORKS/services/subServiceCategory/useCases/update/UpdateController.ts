@@ -5,13 +5,18 @@ import { UpdateUseCase } from './UpdateUseCase';
 class UpdateController {
 	async handle(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
-		const updateData = req.body;
+		const { name, status, serviceCategoryId } = req.body;
 		const updateWorkUseCase = new UpdateUseCase(
 			new SubServiceCategoryRepository()
 		);
 
 		try {
-			await updateWorkUseCase.execute(+id, updateData);
+			await updateWorkUseCase.execute(+id, {
+				id: 0,
+				name: name,
+				status: status,
+				serviceCategoryId: +serviceCategoryId,
+			});
 
 			return res.status(200).json({ message: 'atualizada com sucesso' });
 		} catch (error) {

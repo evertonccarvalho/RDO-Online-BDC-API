@@ -49,14 +49,18 @@ class SubServiceCategoryRepository implements ISubServiceCategoryRepository {
 		});
 
 		if (!subCategory) {
-			throw new Error('A obra não foi encontrada ou não pertence ao usupario');
+			throw new Error('Não foi encontrada ou ');
 		}
 
 		await db.subServiceCategory.update({
 			where: {
 				id: id,
 			},
-			data: updateData,
+			data: {
+				name: updateData.name,
+				status: updateData.status,
+				serviceCategoryId: updateData.serviceCategoryId,
+			},
 		});
 	}
 
