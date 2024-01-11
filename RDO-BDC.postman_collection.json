@@ -1,0 +1,3932 @@
+{
+	"info": {
+		"_postman_id": "73a2a4a5-2e63-4be1-9ea6-3c45577cab02",
+		"name": "RDO-BDC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26796444"
+	},
+	"item": [
+		{
+			"name": "Obras",
+			"item": [
+				{
+					"name": "Obras INDEX",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required Content-Type header\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is an array\", function () {",
+									"  pm.expect(pm.response.json()).to.be.an(\"array\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is empty\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array').that.is.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/user/works"
+					},
+					"response": [
+						{
+							"name": "Obras INDEX",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/user/works"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "383"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17f-GGxp2R2vKP0cGVgobH3Y2pb5Gp8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 17:59:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 5,\n        \"workDescription\": \"Construção da Rodovia \",\n        \"company\": \"Nome da Empresa\",\n        \"nameResponsible\": \"Nome do Responsavel\",\n        \"phoneContact\": \"88999999999\",\n        \"address\": \"Endereço da Obra\",\n        \"logoUrl\": null,\n        \"active\": true,\n        \"createdAt\": \"2023-12-09T17:59:11.904Z\",\n        \"updatedAt\": \"2023-12-09T17:59:11.904Z\",\n        \"userId\": 11,\n        \"services\": [],\n        \"Team\": [],\n        \"Interference\": [],\n        \"Shift\": [],\n        \"Location\": [],\n        \"Effective\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "OBRA Detalhes por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/work/5"
+					},
+					"response": [
+						{
+							"name": "OBRA Detalhes por ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/work/5"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "381"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17d-0vwLqLZimY90tYVzkym9eG0qhCQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 17:59:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"workDescription\": \"Construção da Rodovia \",\n    \"company\": \"Nome da Empresa\",\n    \"nameResponsible\": \"Nome do Responsavel\",\n    \"phoneContact\": \"88999999999\",\n    \"address\": \"Endereço da Obra\",\n    \"logoUrl\": null,\n    \"active\": true,\n    \"createdAt\": \"2023-12-09T17:59:11.904Z\",\n    \"updatedAt\": \"2023-12-09T17:59:11.904Z\",\n    \"userId\": 11,\n    \"services\": [],\n    \"Team\": [],\n    \"Interference\": [],\n    \"Shift\": [],\n    \"Location\": [],\n    \"Effective\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "OBRA Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"company\": \"Nome da Empresa Atualizada\",\n  \"workDescription\": \"Construção da Rodovia \",\n  \"address\": \"Endereço da Obra\",\n  \"nameResponsible\": \"Nome do Responsavel\",\n  \"phoneContact\": \"88999999999\",\n  \"active\": true\n}"
+						},
+						"url": "{{baseUrl}}/work/5"
+					},
+					"response": [
+						{
+							"name": "OBRA Atualizar",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"company\": \"Nome da Empresa Atualizada\",\n  \"workDescription\": \"Construção da Rodovia \",\n  \"address\": \"Endereço da Obra\",\n  \"nameResponsible\": \"Nome do Responsavel\",\n  \"phoneContact\": \"88999999999\",\n  \"active\": true\n}"
+								},
+								"url": "localhost:3000/api/work/5"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-2zggijrzpaFNLbtjHqhg3JiFeDQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:00:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Obra atualizada com sucesso\"\n}"
+						}
+					]
+				},
+				{
+					"name": "OBRA Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/work/7"
+					},
+					"response": [
+						{
+							"name": "OBRA Deletar",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "localhost:3000/api/work/5"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-dwOy68iw9YnvvYzrbj5ORmIkNlo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:00:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Obra deletado com sucesso\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Registrar OBRA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"company\": \"Nome da Empresa\",\n  \"workDescription\": \"Construção da Rodovia \",\n  \"address\": \"Endereço da Obra\",\n  \"nameResponsible\": \"Nome do Responsavel\",\n  \"phoneContact\": \"88999999999\",\n  \"active\": true\n}\n"
+						},
+						"url": "{{baseUrl}}/user/work/"
+					},
+					"response": [
+						{
+							"name": "Registrar OBRA",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"company\": \"Nome da Empresa\",\n  \"workDescription\": \"Construção da Rodovia \",\n  \"address\": \"Endereço da Obra\",\n  \"nameResponsible\": \"Nome do Responsavel\",\n  \"phoneContact\": \"88999999999\",\n  \"active\": true\n}\n"
+								},
+								"url": "localhost:3000/api/user/work/"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-csQsJMdyQlgqNundmd0b5naSD30\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 17:59:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Registro realizado com sucesso!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "User Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the expected Content-Type header of 'application/json'\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response message is empty\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.exist.and.to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\": \"User Name Atualizado\"\n}"
+						},
+						"url": "{{baseUrl}}/current/user/11"
+					},
+					"response": [
+						{
+							"name": "User Update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userName\": \"User Name\"\n}"
+								},
+								"url": "localhost:3000/api/current/user/11"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-/W8207NXHCFT7AZnamNdVTziLQk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 13:58:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Usuário atualizado com sucesso\"\n}"
+						}
+					]
+				},
+				{
+					"name": "User Current",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is set to application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.email).to.match(/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/, \"Email is not in a valid format\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify the presence and length of the 'work' array\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData.work).to.exist;",
+									"    pm.expect(responseData.work).to.be.an('array');",
+									"    pm.expect(responseData.work).to.have.lengthOf(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/current/user"
+					},
+					"response": [
+						{
+							"name": "User Current",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/current/user"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-yEpTOes2xnd+Ld8n9F3o8NXouXw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 13:58:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 11,\n    \"userName\": \"User Name\",\n    \"email\": \"user@user.com\",\n    \"avatarUrl\": null,\n    \"active\": true,\n    \"role\": \"Usuário Padrão\",\n    \"work\": []\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "adminUsuarios",
+			"item": [
+				{
+					"name": "User Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the user ID in the response matches the user ID in the request\", function () {",
+									"    const userId = 2;",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"    pm.expect(responseData.message).to.equal(\"User ID: \" + userId);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"Usuário\",\n    \"email\": \"user@email.com\",\n\t\"avatarUrl\": null,\n\t\"role\": \"Administrador\",\n\t\"active\": \"true\",\n    \"workId\": 3\n}"
+						},
+						"url": "{{baseUrl}}/admin/user/3"
+					},
+					"response": []
+				},
+				{
+					"name": "User Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/admin/user/3"
+					},
+					"response": []
+				},
+				{
+					"name": "User Por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.email).to.exist.and.to.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Password should not be empty\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.password).to.exist.and.to.have.lengthOf.at.least(1, \"Password should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify the presence and length of the 'work' array\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.work).to.exist.and.to.be.an('array');",
+									"    pm.expect(responseData.work).to.have.lengthOf(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/admin/user/3"
+					},
+					"response": [
+						{
+							"name": "User Por ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/admin/user/1"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "201"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c9-QKdhONjF4zfgrIvIYcMtN8Iw8W0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 17:57:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"userName\": \"atualizeou\",\n    \"email\": \"evertoncarvalho@email.com\",\n    \"avatarUrl\": null,\n    \"active\": true,\n    \"role\": \"root\",\n    \"createdAt\": \"2023-12-05T16:13:49.084Z\",\n    \"updatedAt\": \"2023-12-09T13:14:18.690Z\",\n    \"work\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "User indessxx",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"    ",
+									"    responseData.forEach(function(user) {",
+									"        pm.expect(user.email).to.be.a('string').and.match(/^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$/);",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify the presence and length of the 'work' array\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    pm.expect(responseData.length).to.be.at.least(1, \"The 'work' array should have at least one element\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/admin/users"
+					},
+					"response": [
+						{
+							"name": "User indessxx",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/admin/users"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3103"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c1f-3BtePBFNELOLRXSdh9f+OIEusvk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 17:57:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 4,\n        \"userName\": \"Éverton Carvalho\",\n        \"email\": \"evertoncarvalho@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"root\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-05T19:14:32.931Z\",\n        \"updatedAt\": \"2023-12-05T19:14:32.931Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 5,\n        \"userName\": \"admin\",\n        \"email\": \"admin@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Administrador\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-05T19:14:33.509Z\",\n        \"updatedAt\": \"2023-12-05T19:14:33.509Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 6,\n        \"userName\": \"Usuário\",\n        \"email\": \"user@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Usuário\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-05T19:14:34.075Z\",\n        \"updatedAt\": \"2023-12-05T19:14:34.075Z\",\n        \"work\": [\n            {\n                \"id\": 4,\n                \"workDescription\": \"APAGAR\",\n                \"company\": \"MVD\",\n                \"nameResponsible\": \"Darjan\",\n                \"phoneContact\": \"88999999999\",\n                \"address\": \"Endereço Completo\",\n                \"logoUrl\": null,\n                \"active\": false,\n                \"createdAt\": \"2023-12-09T13:14:14.769Z\",\n                \"updatedAt\": \"2023-12-09T13:14:14.769Z\",\n                \"userId\": 6\n            }\n        ]\n    },\n    {\n        \"id\": 7,\n        \"userName\": \"Éverton Carvalho\",\n        \"email\": \"evertoncarvalho@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"root\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-06T14:33:48.567Z\",\n        \"updatedAt\": \"2023-12-06T14:33:48.567Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 8,\n        \"userName\": \"admin\",\n        \"email\": \"admin@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Administrador\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-06T14:33:53.087Z\",\n        \"updatedAt\": \"2023-12-06T14:33:53.087Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 9,\n        \"userName\": \"Usuário\",\n        \"email\": \"user@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Usuário\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-06T14:33:53.648Z\",\n        \"updatedAt\": \"2023-12-06T14:33:53.648Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 1,\n        \"userName\": \"atualizeou\",\n        \"email\": \"evertoncarvalho@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"root\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-05T16:13:49.084Z\",\n        \"updatedAt\": \"2023-12-09T13:14:18.690Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 2,\n        \"userName\": \"normal\",\n        \"email\": \"admin22@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Administrador\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-05T16:13:49.599Z\",\n        \"updatedAt\": \"2023-12-05T16:13:49.599Z\",\n        \"work\": [\n            {\n                \"id\": 2,\n                \"workDescription\": \"APAGAR\",\n                \"company\": \"MVD\",\n                \"nameResponsible\": \"Darjan\",\n                \"phoneContact\": \"88999999999\",\n                \"address\": \"Endereço Completo\",\n                \"logoUrl\": null,\n                \"active\": false,\n                \"createdAt\": \"2023-12-05T17:55:28.790Z\",\n                \"updatedAt\": \"2023-12-05T17:55:28.790Z\",\n                \"userId\": 2\n            },\n            {\n                \"id\": 3,\n                \"workDescription\": \"APAGAR\",\n                \"company\": \"MVD\",\n                \"nameResponsible\": \"Darjan\",\n                \"phoneContact\": \"88999999999\",\n                \"address\": \"Endereço Completo\",\n                \"logoUrl\": null,\n                \"active\": false,\n                \"createdAt\": \"2023-12-05T18:51:38.964Z\",\n                \"updatedAt\": \"2023-12-05T18:51:38.964Z\",\n                \"userId\": 2\n            },\n            {\n                \"id\": 1,\n                \"workDescription\": \"agora ATUALIZANDO da Obra\",\n                \"company\": \"Nome da Empresa\",\n                \"nameResponsible\": \"Nome do Responsável\",\n                \"phoneContact\": \"88999999999\",\n                \"address\": \"Endereço Completo\",\n                \"logoUrl\": \"https://example.com/logo.png\",\n                \"active\": false,\n                \"createdAt\": \"2023-12-05T16:23:49.892Z\",\n                \"updatedAt\": \"2023-12-05T16:23:49.892Z\",\n                \"userId\": 2\n            }\n        ]\n    },\n    {\n        \"id\": 10,\n        \"userName\": \"teste2\",\n        \"email\": \"apagar@email.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Usuário Padrão\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-09T13:14:29.184Z\",\n        \"updatedAt\": \"2023-12-09T13:14:29.184Z\",\n        \"work\": []\n    },\n    {\n        \"id\": 11,\n        \"userName\": \"User Name\",\n        \"email\": \"user@user.com\",\n        \"avatarUrl\": null,\n        \"role\": \"Usuário Padrão\",\n        \"active\": true,\n        \"createdAt\": \"2023-12-09T13:21:39.535Z\",\n        \"updatedAt\": \"2023-12-09T13:58:38.918Z\",\n        \"work\": []\n    }\n]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{adminToken}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields - authenticated and token\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.authenticated).to.exist.and.to.be.a('boolean');",
+									"  pm.expect(responseData.token).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Token is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.token).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@email.com\",\n\t\"password\": \"123456\"\n}\n"
+						},
+						"url": "{{baseUrl}}/auth/login"
+					},
+					"response": [
+						{
+							"name": "User Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"user@user.com\",\n\t\"password\": \"123456\"\n}\n"
+								},
+								"url": "localhost:3000/api/auth/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "289"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"121-76CNj9CmiPWwPZMvhwEI7DayS+c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 13:23:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"authenticated\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInVzZXJOYW1lIjoiVXN1ZXIgTmFtZSIsImVtYWlsIjoidXNlckB1c2VyLmNvbSIsInJvbGUiOiJVc3XDoXJpbyBQYWRyw6NvIiwiYWN0aXZlIjp0cnVlLCJpYXQiOjE3MDIxMjgyMjcsImV4cCI6MTcwMzQyNDIyN30.EA5YoFd3ALcczfqGr2vlCZqmPkwwPDtC0YvgDXwFvXw\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\": \"Usuer Name\",\n\t\"email\": \"useassssaasasr@user.com\",\n\t\"password\": \"123456\",\n\t\"confirmPassword\": \"123456\"\n}\n"
+						},
+						"url": "{{baseUrl}}/auth/register"
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userName\": \"Usuer Name\",\n\t\"email\": \"user@user.com\",\n\t\"password\": \"123456\",\n\t\"confirmPassword\": \"123456\"\n}\n"
+								},
+								"url": "localhost:3000/api/auth/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-+uIi70FWvmPAGuyTjdsSptzOuhA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 13:21:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Registro realizado com sucesso\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Serviços",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response Content-Type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the response is an array with at least one element\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').and.to.have.lengthOf.at.least(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/services"
+					},
+					"response": [
+						{
+							"name": "Index",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/works/6/services"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-1yIP6a7xuGV0JpDr6rRb7T4sr+w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:19:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 12,\n        \"workId\": 6,\n        \"serviceDescription\": \"So aparecer na obra 6\",\n        \"unit\": \"Unidade de Medida\",\n        \"status\": \"Ativo\",\n        \"subcategoryId\": 1,\n        \"createdAt\": \"2023-12-09T18:11:11.403Z\",\n        \"updatedAt\": \"2023-12-09T18:11:11.403Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/6/services/60"
+					},
+					"response": [
+						{
+							"name": "Por ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/works/2/services/9"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "205"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cd-zR631Dz8Qa/bR8h/AQuaWgAHAs0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:20:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 12,\n    \"workId\": 6,\n    \"serviceDescription\": \"So aparecer na obra 6\",\n    \"unit\": \"Unidade de Medida\",\n    \"status\": \"Ativo\",\n    \"subcategoryId\": 1,\n    \"createdAt\": \"2023-12-09T18:11:11.403Z\",\n    \"updatedAt\": \"2023-12-09T18:11:11.403Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serviceDescription\": \"So aparecer na obra ATUALIZADO\",\n    \"unit\": \"Unidade de Medida\",\n    \"status\": \"Ativo\",\n    \"subcategoryId\": 1\n}"
+						},
+						"url": "{{baseUrl}}/works/1/services/1"
+					},
+					"response": [
+						{
+							"name": "Atualizar",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"serviceDescription\": \"So aparecer na obra 6\",\n    \"unit\": \"Unidade de Medida\",\n    \"status\": \"Ativo\",\n    \"subcategoryId\": 1\n}"
+								},
+								"url": "localhost:3000/api/works/6/services/13"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-OCAwdJ8pOHJZk15OB4Gq7VKz6Eo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:33:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Atualizada com sucesso\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/6/services/13"
+					},
+					"response": [
+						{
+							"name": "Deletar",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "localhost:3000/api/works/2/services/9"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-bB7SBPBwvZeDzV1dHHnZcdBIrxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:23:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Obra não encontrado ou não pertence ao usuário\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.equal(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"serviceDescription\": \"serviço DO GRUPO 2 SUB CATEGORIA 2\",\n\t\"unit\": \"Unidade de Medida\",\n\t\"status\": \"Ativo\",\n    \"totalAmount\": 100,\n\t\"subcategoryId\": 1\n}\n"
+						},
+						"url": "{{baseUrl}}/works/1/services"
+					},
+					"response": [
+						{
+							"name": "Registrar",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"serviceDescription\": \"So aparecer na obra 6\",\n\t\"unit\": \"Unidade de Medida\",\n\t\"status\": \"Ativo\",\n\t\"subcategoryId\": 1\n}\n"
+								},
+								"url": "localhost:3000/api/works/6/services"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-csQsJMdyQlgqNundmd0b5naSD30\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:43:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Registro realizado com sucesso!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Associar WorkUser",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response Content-Type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the response is an array with at least one element\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').and.to.have.lengthOf.at.least(1);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/services"
+					},
+					"response": [
+						{
+							"name": "Index",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/works/6/services"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-1yIP6a7xuGV0JpDr6rRb7T4sr+w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:19:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 12,\n        \"workId\": 6,\n        \"serviceDescription\": \"So aparecer na obra 6\",\n        \"unit\": \"Unidade de Medida\",\n        \"status\": \"Ativo\",\n        \"subcategoryId\": 1,\n        \"createdAt\": \"2023-12-09T18:11:11.403Z\",\n        \"updatedAt\": \"2023-12-09T18:11:11.403Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "findByUserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/6/services/60"
+					},
+					"response": [
+						{
+							"name": "Por ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"url": "localhost:3000/api/works/2/services/9"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "205"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cd-zR631Dz8Qa/bR8h/AQuaWgAHAs0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:20:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 12,\n    \"workId\": 6,\n    \"serviceDescription\": \"So aparecer na obra 6\",\n    \"unit\": \"Unidade de Medida\",\n    \"status\": \"Ativo\",\n    \"subcategoryId\": 1,\n    \"createdAt\": \"2023-12-09T18:11:11.403Z\",\n    \"updatedAt\": \"2023-12-09T18:11:11.403Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serviceDescription\": \"So aparecer na obra ATUALIZADO\",\n    \"unit\": \"Unidade de Medida\",\n    \"status\": \"Ativo\",\n    \"subcategoryId\": 1\n}"
+						},
+						"url": "{{baseUrl}}/works/1/services/1"
+					},
+					"response": [
+						{
+							"name": "Atualizar",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"serviceDescription\": \"So aparecer na obra 6\",\n    \"unit\": \"Unidade de Medida\",\n    \"status\": \"Ativo\",\n    \"subcategoryId\": 1\n}"
+								},
+								"url": "localhost:3000/api/works/6/services/13"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-OCAwdJ8pOHJZk15OB4Gq7VKz6Eo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:33:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Atualizada com sucesso\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REMOVER",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/6/services/13"
+					},
+					"response": [
+						{
+							"name": "Deletar",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "localhost:3000/api/works/2/services/9"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3f-bB7SBPBwvZeDzV1dHHnZcdBIrxE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:23:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Obra não encontrado ou não pertence ao usuário\"\n}"
+						}
+					]
+				},
+				{
+					"name": "CREATE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.equal(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"serviceDescription\": \"serviço DO GRUPO 2 SUB CATEGORIA 2\",\n\t\"unit\": \"Unidade de Medida\",\n\t\"status\": \"Ativo\",\n    \"totalAmount\": 100,\n\t\"subcategoryId\": 1\n}\n"
+						},
+						"url": "{{baseUrl}}/works/1/services"
+					},
+					"response": [
+						{
+							"name": "Registrar",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/8.3.0"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"serviceDescription\": \"So aparecer na obra 6\",\n\t\"unit\": \"Unidade de Medida\",\n\t\"status\": \"Ativo\",\n\t\"subcategoryId\": 1\n}\n"
+								},
+								"url": "localhost:3000/api/works/6/services"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "45"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d-csQsJMdyQlgqNundmd0b5naSD30\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Dec 2023 18:43:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Registro realizado com sucesso!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sub Categorias",
+			"item": [
+				{
+					"name": "Buscar Todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"  ",
+									"  responseData.forEach(function(subcategory) {",
+									"    pm.expect(subcategory).to.have.property('id');",
+									"    pm.expect(subcategory).to.have.property('name');",
+									"    pm.expect(subcategory).to.have.property('status');",
+									"    pm.expect(subcategory).to.have.property('serviceCategoryId');",
+									"  });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the response is an array with at least one element\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array').and.to.have.lengthOf.at.least(1);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Name is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  ",
+									"  responseData.forEach(function(item) {",
+									"    pm.expect(item.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"  });",
+									"});",
+									"",
+									"",
+									"pm.test(\"ServiceCategoryId is a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.serviceCategoryId).to.be.a('number').and.to.be.at.least(0);",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/subcategory"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/subcategory/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Sub 4\",\n\t\"status\": \"Ativo\",\n\t\"serviceCategoryId\": 2\n}"
+						},
+						"url": "{{baseUrl}}/subcategory/4"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/subcategory/4"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is set to application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Aterro\",\n\t\"status\": \"Ativo\",\n\t\"serviceCategoryId\": 2\n}\n"
+						},
+						"url": "{{baseUrl}}/subcategory"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Buscar Todas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    responseData.forEach(function(category) {",
+									"        pm.expect(category).to.have.property(\"id\").that.is.a(\"number\");",
+									"        pm.expect(category).to.have.property(\"name\").that.is.a(\"string\");",
+									"        pm.expect(category).to.have.property(\"status\").that.is.a(\"string\");",
+									"        pm.expect(category).to.have.property(\"createdAt\").that.is.a(\"string\");",
+									"        pm.expect(category).to.have.property(\"updatedAt\").that.is.a(\"string\");",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Verify that the response is in JSON format\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the 'id' is a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.id).to.be.a('number');",
+									"        pm.expect(item.id).to.be.at.least(0);",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the 'name' is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function(category){",
+									"        pm.expect(category.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/category"
+					},
+					"response": []
+				},
+				{
+					"name": "POR ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData).to.have.property('id');",
+									"  pm.expect(responseData).to.have.property('name');",
+									"  pm.expect(responseData).to.have.property('status');",
+									"  pm.expect(responseData).to.have.property('createdAt');",
+									"  pm.expect(responseData).to.have.property('updatedAt');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Name is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.name).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Name should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Status is either 'active' or 'inactive'\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.status).to.exist.and.to.be.oneOf([\"active\", \"inactive\"]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/category/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Request URL is correct\", function () {",
+									"  pm.expect(pm.request.url).to.equal(\"localhost:3000/api/category/1\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Aterro Atualizado\",\n\t\"status\": \"Ativo\"\n}"
+						},
+						"url": "{{baseUrl}}/category/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/category/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Aterroaa\",\n\t\"status\": \"Ativo\"\n}\n"
+						},
+						"url": "{{baseUrl}}/api/category"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Equipes",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate that the 'id' is a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function(team) {",
+									"        pm.expect(team.id).to.be.a('number').and.to.satisfy(function(id) {",
+									"            return id >= 0;",
+									"        }, \"Value should be a non-negative integer\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate that workId is a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function(team) {",
+									"        pm.expect(team.workId).to.be.a('number').and.to.satisfy(function(value) {",
+									"            return value >= 0;",
+									"        });",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that 'descricaoEquipe' is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function (team) {",
+									"        pm.expect(team.descricaoEquipe).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/6/teams"
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.id).to.exist;",
+									"    pm.expect(responseData.workId).to.exist;",
+									"    pm.expect(responseData.descricaoEquipe).to.exist;",
+									"    pm.expect(responseData.empresaContratada).to.exist;",
+									"    pm.expect(responseData.status).to.exist;",
+									"    pm.expect(responseData.createdAt).to.exist;",
+									"    pm.expect(responseData.updatedAt).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that descricaoEquipe is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.descricaoEquipe).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that 'empresaContratada' is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.empresaContratada).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the 'status' is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.status).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/6/team/7"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is set to application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricaoEquipe\": \"Descrição da Equipe ATUALIZADA\",\n\t\"empresaContratada\": \"Nome da Empresa\",\n\t\"status\": \"Ativo\"\n}"
+						},
+						"url": "{{baseUrl}}/works/6/team/6"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/6/team/7"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.expect(pm.response.code).to.equal(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is set to application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricaoEquipe\": \"Descrição da Equipe NOVA EQUIPE\",\n\t\"empresaContratada\": \"Nome da Empresa\",\n\t\"status\": \"Ativo\"\n}\n"
+						},
+						"url": "{{baseUrl}}/works/1/team"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Turnos",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Feasibility is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  responseData.forEach(function(shift) {",
+									"    pm.expect(shift.feasibility).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Feasibility should not be empty\");",
+									"  });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Weather condition is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  responseData.forEach(function (shift) {",
+									"    pm.expect(shift.weatherCondition).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/shifts"
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Description is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.description).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Description should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Feasibility is either 'feasible' or 'not feasible'\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.feasibility).to.exist.and.to.be.oneOf(['feasible', 'not feasible'], \"Feasibility should be either 'feasible' or 'not feasible'\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Weather condition is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.weatherCondition).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/shift/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the 'message' field is present in the response\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the 'message' field is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the 'message' field contains the expected value\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.equal(\"expected value\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamId\": 2,\n\t\"description\": \"Obra parada devido aasdasdsad fotes chuvas ATUALIZADO\",\n\t\"feasibility\": \"Impraticavel\",\n\t\"weatherCondition\": \"Chuvoso\",\n\t\"status\": \"Inativo\"\n}"
+						},
+						"url": "{{baseUrl}}/works/1/shift/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/1/shift/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamId\": 2,\n\t\"description\": \"Obra parada devido a fotes chuvas\",\n\t\"feasibility\": \"Impraticavel\",\n\t\"weatherCondition\": \"Chuvoso\",\n\t\"status\": \"Inativo\"\n}\n"
+						},
+						"url": "{{baseUrl}}/works/1/shift"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Interferência",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that the response is an array with at least one element\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.has.lengthOf.at.least(1);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify that interferenceResponsible is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    responseData.forEach(function(interference) {",
+									"        pm.expect(interference.interferenceResponsible).to.be.a('string').and.not.to.be.empty;",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/interferences"
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"interferenceResponsible field is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.interferenceResponsible).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"createdAt field is in a valid date format\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData.createdAt).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$/, \"createdAt field is not in a valid date format\");",
+									"});",
+									"",
+									"pm.test(\"Response time is within an acceptable range\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/interference/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is set to 'application/json'\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Request URL is correct\", function () {",
+									"    pm.expect(pm.request.url).to.equal(\"localhost:3000/api/works/1/interference/5\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"interferenceResponsible\": \"Éverton A Carvalho\",\n\t\"category\": \"Não sei do que se trata\",\n\t\"subCategory\": \"não sei\",\n\t\"status\": \"Inativo\"\n}"
+						},
+						"url": "{{baseUrl}}/works/1/interference/5"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/1/interference/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.expect(pm.response.code).to.equal(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - message\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"  pm.test(\"Content-Type header is set to application/json\", function () {",
+									"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/json\");",
+									"  });",
+									"",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamId\": 2,\n\t\"interferenceResponsible\": \"Éverton \",\n\t\"category\": \"Não sei do que se trata\",\n\t\"subCategory\": \"não sei\",\n\t\"status\": \"Inativo\"\n}\n"
+						},
+						"url": "{{baseUrl}}/works/1/interference"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Locais",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate id and workId are non-negative integers\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function(location) {",
+									"        pm.expect(location.id).to.be.a('number').and.to.be.at.least(0);",
+									"        pm.expect(location.workId).to.be.a('number').and.to.be.at.least(0);",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Description location is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function(location) {",
+									"        pm.expect(location.descriptionLocation).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Description location should not be empty\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Responsible location is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  responseData.forEach(function(location) {",
+									"    pm.expect(location.responsibleLocation).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/locations"
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.include.all.keys(",
+									"        'id',",
+									"        'workId',",
+									"        'descriptionLocation',",
+									"        'responsibleLocation',",
+									"        'status',",
+									"        'createdAt',",
+									"        'updatedAt'",
+									"    );",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check if the id is a non-negative integer\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.id).to.be.a('number');",
+									"  pm.expect(responseData.id).to.be.at.least(0, \"Id should be a non-negative integer\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"The workId should be a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData.workId).to.exist.and.to.be.a('number', \"workId should be a number\");",
+									"    pm.expect(responseData.workId).to.be.at.least(0, \"workId should be a non-negative integer\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Check if the descriptionLocation is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData.descriptionLocation).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/location/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"  pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Verify the request URL and parameters\", function () {",
+									"    pm.expect(pm.request.url).to.include(\"localhost:3000/api/works/1/location/2\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descriptionLocation\": \"Rua A COluna A \",\n\t\"responsibleLocation\": \"Éverton Carvalho\",\n\t\"status\": \"Inativo\"\n}"
+						},
+						"url": "{{baseUrl}}/works/1/location/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/1/location/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"  pm.response.to.have.status(201);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('object');",
+									"  pm.expect(responseData.message).to.exist.and.to.be.a('string');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Message is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData.message).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Message should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is set to application/json\", function () {",
+									"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is in an acceptable range\", function () {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descriptionLocation\": \"Rua A COluna B \",\n\t\"responsibleLocation\": \"Évton\",\n\t\"status\": \"Ativo\"\n}\n"
+						},
+						"url": "{{baseUrl}}/works/1/location"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Efetivos",
+			"item": [
+				{
+					"name": "Index",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    ",
+									"    responseData.forEach(function(effect){",
+									"        pm.expect(effect.id).to.exist;",
+									"        pm.expect(effect.workId).to.exist;",
+									"        pm.expect(effect.type).to.exist;",
+									"        pm.expect(effect.descriptionEffective).to.exist;",
+									"        pm.expect(effect.status).to.exist;",
+									"        pm.expect(effect.createdAt).to.exist;",
+									"        pm.expect(effect.updatedAt).to.exist;",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Type is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  pm.expect(responseData).to.be.an('array');",
+									"  responseData.forEach(function (item) {",
+									"    pm.expect(item.type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"  });",
+									"});",
+									"",
+									"",
+									"pm.test(\"DescriptionEffective is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array');",
+									"    responseData.forEach(function (item) {",
+									"        pm.expect(item.descriptionEffective).to.be.a('string').and.to.have.lengthOf.at.least(1, \"DescriptionEffective should not be empty\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Status is a non-empty string\", function () {",
+									"  const responseData = pm.response.json();",
+									"  ",
+									"  responseData.forEach(function (item) {",
+									"    pm.expect(item.status).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"  });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/effectives"
+					},
+					"response": []
+				},
+				{
+					"name": "Por ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"url": "{{baseUrl}}/works/1/effective/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descriptionEffective\": \"EVERTON EFETIVO ATUALIZADO \",\n\t\"type\": \"NAO SEI\",\n\t\"status\": \"Ativo\"\n}"
+						},
+						"url": "{{baseUrl}}/works/1/effective/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/works/1/effective/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descriptionEffective\": \"EVERTON EFETIVO \",\n\t\"type\": \"NAO SEI\",\n\t\"status\": \"Ativo\"\n}\n"
+						},
+						"url": "{{baseUrl}}/api/works/1/effective"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{userToken}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api",
+			"type": "string"
+		},
+		{
+			"key": "userToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "adminToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
